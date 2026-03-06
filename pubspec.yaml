@@ -20,3 +20,7 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+  assets:
+    - lib/config/asset/3D_icons
+    - lib/config/asset/images
+    
