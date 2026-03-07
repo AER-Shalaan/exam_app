@@ -8,13 +8,11 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.8
   flutter:
-
     sdk: flutter
-    
+  flutter_launcher_icons: ^0.14.4
   google_fonts: ^8.0.2
 
 dev_dependencies:
-
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
@@ -28,4 +26,3 @@ flutter_assets:
   output_path: lib/core/values/
   filename: images_paths.dart
   ignore_comments: true
-    
