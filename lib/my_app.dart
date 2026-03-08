@@ -1,3 +1,4 @@
+import 'package:exam_app/config/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -8,7 +9,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Exam App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true),
+      theme: AppTheme.lightTheme,
+      themeMode: ThemeMode.light,
     );
   }
 }
