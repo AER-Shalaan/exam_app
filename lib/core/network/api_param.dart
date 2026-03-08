@@ -1,0 +1,4 @@
+class ApiParam {
+  ApiParam._();
+
+}

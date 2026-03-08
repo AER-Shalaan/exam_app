@@ -7,6 +7,7 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.8
+  dio: ^5.9.2
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.14.4
@@ -15,6 +16,8 @@ dependencies:
   google_fonts: ^8.0.2
   injectable:
   get_it:
+  json_annotation: ^4.9.0
+  retrofit: ^4.9.0
 
 dev_dependencies:
   flutter_lints: ^6.0.0
@@ -22,6 +25,8 @@ dev_dependencies:
     sdk: flutter
   injectable_generator:
   build_runner:
+  json_serializable: ^6.10.0
+  retrofit_generator: ^10.0.1
 
 flutter:
   uses-material-design: true
