@@ -1,6 +1,6 @@
 name: exam_app
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 
 environment:
   sdk: ^3.11.0
@@ -9,6 +9,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
+  flutter_svg: ^2.2.4
   flutter_launcher_icons: ^0.14.4
   google_fonts: ^8.0.2
 
@@ -18,8 +19,11 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-
   uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
 
 flutter_assets:
   assets_path: assets/
