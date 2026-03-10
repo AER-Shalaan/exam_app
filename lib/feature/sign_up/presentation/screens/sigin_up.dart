@@ -1,9 +1,10 @@
-import 'package:exam_app/config/app_routes.dart';
+import 'package:exam_app/config/di/di.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/core/values/validation/app_validation.dart';
+import 'package:exam_app/feature/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -26,7 +27,23 @@ class _SiginInState extends State<SiginUp> {
   final TextEditingController phoneNumberController = TextEditingController();
 
   @override
+  void dispose() {
+    userNameController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    phoneNumberController.dispose();
+    super.dispose();
+  }
+
+  setUserCubit setUser = getIt.get<setUserCubit>();
+
+  @override
   Widget build(BuildContext context) {
+    setUser.setUsers();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(AppStrings.signUpTitle),

@@ -14,6 +14,17 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
 import '../../core/network/dio_module.dart' as _i673;
+import '../../feature/sign_up/apis/sign_up_api_client.dart' as _i344;
+import '../../feature/sign_up/data/datasources/sign_up_datasorce_impl.dart'
+    as _i710;
+import '../../feature/sign_up/data/datasources/sign_up_datasource_contract.dart'
+    as _i268;
+import '../../feature/sign_up/data/repositories/sign_up_repo_impl.dart'
+    as _i917;
+import '../../feature/sign_up/domain/repositories/sign_up_repo_contract.dart'
+    as _i286;
+import '../../feature/sign_up/domain/usecases/sign_up_usecase.dart' as _i758;
+import '../../feature/sign_up/presentation/cubit/sign_up_cubit.dart' as _i906;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -23,7 +34,20 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
+    gh.factory<_i344.SignUpApiClient>(() => _i344.SignUpApiClient());
     gh.singleton<_i361.Dio>(() => dioModule.dio);
+    gh.factory<_i268.SignUpDataSourceContract>(
+      () => _i710.SignUpDatasorceImpl(),
+    );
+    gh.factory<_i286.SignUpRepoContract>(
+      () => _i917.SignUpRepoImpl(gh<_i268.SignUpDataSourceContract>()),
+    );
+    gh.factory<_i758.setUserusecase>(
+      () => _i758.setUserusecase(gh<_i268.SignUpDataSourceContract>()),
+    );
+    gh.factory<_i906.setUserCubit>(
+      () => _i906.setUserCubit(gh<_i758.setUserusecase>()),
+    );
     return this;
   }
 }

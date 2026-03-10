@@ -1,8 +1,15 @@
-// import 'package:bloc/bloc.dart';
-// import 'package:equatable/equatable.dart';
+import 'package:exam_app/feature/sign_up/domain/usecases/sign_up_usecase.dart';
+import 'package:injectable/injectable.dart';
 
-// part 'sign_up_state.dart';
+@injectable
+class setUserCubit {
+  final setUserusecase _userusecase;
 
-// class SignUpCubit extends Cubit<SignUpState> {
-//   SignUpCubit() : super(SignUpInitial());
-// }
+  setUserCubit(this._userusecase);
+  Future<void> setUsers() async {
+    final users = await _userusecase.call();
+    users.forEach((e) {
+      print(e.email);
+    });
+  }
+}

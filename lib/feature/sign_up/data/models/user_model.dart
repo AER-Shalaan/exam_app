@@ -18,4 +18,6 @@ class UserModel {
     data['password'] = password;
     return data;
   }
+  // SignUpEntitiies toEntity() =>
+  //     SignUpEntitiies(name: userName, email: email, password: password);
 }
