@@ -1,3 +1,4 @@
+import 'package:exam_app/feature/sign_up/presentation/screens/sigin_up.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -10,6 +11,7 @@ class AppRoutes {
     return {
       // example
       // splashRouteName: (_) => const SplashView(),
+      signUpViewRouteName: (_) => const SiginUp(),
     };
   }
 }
