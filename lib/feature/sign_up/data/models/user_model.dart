@@ -1,23 +1,41 @@
+
+
+import 'package:json_annotation/json_annotation.dart';
+ part 'user_model.g.dart';
+@JsonSerializable()
 class UserModel {
-  String? userName;
-  String? email;
-  String? password;
+    @JsonKey(name: "username")
+    String? username;
+    @JsonKey(name: "firstName")
+    String? firstName;
+    @JsonKey(name: "lastName")
+    String? lastName;
+    @JsonKey(name: "email")
+    String? email;
+    @JsonKey(name: "phone")
+    String? phone;
+    @JsonKey(name: "role")
+    String? role;
+    @JsonKey(name: "isVerified")
+    bool? isVerified;
+    @JsonKey(name: "_id")
+    String? id;
+    @JsonKey(name: "createdAt")
+    DateTime? createdAt;
 
-  UserModel({this.userName, this.email, this.password});
+    UserModel({
+        this.username,
+        this.firstName,
+        this.lastName,
+        this.email,
+        this.phone,
+        this.role,
+        this.isVerified,
+        this.id,
+        this.createdAt,
+    });
 
-  UserModel.fromJson(Map<String, dynamic> json) {
-    userName = json['userName'];
-    email = json['email'];
-    password = json['password'];
-  }
+    factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['userName'] = userName;
-    data['email'] = email;
-    data['password'] = password;
-    return data;
-  }
-  // SignUpEntitiies toEntity() =>
-  //     SignUpEntitiies(name: userName, email: email, password: password);
+    Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }

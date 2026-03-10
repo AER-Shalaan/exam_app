@@ -6,6 +6,6 @@ class SignUpDatasorceImpl implements SignUpDataSourceContract {
   @override
   Future<List<UserModel>> setUsers() async {
     await Future.delayed(Duration(seconds: 2));
-    return [UserModel(userName: "user", email: "email", password: "password")];
+    return [UserModel(username: "user", email: "email",)];
   }
 }

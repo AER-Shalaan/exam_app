@@ -8,42 +8,13 @@ import 'package:exam_app/feature/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SiginUp extends StatefulWidget {
-  const SiginUp({super.key});
-
-  @override
-  State<SiginUp> createState() => _SiginInState();
-}
-
-class _SiginInState extends State<SiginUp> {
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController userNameController = TextEditingController();
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
-
-  @override
-  void dispose() {
-    userNameController.dispose();
-    firstNameController.dispose();
-    lastNameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    confirmPasswordController.dispose();
-    phoneNumberController.dispose();
-    super.dispose();
-  }
-
-  setUserCubit setUser = getIt.get<setUserCubit>();
+class SiginUpView extends StatelessWidget {
+  const SiginUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    setUserCubit setUser = getIt.get<setUserCubit>();
     setUser.setUsers();
-
     return Scaffold(
       appBar: AppBar(
         title: Text(AppStrings.signUpTitle),
@@ -176,16 +147,6 @@ class _SiginInState extends State<SiginUp> {
                     ),
                   ],
                 ),
-                // Text.rich(
-                //   TextSpan(
-                //     text:
-                //     children: [
-                //       TextSpan(
-                //         text:
-                //       ),
-                //     ],
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -194,3 +155,22 @@ class _SiginInState extends State<SiginUp> {
     );
   }
 }
+
+GlobalKey<FormState> formKey = GlobalKey<FormState>();
+final TextEditingController userNameController = TextEditingController();
+final TextEditingController firstNameController = TextEditingController();
+final TextEditingController lastNameController = TextEditingController();
+final TextEditingController emailController = TextEditingController();
+final TextEditingController passwordController = TextEditingController();
+final TextEditingController confirmPasswordController = TextEditingController();
+final TextEditingController phoneNumberController = TextEditingController();
+  // @override
+  // void dispose() {
+  //   userNameController.dispose();
+  //   firstNameController.dispose();
+  //   lastNameController.dispose();
+  //   emailController.dispose();
+  //   passwordController.dispose();
+  //   confirmPasswordController.dispose();
+  //   phoneNumberController.dispose();
+  //   super.dispose();}
