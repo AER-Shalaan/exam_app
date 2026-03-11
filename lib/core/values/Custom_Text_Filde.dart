@@ -1,0 +1,78 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class CustomTextFilde extends StatefulWidget {
+  const CustomTextFilde({
+    super.key,
+    required this.hint,
+    required this.isPassword,
+    required this.controller,
+    required this.isemail,
+  });
+  final String hint;
+  final bool isPassword;
+  final bool isemail;
+  final TextEditingController controller;
+
+  @override
+  State<CustomTextFilde> createState() => _CustomTextFildeState();
+}
+
+class _CustomTextFildeState extends State<CustomTextFilde> {
+  late bool _obscureText;
+  @override
+  void initState() {
+    _obscureText = widget.isPassword;
+    super.initState();
+  }
+
+  void _togglePassword() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      style: TextStyle(color: const Color.fromARGB(219, 0, 0, 0)),
+      controller: widget.controller,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter some ${widget.hint}';
+        }
+        return null;
+      },
+      obscureText: _obscureText,
+      canRequestFocus: true,
+      cursorHeight: 20,
+      cursorColor: const Color.fromARGB(255, 0, 0, 0),
+      decoration: InputDecoration(
+        suffixIcon: widget.isPassword
+            ? GestureDetector(
+                onTap: () {
+                  _togglePassword();
+                },
+                child: Icon(
+                  CupertinoIcons.eye_solid,
+                  color: const Color.fromARGB(255, 0, 0, 0),
+                ),
+              )
+            : null,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(13),
+
+          borderSide: BorderSide(color: const Color.fromARGB(255, 0, 0, 0)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(color: const Color.fromARGB(255, 0, 0, 0)),
+        ),
+        hintText: widget.hint,
+        hintStyle: TextStyle(color: const Color.fromARGB(100, 34, 32, 32)),
+        fillColor: const Color.fromARGB(0, 255, 255, 255),
+        filled: true,
+      ),
+    );
+  }
+}

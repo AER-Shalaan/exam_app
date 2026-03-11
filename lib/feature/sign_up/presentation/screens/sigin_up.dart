@@ -5,6 +5,7 @@ import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/core/values/validation/app_validation.dart';
 import 'package:exam_app/feature/sign_up/presentation/cubit/sign_up_cubit.dart';
+import 'package:exam_app/feature/sign_up/presentation/screens/Login_View.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -163,9 +164,10 @@ class _SiginInState extends State<SiginUp> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // Navigator.of(
-                        //   context,
-                        // ).pushNamed(AppRoutes.loginViewRouteName);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginView()),
+                        );
                       },
                       child: Text(
                         "Login",

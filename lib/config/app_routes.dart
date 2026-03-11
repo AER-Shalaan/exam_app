@@ -1,3 +1,4 @@
+import 'package:exam_app/Splash_Screen.dart';
 import 'package:exam_app/feature/sign_up/presentation/screens/sigin_up.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class AppRoutes {
   static Map<String, Widget Function(BuildContext)> getRoutes() {
     return {
       // example
-      // splashRouteName: (_) => const SplashView(),
+      splashRouteName: (_) => const SplashView(),
       signUpViewRouteName: (_) => const SiginUp(),
     };
   }

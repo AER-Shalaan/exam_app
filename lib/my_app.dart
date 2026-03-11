@@ -1,4 +1,5 @@
 import 'package:exam_app/config/app_theme.dart';
+import 'package:exam_app/feature/sign_up/presentation/screens/Login_View.dart';
 import 'package:exam_app/feature/sign_up/presentation/screens/sigin_up.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       themeMode: ThemeMode.light,
-      home: const SiginUp(),
+      home: LoginView(),
       routes: AppRoutes.getRoutes(),
     );
   }
