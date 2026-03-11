@@ -4,7 +4,12 @@ class AppStrings {
   static const splashScreenTitle = "Welcome to Exam App";
   static const signUpTitle = "Sign Up";
   static const loginTitle = "Login";
-  static const forgotPasswordTitle = "Forgot Password";
+  static const forgotPasswordTitle = "Forget password";
+  static const forgotPasswordDescription =
+      "Please enter your email associated to\nyour account";
+  static const email = 'Email';
+  static const emailHint = "Enter you email";
+  static const password = 'Password';
   static const fieldCannotBeEmpty = 'This field cannot be empty';
   static const emailCannotBeEmpty = 'Email address cannot be empty';
   static const invalidEmail = 'Invalid email address.';
@@ -15,4 +20,5 @@ class AppStrings {
   static const confirmPasswordCannotBeEmpty =
       'Confirm password cannot be empty';
   static const passwordsDoNotMatch = 'Passwords do not match.';
+  static const continueString = "Continue";
 }

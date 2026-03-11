@@ -1,3 +1,4 @@
+import 'package:exam_app/features/Auth/forget_password/presentation/forget_password_view.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -8,8 +9,7 @@ class AppRoutes {
 
   static Map<String, Widget Function(BuildContext)> getRoutes() {
     return {
-      // example
-      // splashRouteName: (_) => const SplashView(),
+      forgotPasswordRouteName: (context) => ForgetPasswordView(),
     };
   }
 }
