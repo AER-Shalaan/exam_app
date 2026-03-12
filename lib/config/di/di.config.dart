@@ -16,9 +16,9 @@ import 'package:injectable/injectable.dart' as _i526;
 import '../../core/network/dio_module.dart' as _i673;
 import '../../feature/sign_up/apis/sign_up_api_client/sign_up_api_client.dart'
     as _i252;
-import '../../feature/sign_up/apis/sign_up_datasorce_impl/sign_up_datasorce_impl.dart'
+import '../../feature/sign_up/apis/sign_up_datasorce_impl/sign_up_remote_datasorce_impl.dart'
     as _i963;
-import '../../feature/sign_up/data/datasources/sign_up_datasource_contract.dart'
+import '../../feature/sign_up/data/datasources/remote/sign_up_remote_datasource_contract.dart'
     as _i268;
 import '../../feature/sign_up/data/repositories/sign_up_repo_impl.dart'
     as _i917;
@@ -39,14 +39,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i252.SignUpApiClient>(
       () => _i252.SignUpApiClient(gh<_i361.Dio>()),
     );
-    gh.factory<_i268.SignUpDataSourceContract>(
-      () => _i963.SignUpDatasorceImpl(gh<_i252.SignUpApiClient>()),
+    gh.factory<_i268.SignUpRemoteDatasourceContract>(
+      () => _i963.SignUpRemoteDatasorceImpl(gh<_i252.SignUpApiClient>()),
     );
     gh.factory<_i758.SetUserusecase>(
-      () => _i758.SetUserusecase(gh<_i268.SignUpDataSourceContract>()),
+      () => _i758.SetUserusecase(gh<_i268.SignUpRemoteDatasourceContract>()),
     );
     gh.factory<_i286.SignUpRepoContract>(
-      () => _i917.SignUpRepoImpl(gh<_i268.SignUpDataSourceContract>()),
+      () => _i917.SignUpRepoImpl(gh<_i268.SignUpRemoteDatasourceContract>()),
     );
     gh.factory<_i906.SetUserCubit>(
       () => _i906.SetUserCubit(gh<_i758.SetUserusecase>()),

@@ -1,14 +1,14 @@
 import 'package:exam_app/core/error/error_handler.dart';
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/feature/sign_up/apis/sign_up_api_client/sign_up_api_client.dart';
-import 'package:exam_app/feature/sign_up/data/datasources/sign_up_datasource_contract.dart';
+import 'package:exam_app/feature/sign_up/data/datasources/remote/sign_up_remote_datasource_contract.dart';
 import 'package:exam_app/feature/sign_up/data/models/user_model.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: SignUpDataSourceContract)
-class SignUpDatasorceImpl implements SignUpDataSourceContract {
+@Injectable(as: SignUpRemoteDatasourceContract)
+class SignUpRemoteDatasorceImpl implements SignUpRemoteDatasourceContract {
   final SignUpApiClient _signUpApiClient;
-  SignUpDatasorceImpl(this._signUpApiClient);
+  SignUpRemoteDatasorceImpl(this._signUpApiClient);
   @override
   Future<BaseResponse<UserModel>> setUsers({
     required Map<String, dynamic> body,

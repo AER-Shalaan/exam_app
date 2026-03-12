@@ -21,6 +21,7 @@ dependencies:
   bloc: ^9.2.0
   equatable: ^2.0.8
   dart_either: ^2.1.0
+  shared_preferences: ^2.5.4
 
 dev_dependencies:
   flutter_lints: ^6.0.0
