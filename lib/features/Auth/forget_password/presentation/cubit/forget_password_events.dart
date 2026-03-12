@@ -16,7 +16,11 @@ class VerifyResetCodeEvent extends ForgetPasswordEvents {
   VerifyResetCodeEvent({required this.code});
 }
 
-class ResendCodeEvent extends ForgetPasswordEvents {
-}
-
 class ClearVerifyErrorEvent extends ForgetPasswordEvents {}
+
+class ResendCodeEvent extends ForgetPasswordEvents {}
+
+class ResetPasswordEvent extends ForgetPasswordEvents {
+  final String password;
+  ResetPasswordEvent({required this.password});
+}

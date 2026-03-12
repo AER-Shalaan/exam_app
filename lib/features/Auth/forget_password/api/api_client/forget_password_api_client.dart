@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:exam_app/core/models/auth_response_model.dart';
 import 'package:exam_app/core/network/endpoints.dart';
-import 'package:exam_app/features/Auth/forget_password/data/models/forget_password_model.dart';
-import 'package:exam_app/features/Auth/forget_password/data/models/verify_reset_model.dart';
+import 'package:exam_app/features/auth/forget_password/data/models/forget_password_model.dart';
+import 'package:exam_app/features/auth/forget_password/data/models/verify_reset_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -15,11 +16,16 @@ abstract class ForgetPasswordApiClient {
 
   @POST(Endpoints.postForgotPasswordEndpoint)
   Future<ForgetPasswordModel> sendEmail({
-    @Body() required Map<String, dynamic> body
+    @Body() required Map<String, dynamic> body,
   });
 
   @POST(Endpoints.postVerifyResetCodeEndpoint)
   Future<VerifyResetModel> verifyReset({
-    @Body() required Map<String, dynamic> body
+    @Body() required Map<String, dynamic> body,
+  });
+
+  @PUT(Endpoints.putResetPasswordEndpoint)
+  Future<AuthResponseModel> resetPassword({
+    @Body() required Map<String, dynamic> body,
   });
 }

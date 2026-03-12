@@ -1,4 +1,4 @@
-import 'package:exam_app/features/Auth/forget_password/domain/entities/forget_password_entity.dart';
+import 'package:exam_app/features/auth/forget_password/domain/entities/forget_password_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'forget_password_model.g.dart';

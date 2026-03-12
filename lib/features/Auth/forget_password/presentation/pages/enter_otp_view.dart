@@ -1,9 +1,9 @@
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/text_styles.dart';
-import 'package:exam_app/features/Auth/forget_password/presentation/cubit/forget_password_events.dart';
-import 'package:exam_app/features/Auth/forget_password/presentation/cubit/forget_password_states.dart';
-import 'package:exam_app/features/Auth/forget_password/presentation/cubit/forget_password_view_model.dart';
+import 'package:exam_app/features/auth/forget_password/presentation/cubit/forget_password_events.dart';
+import 'package:exam_app/features/auth/forget_password/presentation/cubit/forget_password_states.dart';
+import 'package:exam_app/features/auth/forget_password/presentation/cubit/forget_password_view_model.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
