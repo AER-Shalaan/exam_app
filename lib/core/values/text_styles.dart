@@ -58,6 +58,7 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.primary,
     decoration: TextDecoration.underline,
+    decorationColor: AppColors.primary,
   );
 
   static TextStyle bodyMedium18 = GoogleFonts.inter(

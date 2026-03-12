@@ -26,6 +26,8 @@ import '../../features/Auth/forget_password/domain/repositories_contract/forget_
     as _i849;
 import '../../features/Auth/forget_password/domain/use_cases/send_email_use_case.dart'
     as _i821;
+import '../../features/Auth/forget_password/domain/use_cases/verify_otp_use_case.dart'
+    as _i398;
 import '../../features/Auth/forget_password/presentation/cubit/forget_password_view_model.dart'
     as _i205;
 
@@ -51,12 +53,19 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i707.ForgetPasswordDataSourceContract>(),
       ),
     );
+    gh.factory<_i398.VerifyOtpUseCase>(
+      () =>
+          _i398.VerifyOtpUseCase(gh<_i849.ForgetPasswordRepositoryContract>()),
+    );
     gh.factory<_i821.SendEmailUseCase>(
       () =>
           _i821.SendEmailUseCase(gh<_i849.ForgetPasswordRepositoryContract>()),
     );
     gh.factory<_i205.ForgetPasswordViewModel>(
-      () => _i205.ForgetPasswordViewModel(gh<_i821.SendEmailUseCase>()),
+      () => _i205.ForgetPasswordViewModel(
+        gh<_i821.SendEmailUseCase>(),
+        gh<_i398.VerifyOtpUseCase>(),
+      ),
     );
     return this;
   }

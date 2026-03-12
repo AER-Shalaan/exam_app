@@ -10,6 +10,11 @@ class AppStrings {
   static const email = 'Email';
   static const emailHint = "Enter you email";
   static const password = 'Password';
+  static const verifyCodeTitle = "Email verification";
+  static const verifyCodeDescription =
+      "Please enter your code that send to\n your email address";
+  static const resendCodeString = "Didn't receive the code? ";
+  static const resend = "Resend";
   static const fieldCannotBeEmpty = 'This field cannot be empty';
   static const emailCannotBeEmpty = 'Email address cannot be empty';
   static const invalidEmail = 'Invalid email address.';

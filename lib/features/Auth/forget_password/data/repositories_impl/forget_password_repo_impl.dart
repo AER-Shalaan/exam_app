@@ -1,7 +1,9 @@
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/features/Auth/forget_password/data/data_sources_contract/forget_password_data_source_contract.dart';
 import 'package:exam_app/features/Auth/forget_password/data/models/forget_password_model.dart';
+import 'package:exam_app/features/Auth/forget_password/data/models/verify_reset_model.dart';
 import 'package:exam_app/features/Auth/forget_password/domain/entities/forget_password_entity.dart';
+import 'package:exam_app/features/Auth/forget_password/domain/entities/verify_reset_entity.dart';
 import 'package:exam_app/features/Auth/forget_password/domain/repositories_contract/forget_password_repo_contract.dart';
 import 'package:injectable/injectable.dart';
 
@@ -24,6 +26,24 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepositoryContract {
         return SuccessBaseResponse<ForgetPasswordEntity>(data: data);
       case ErrorBaseResponse<ForgetPasswordModel>():
         return ErrorBaseResponse<ForgetPasswordEntity>(
+          exception: response.exception,
+        );
+    }
+  }
+
+  @override
+  Future<BaseResponse<VerifyResetEntity>> verifyReset({
+    required Map<String, dynamic> body,
+  }) async {
+    final response = await forgetPasswordDataSourceContract.verifyReset(
+      body: body,
+    );
+    switch (response) {
+      case SuccessBaseResponse<VerifyResetModel>():
+        final data = response.data.toDomain();
+        return SuccessBaseResponse<VerifyResetEntity>(data: data);
+      case ErrorBaseResponse<VerifyResetModel>():
+        return ErrorBaseResponse<VerifyResetEntity>(
           exception: response.exception,
         );
     }
