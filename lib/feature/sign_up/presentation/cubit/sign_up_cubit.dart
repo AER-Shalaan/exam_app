@@ -9,7 +9,7 @@ class setUserCubit {
   Future<void> setUsers() async {
     final users = await _userusecase.call();
     users.forEach((e) {
-      print(e.email);
+      print(e.phone);
     });
   }
 }
