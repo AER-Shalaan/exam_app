@@ -6,11 +6,14 @@ import 'package:retrofit/retrofit.dart';
 
 part 'sign_up_api_client.g.dart';
 
-@injectable
+@lazySingleton
 @RestApi()
 abstract class SignUpApiClient {
+  @factoryMethod
   factory SignUpApiClient(Dio dio) = _SignUpApiClient;
 
   @POST(Endpoints.postSignUpEndpoint)
-  Future<SetUserResponse> setUsers( {@Body()required Map<String, dynamic> body});
+  Future<SetUserResponse> setUsers({
+    @Body() required Map<String, dynamic> body,
+  });
 }

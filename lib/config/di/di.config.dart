@@ -36,6 +36,9 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
     gh.singleton<_i361.Dio>(() => dioModule.dio);
+    gh.lazySingleton<_i252.SignUpApiClient>(
+      () => _i252.SignUpApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i268.SignUpDataSourceContract>(
       () => _i963.SignUpDatasorceImpl(gh<_i252.SignUpApiClient>()),
     );
