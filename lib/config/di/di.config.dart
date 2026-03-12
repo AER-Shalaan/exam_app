@@ -13,6 +13,7 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../core/network/dio_module.dart' as _i673;
 import '../../feature/sign_up/apis/sign_up_api_client/sign_up_api_client.dart'
     as _i252;
 import '../../feature/sign_up/apis/sign_up_datasorce_impl/sign_up_datasorce_impl.dart'
@@ -25,7 +26,6 @@ import '../../feature/sign_up/domain/repositories/sign_up_repo_contract.dart'
     as _i286;
 import '../../feature/sign_up/domain/usecases/sign_up_usecase.dart' as _i758;
 import '../../feature/sign_up/presentation/cubit/sign_up_cubit.dart' as _i906;
-import '../dio/dio_module.dart' as _i977;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -39,17 +39,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i268.SignUpDataSourceContract>(
       () => _i963.SignUpDatasorceImpl(gh<_i252.SignUpApiClient>()),
     );
-    gh.factory<_i758.setUserusecase>(
-      () => _i758.setUserusecase(gh<_i268.SignUpDataSourceContract>()),
+    gh.factory<_i758.SetUserusecase>(
+      () => _i758.SetUserusecase(gh<_i268.SignUpDataSourceContract>()),
     );
     gh.factory<_i286.SignUpRepoContract>(
       () => _i917.SignUpRepoImpl(gh<_i268.SignUpDataSourceContract>()),
     );
-    gh.factory<_i906.setUserCubit>(
-      () => _i906.setUserCubit(gh<_i758.setUserusecase>()),
+    gh.factory<_i906.SetUserCubit>(
+      () => _i906.SetUserCubit(gh<_i758.SetUserusecase>()),
     );
     return this;
   }
 }
 
-class _$DioModule extends _i977.DioModule {}
+class _$DioModule extends _i673.DioModule {}

@@ -20,13 +20,14 @@ class _SignUpApiClient implements SignUpApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<SetUserResponse> setUsers() async {
+  Future<SetUserResponse> setUsers({required Map<String, dynamic> body}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
     final _options = _setStreamType<SetUserResponse>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
+      Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
             'https://exam.elevateegy.com/api/v1/auth/signup',

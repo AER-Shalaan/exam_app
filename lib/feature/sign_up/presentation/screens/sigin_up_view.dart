@@ -13,7 +13,7 @@ class SiginUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    setUserCubit setUser = getIt.get<setUserCubit>();
+    SetUserCubit setUser = getIt.get<SetUserCubit>();
     setUser.setUsers();
     return Scaffold(
       appBar: AppBar(

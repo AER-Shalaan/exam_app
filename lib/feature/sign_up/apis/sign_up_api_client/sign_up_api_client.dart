@@ -6,12 +6,11 @@ import 'package:retrofit/retrofit.dart';
 
 part 'sign_up_api_client.g.dart';
 
-@Injectable(as:SignUpApiClient)
+@injectable
 @RestApi()
-
 abstract class SignUpApiClient {
   factory SignUpApiClient(Dio dio) = _SignUpApiClient;
 
-  @GET(Endpoints.postSignUpEndpoint)
-  Future<SetUserResponse> setUsers();
+  @POST(Endpoints.postSignUpEndpoint)
+  Future<SetUserResponse> setUsers( {@Body()required Map<String, dynamic> body});
 }

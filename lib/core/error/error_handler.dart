@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class ErrorHandler {
+ class ErrorHandler {
   static String handle(Exception exception) {
     if (exception is DioException) {
       if (exception.response != null) {
