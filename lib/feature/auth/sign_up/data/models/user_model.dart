@@ -1,3 +1,4 @@
+import 'package:exam_app/feature/auth/sign_up/domain/entities/sign_up_entitiies.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_model.g.dart';
@@ -34,11 +35,11 @@ class UserModel {
     this.id,
     this.createdAt,
   });
-  // UserModel toEntity() => UserModel(
-  //   firstName: firstName,
-  //   lastName: lastName,
+  // SignUpEntitiies toEntity() => SignUpEntitiies(
+
+  //   lastName: lastN,
   //   phone: phone,
-  //   username: username,
+
   // );
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);

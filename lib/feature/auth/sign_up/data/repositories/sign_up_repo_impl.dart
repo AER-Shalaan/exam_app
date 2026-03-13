@@ -1,11 +1,13 @@
 import 'package:exam_app/core/network/base_response.dart';
+import 'package:exam_app/feature/auth/sign_up/apis/response/set_user_response.dart';
+import 'package:exam_app/feature/auth/sign_up/data/datasources/local/sign_up_local_data_source.dart';
 import 'package:exam_app/feature/auth/sign_up/data/datasources/remote/sign_up_remote_datasource_contract.dart';
 import 'package:exam_app/feature/auth/sign_up/data/mappers/sign_up_mappers.dart';
 import 'package:exam_app/feature/auth/sign_up/data/models/sign_up_request/sign_up_request.dart';
-import 'package:exam_app/feature/auth/sign_up/data/models/user_model.dart';
 import 'package:exam_app/feature/auth/sign_up/domain/entities/sign_up_entitiies.dart';
 import 'package:exam_app/feature/auth/sign_up/domain/repositories/sign_up_repo_contract.dart';
 import 'package:injectable/injectable.dart';
+
 @Injectable(as: SignUpRepoContract)
 class SignUpRepoImpl implements SignUpRepoContract {
   final SignUpRemoteDatasourceContract _signUpDataSourceContract;
@@ -15,21 +17,21 @@ class SignUpRepoImpl implements SignUpRepoContract {
   @override
   Future<BaseResponse<SignUpEntitiies>> setUsers({
     required SignUpRequest request,
-  }) {
-    final response = _signUpDataSourceContract.setUsers(request: request);
+  }) async {
+    final response = await _signUpDataSourceContract.setUsers(request: request);
 
-    return response.then((value) {
-      switch (value) {
-        case SuccessBaseResponse<UserModel>():
-          return SuccessBaseResponse<SignUpEntitiies>(
-            data: value.data.toEntity(),
-          );
+    switch (response) {
+      case SuccessBaseResponse<SetUserResponse>():
+        await SignUpLocalDataSource.saveToken(response.data.token ?? "");
 
-        case ErrorBaseResponse<UserModel>():
-          return ErrorBaseResponse<SignUpEntitiies>(
-            exception: value.exception,
-          );
-      }
-    });
+        return SuccessBaseResponse<SignUpEntitiies>(
+          data: response.data.user!.toEntity(),
+        );
+
+      case ErrorBaseResponse<SetUserResponse>():
+        return ErrorBaseResponse<SignUpEntitiies>(
+          exception: response.exception,
+        );
+    }
   }
 }

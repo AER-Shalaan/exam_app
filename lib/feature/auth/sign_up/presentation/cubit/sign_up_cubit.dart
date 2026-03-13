@@ -17,16 +17,16 @@ class SetUserCubit extends Cubit<SignUpState> {
     emit(SignUpLoading());
     final users = await _userusecase.call( );
     switch (users) {
-      case SuccessBaseResponse<UserModel>():
+      case SuccessBaseResponse<SignUpEntitiies>():
         print(users.data);
         emit(
           SignUpSuccess<SignUpEntitiies>(
-            signUpEntitiies: users.data.toEntity(),
+            signUpEntitiies: users.data,
           ),
         );
 
         break;
-      case ErrorBaseResponse<UserModel>():
+      case ErrorBaseResponse<SignUpEntitiies>():
         print(users.exception);
         emit(SignUpError<SignUpEntitiies>(message: users.exception.toString()));
         break;

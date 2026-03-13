@@ -48,7 +48,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i946.SignUpRepoImpl(gh<_i497.SignUpRemoteDatasourceContract>()),
     );
     gh.factory<_i273.SetUserusecase>(
-      () => _i273.SetUserusecase(gh<_i497.SignUpRemoteDatasourceContract>()),
+      () => _i273.SetUserusecase(gh<_i901.SignUpRepoContract>()),
     );
     gh.factory<_i1064.SetUserCubit>(
       () => _i1064.SetUserCubit(gh<_i273.SetUserusecase>()),
