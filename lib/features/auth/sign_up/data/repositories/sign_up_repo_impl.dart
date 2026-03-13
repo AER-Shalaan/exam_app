@@ -1,6 +1,6 @@
 import 'package:exam_app/core/network/base_response.dart';
+import 'package:exam_app/core/storage/secure_storage.dart';
 import 'package:exam_app/features/auth/sign_up/apis/response/set_user_response.dart';
-import 'package:exam_app/features/auth/sign_up/data/datasources/local/sign_up_local_data_source.dart';
 import 'package:exam_app/features/auth/sign_up/data/datasources/remote/sign_up_remote_datasource_contract.dart';
 import 'package:exam_app/features/auth/sign_up/data/mappers/sign_up_mappers.dart';
 import 'package:exam_app/features/auth/sign_up/data/models/sign_up_request/sign_up_request.dart';
@@ -22,7 +22,7 @@ class SignUpRepoImpl implements SignUpRepoContract {
 
     switch (response) {
       case SuccessBaseResponse<SetUserResponse>():
-        await SignUpLocalDataSource.saveToken(response.data.token ?? "");
+        await SecureStorage.saveToken(response.data.token ?? "");
 
         return SuccessBaseResponse<SignUpEntitiies>(
           data: response.data.user!.toEntity(),
