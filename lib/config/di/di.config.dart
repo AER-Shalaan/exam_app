@@ -14,19 +14,19 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
 import '../../core/network/dio_module.dart' as _i673;
-import '../../feature/auth/sign_up/apis/sign_up_api_client/sign_up_api_client.dart'
+import '../../features/auth/sign_up/apis/sign_up_api_client/sign_up_api_client.dart'
     as _i69;
-import '../../feature/auth/sign_up/apis/sign_up_datasorce_impl/sign_up_remote_datasorce_impl.dart'
+import '../../features/auth/sign_up/apis/sign_up_datasorce_impl/sign_up_remote_datasorce_impl.dart'
     as _i17;
-import '../../feature/auth/sign_up/data/datasources/remote/sign_up_remote_datasource_contract.dart'
+import '../../features/auth/sign_up/data/datasources/remote/sign_up_remote_datasource_contract.dart'
     as _i497;
-import '../../feature/auth/sign_up/data/repositories/sign_up_repo_impl.dart'
+import '../../features/auth/sign_up/data/repositories/sign_up_repo_impl.dart'
     as _i946;
-import '../../feature/auth/sign_up/domain/repositories/sign_up_repo_contract.dart'
+import '../../features/auth/sign_up/domain/repositories/sign_up_repo_contract.dart'
     as _i901;
-import '../../feature/auth/sign_up/domain/usecases/sign_up_usecase.dart'
+import '../../features/auth/sign_up/domain/usecases/sign_up_usecase.dart'
     as _i273;
-import '../../feature/auth/sign_up/presentation/cubit/sign_up_cubit.dart'
+import '../../features/auth/sign_up/presentation/cubit/sign_up_cubit.dart'
     as _i1064;
 
 extension GetItInjectableX on _i174.GetIt {
