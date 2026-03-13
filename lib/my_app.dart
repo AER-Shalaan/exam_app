@@ -1,4 +1,5 @@
 import 'package:exam_app/config/app_theme.dart';
+import 'package:exam_app/features/login_screen/presentation/pages/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'config/app_routes.dart';
 
@@ -8,6 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home: LoginView(),
       title: 'Exam App',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,

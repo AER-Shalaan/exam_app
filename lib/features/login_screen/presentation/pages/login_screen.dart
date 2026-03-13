@@ -99,30 +99,29 @@ class LoginView extends StatelessWidget {
               ),
             ),
             Gap(12),
-            Center(
-              child: Row(
-                children: [
-                  const Gap(20),
-                  Center(child: const Text(AppStrings.dontAcont)),
-                  TextButton(
-                    onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => SiginUp()),
-                      // );
-                    },
-                    style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                    child: const Text(
-                      AppStrings.signUpTitle,
-                      style: TextStyle(
-                        color: Color(0xff02369C),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Gap(20),
+                Center(child: const Text(AppStrings.dontAcont)),
+                TextButton(
+                  onPressed: () {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => SiginUp()),
+                    // );
+                  },
+                  style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                  child: const Text(
+                    AppStrings.signUpTitle,
+                    style: TextStyle(
+                      color: Color(0xff02369C),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),

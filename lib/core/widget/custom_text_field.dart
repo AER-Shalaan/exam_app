@@ -6,7 +6,8 @@ class CustomTextFilde extends StatefulWidget {
     super.key,
     required this.hint,
     required this.isPassword,
-    required this.controller, required this.isemail,
+    required this.controller,
+    required this.isemail,
   });
   final String hint;
   final bool isPassword;
@@ -34,7 +35,7 @@ class _CustomTextFildeState extends State<CustomTextFilde> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: TextStyle(color: const Color.fromARGB(219, 255, 255, 255)),
+      style: TextStyle(color: const Color.fromARGB(219, 0, 0, 0)),
       controller: widget.controller,
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -45,7 +46,7 @@ class _CustomTextFildeState extends State<CustomTextFilde> {
       obscureText: _obscureText,
       canRequestFocus: true,
       cursorHeight: 20,
-      cursorColor: const Color.fromARGB(255, 255, 255, 255),
+      cursorColor: const Color.fromARGB(255, 0, 0, 0),
       decoration: InputDecoration(
         suffixIcon: widget.isPassword
             ? GestureDetector(
@@ -54,18 +55,18 @@ class _CustomTextFildeState extends State<CustomTextFilde> {
                 },
                 child: Icon(
                   CupertinoIcons.eye_solid,
-                  color: const Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 0, 0, 0),
                 ),
               )
             : null,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(13),
 
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: BorderSide(color: const Color.fromARGB(255, 0, 0, 0)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: BorderSide(color: const Color.fromARGB(255, 0, 0, 0)),
         ),
         hintText: widget.hint,
         hintStyle: TextStyle(color: const Color.fromARGB(101, 255, 255, 255)),
