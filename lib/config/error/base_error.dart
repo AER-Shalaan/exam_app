@@ -1,5 +1,5 @@
 
-import 'package:exam_app/core/error/error_handler.dart';
+import 'package:exam_app/config/error/error_handler.dart';
 
 class BaseError {
   static String handleException(Exception exception) {

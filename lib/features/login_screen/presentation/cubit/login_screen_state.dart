@@ -1,17 +1,19 @@
-part of 'login_screen_cubit.dart';
+import 'package:exam_app/features/login_screen/data/models/get_user_model.dart';
 
-abstract class LoginScreenState {
-  const LoginScreenState();
+sealed class LoginScreenState {}
 
-  List<Object> get props => [];
+class LoginInitial extends LoginScreenState {}
+
+class LoginLoading extends LoginScreenState {}
+
+class LoginSuccess<T> extends LoginScreenState {
+  final List<UserModel> loginEntitiies;
+
+  LoginSuccess({required this.loginEntitiies});
 }
 
-final class LoginSuccess extends LoginScreenState {}
+class LoginError extends LoginScreenState {
+  final String errormessage;
 
-final class LoginLoading extends LoginScreenState {}
-
-final class LoginFailure extends LoginScreenState {
-  String errMessage;
-
-  LoginFailure({required this.errMessage});
+  LoginError(message, {required this.errormessage});
 }

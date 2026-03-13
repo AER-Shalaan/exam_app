@@ -1,4 +1,4 @@
-import 'package:exam_app/core/error/base_error.dart';
+import 'package:exam_app/config/error/base_error.dart';
 
 sealed class BaseResponse<T> {}
 

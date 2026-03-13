@@ -1,4 +1,4 @@
-import 'package:exam_app/core/network/base_response.dart';
+import 'package:exam_app/config/base_response/base_response.dart';
 import 'package:exam_app/features/login_screen/data/datasources/Remote/login_remote_datasource_contract.dart';
 import 'package:exam_app/features/login_screen/data/mapper/login_mappers.dart';
 import 'package:exam_app/features/login_screen/data/models/get_user_model.dart';
@@ -7,16 +7,16 @@ import 'package:exam_app/features/login_screen/domain/repositories/Login_repo_co
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: LoginRepoContract)
-class SignUpRepoImpl implements LoginRepoContract {
-  final LoginRemoteDatasourceContract _signUpDataSourceContract;
+class LoginRepoImpl implements LoginRepoContract {
+  final LoginRemoteDatasourceContract _loginDataSourceContract;
 
-  SignUpRepoImpl(this._signUpDataSourceContract);
+  LoginRepoImpl(this._loginDataSourceContract);
 
   @override
-  Future<BaseResponse<LoginEntitiies>> setUsers({
+  Future<BaseResponse<LoginEntitiies>> gettUsers({
     required Map<String, dynamic> body,
   }) {
-    final response = _signUpDataSourceContract.setUsers(body: body);
+    final response = _loginDataSourceContract.getUsers(body: body);
 
     return response.then((value) {
       switch (value) {
