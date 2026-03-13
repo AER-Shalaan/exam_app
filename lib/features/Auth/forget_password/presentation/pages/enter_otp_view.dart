@@ -93,6 +93,15 @@ class EnterOtpView extends StatelessWidget {
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           viewModel.doEvent(ResendCodeEvent());
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                "The OTP has been sent back to your email address.",
+                              ),
+                              duration: Duration(seconds: 5),
+                              behavior: SnackBarBehavior.floating,
+                            ),
+                          );
                         },
                     ),
                   ],

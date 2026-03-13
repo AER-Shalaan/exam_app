@@ -120,7 +120,7 @@ class ResetPasswordView extends StatelessWidget {
                               height: 22,
                             ),
                             onPressed: () {
-                              isPasswordHidden.value = !hidden;
+                              isConfirmPasswordHidden.value = !hidden;
                             },
                           ),
                         ),

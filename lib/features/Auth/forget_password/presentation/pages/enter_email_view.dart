@@ -39,11 +39,14 @@ class EnterEmailView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Form(
             key: formKey,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autovalidateMode: AutovalidateMode.disabled,
             child: Column(
               children: [
                 const SizedBox(height: 40),
-                Text(AppStrings.forgotPasswordTitle, style: TextStyles.bodyMedium18),
+                Text(
+                  AppStrings.forgotPasswordTitle,
+                  style: TextStyles.bodyMedium18,
+                ),
                 const SizedBox(height: 16),
                 Text(
                   AppStrings.forgotPasswordDescription,
@@ -60,42 +63,25 @@ class EnterEmailView extends StatelessWidget {
                   ),
                   validator: (value) =>
                       AppValidation.validateEmail(value, required: true),
-                  onChanged: (value) {
-                    final isValid =
-                        AppValidation.validateEmail(value, required: true) ==
-                        null;
-                    forgetPasswordViewModel.doEvent(
-                      FormValidationChangedEvent(isValid: isValid),
-                    );
-                  },
                 ),
                 const SizedBox(height: 48),
                 FilledButton(
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(
-                      state.isFormValid &&
-                              !state.sendEmailState.isLoading &&
-                              emailController.text.isNotEmpty
-                          ? AppColors.primary
-                          : AppColors.baseBlack30,
-                    ),
-                  ),
-                  onPressed:
-                      state.isFormValid &&
-                          !state.sendEmailState.isLoading &&
-                          emailController.text.isNotEmpty
-                      ? () {
-                          state.sendEmailState.errorMessage = null;
-                          forgetPasswordViewModel.doEvent(
-                            SendEmailEvent(email: emailController.text.trim()),
-                          );
-                        }
-                      : null,
+                  onPressed: state.sendEmailState.isLoading
+                      ? null
+                      : () {
+                          if (formKey.currentState!.validate()) {
+                            forgetPasswordViewModel.doEvent(
+                              SendEmailEvent(
+                                email: emailController.text.trim(),
+                              ),
+                            );
+                          }
+                        },
                   child: state.sendEmailState.isLoading
-                      ? SizedBox(
+                      ? const SizedBox(
                           height: 24,
                           width: 24,
-                          child: const CircularProgressIndicator(
+                          child: CircularProgressIndicator(
                             color: AppColors.whiteColor,
                           ),
                         )
