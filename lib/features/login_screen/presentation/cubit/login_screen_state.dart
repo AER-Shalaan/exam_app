@@ -6,4 +6,12 @@ abstract class LoginScreenState {
   List<Object> get props => [];
 }
 
-class LoginScreenInitial extends LoginScreenState {}
+final class LoginSuccess extends LoginScreenState {}
+
+final class LoginLoading extends LoginScreenState {}
+
+final class LoginFailure extends LoginScreenState {
+  String errMessage;
+
+  LoginFailure({required this.errMessage});
+}

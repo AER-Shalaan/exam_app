@@ -1,6 +1,9 @@
 import 'package:exam_app/core/values/app_strings.dart';
+
 import 'package:exam_app/core/widget/custom_text_field.dart';
+
 import 'package:flutter/material.dart';
+
 import 'package:gap/gap.dart';
 
 class LoginView extends StatelessWidget {
@@ -9,28 +12,38 @@ class LoginView extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final ValueNotifier<bool> isRememberMe = ValueNotifier<bool>(false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(AppStrings.appBar)),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Gap(10),
+
             CustomTextFilde(
+              label: AppStrings.email,
               hint: AppStrings.hintTextemail,
               isPassword: false,
-              controller: TextEditingController(),
+              controller: emailController,
               isemail: true,
             ),
-            Gap(10),
+
+            const Gap(20),
+
             CustomTextFilde(
+              label: AppStrings.password,
               hint: AppStrings.hintTextpass,
               isPassword: true,
-              controller: TextEditingController(),
+              controller: passwordController,
               isemail: false,
             ),
-            Gap(12),
+
+            const Gap(12),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -62,9 +75,10 @@ class LoginView extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     // Navigator.push(
+
                     //   context,
-                    //   MaterialPageRoute(builder: (context) => SiginUp()),
-                    // );
+
+                    //   MaterialPageRoute(builder: (context) => forget()),
                   },
                   style: TextButton.styleFrom(padding: EdgeInsets.zero),
                   child: const Text(
@@ -89,27 +103,28 @@ class LoginView extends StatelessWidget {
               ),
               onPressed: () {
                 // Navigator.push(
+
                 //   context,
-                //   MaterialPageRoute(builder: (context) => SiginUp()),
-                // );
+
+                //   MaterialPageRoute(builder: (context) => home viwe()),
               },
               child: const Text(
                 AppStrings.loginTitle,
                 style: TextStyle(color: Colors.white),
               ),
             ),
-            Gap(12),
+            const Gap(12),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Gap(20),
-                Center(child: const Text(AppStrings.dontAcont)),
+                const Text(AppStrings.dontAcont),
                 TextButton(
                   onPressed: () {
                     // Navigator.push(
+
                     //   context,
-                    //   MaterialPageRoute(builder: (context) => SiginUp()),
-                    // );
+
+                    //   MaterialPageRoute(builder: (context) => signup()),
                   },
                   style: TextButton.styleFrom(padding: EdgeInsets.zero),
                   child: const Text(

@@ -4,10 +4,10 @@ import 'package:exam_app/features/login_screen/domain/usecases/login_usecase.dar
 import 'package:injectable/injectable.dart';
 
 @injectable
-class SetUserCubit {
+class GetUserCubit {
   final GettUserusecase _userusecase;
 
-  SetUserCubit(this._userusecase);
+  GetUserCubit(this._userusecase);
   Future<void> setUsers() async {
     final users = await _userusecase.call();
     switch (users) {
