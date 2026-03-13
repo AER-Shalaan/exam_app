@@ -1,0 +1,6 @@
+abstract class LoginLocalDataSource {
+  static Future<void> saveToken(String token) async {}
+  static Future<String?> getToken() async {
+    return null;
+  }
+}

@@ -1,8 +1,20 @@
-// import 'package:bloc/bloc.dart';
-// import 'package:equatable/equatable.dart';
+import 'package:exam_app/core/network/base_response.dart';
+import 'package:exam_app/features/login_screen/data/models/get_user_model.dart';
+import 'package:exam_app/features/login_screen/domain/usecases/login_usecase.dart';
+import 'package:injectable/injectable.dart';
 
-// part 'login_screen_state.dart';
+@injectable
+class SetUserCubit {
+  final GettUserusecase _userusecase;
 
-// class LoginScreenCubit extends Cubit<LoginScreenState> {
-//   LoginScreenCubit() : super(LoginScreenInitial());
-// }
+  SetUserCubit(this._userusecase);
+  Future<void> setUsers() async {
+    final users = await _userusecase.call();
+    switch (users) {
+      case SuccessBaseResponse<UserModel>():
+        break;
+      case ErrorBaseResponse<UserModel>():
+        break;
+    }
+  }
+}

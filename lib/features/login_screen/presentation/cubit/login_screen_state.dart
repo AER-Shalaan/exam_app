@@ -1,10 +1,9 @@
-// part of 'login_screen_cubit.dart';
+part of 'login_screen_cubit.dart';
 
-// abstract class LoginScreenState extends Equatable {
-//   const LoginScreenState();
+abstract class LoginScreenState {
+  const LoginScreenState();
 
-//   @override
-//   List<Object> get props => [];
-// }
+  List<Object> get props => [];
+}
 
-// class LoginScreenInitial extends LoginScreenState {}
+class LoginScreenInitial extends LoginScreenState {}

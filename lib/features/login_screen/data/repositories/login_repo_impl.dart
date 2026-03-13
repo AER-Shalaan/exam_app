@@ -1,0 +1,33 @@
+import 'package:exam_app/core/network/base_response.dart';
+import 'package:exam_app/features/login_screen/data/datasources/Remote/login_remote_datasource_contract.dart';
+import 'package:exam_app/features/login_screen/data/mapper/login_mappers.dart';
+import 'package:exam_app/features/login_screen/data/models/get_user_model.dart';
+import 'package:exam_app/features/login_screen/domain/entities/login_entitiies.dart';
+import 'package:exam_app/features/login_screen/domain/repositories/Login_repo_contract.dart';
+import 'package:injectable/injectable.dart';
+
+@Injectable(as: LoginRepoContract)
+class SignUpRepoImpl implements LoginRepoContract {
+  final LoginRemoteDatasourceContract _signUpDataSourceContract;
+
+  SignUpRepoImpl(this._signUpDataSourceContract);
+
+  @override
+  Future<BaseResponse<LoginEntitiies>> setUsers({
+    required Map<String, dynamic> body,
+  }) {
+    final response = _signUpDataSourceContract.setUsers(body: body);
+
+    return response.then((value) {
+      switch (value) {
+        case SuccessBaseResponse<UserModel>():
+          return SuccessBaseResponse<LoginEntitiies>(
+            data: value.data.toEntity(),
+          );
+
+        case ErrorBaseResponse<UserModel>():
+          return ErrorBaseResponse<LoginEntitiies>(exception: value.exception);
+      }
+    });
+  }
+}

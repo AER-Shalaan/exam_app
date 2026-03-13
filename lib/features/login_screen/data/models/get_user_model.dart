@@ -8,14 +8,14 @@ class UserModel {
  
   @JsonKey(name: "email")
   String? email;
-  @JsonKey(name: "phone")
-  String? phone;
+  @JsonKey(name: "password")
+  String? password;
   
 
   UserModel({
  
     this.email,
-    this.phone,
+    this.password,
   
   });
   // UserModel toEntity() => UserModel(
