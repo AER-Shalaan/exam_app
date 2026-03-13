@@ -166,7 +166,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
     );
 
     final response = await _resetPasswordUseCase.call(
-      body: {ApiParam.email: email, ApiParam.password: password},
+      body: {ApiParam.email: email, ApiParam.newPassword: password},
     );
 
     switch (response) {

@@ -10,11 +10,23 @@ class AppStrings {
   static const email = 'Email';
   static const emailHint = "Enter you email";
   static const password = 'Password';
+  static const newPassword = 'New password';
+  static const confirmPassword = 'Confirm password';
+  static const passwordHint = "Enter you password";
+  static const confirmPasswordHint = "Enter you confirm password";
+  static const login = "Login";
+  static const signUp = "Sign Up";
   static const verifyCodeTitle = "Email verification";
   static const verifyCodeDescription =
       "Please enter your code that send to\n your email address";
   static const resendCodeString = "Didn't receive the code? ";
   static const resend = "Resend";
+  static const resetPassword = "Reset password";
+  static const resetPasswordDescription =
+      "Password must not be empty and must contain\n6 characters with upper case letter and one\nnumber at least ";
+  static const passwordChanged = "Password Changed";
+  static const passwordChangedDescription =
+      "Password changed successfully.\nPlease login again.";
   static const fieldCannotBeEmpty = 'This field cannot be empty';
   static const emailCannotBeEmpty = 'Email address cannot be empty';
   static const invalidEmail = 'Invalid email address.';
