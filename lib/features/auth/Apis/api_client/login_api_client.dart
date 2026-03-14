@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:exam_app/core/network/endpoints.dart';
-import 'package:exam_app/features/Apis/respones/get_user_response.dart';
+import 'package:exam_app/features/auth/Apis/respones/get_user_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 

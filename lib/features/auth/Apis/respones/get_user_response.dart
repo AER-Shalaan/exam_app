@@ -1,4 +1,4 @@
-import 'package:exam_app/features/login_screen/data/models/get_user_model.dart';
+import 'package:exam_app/features/auth/data/models/get_user_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'get_user_response.g.dart';

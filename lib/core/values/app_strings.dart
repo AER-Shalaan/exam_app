@@ -23,4 +23,5 @@ class AppStrings {
   static const email = 'email';
   static const password = 'password';
   static const forgetPasswordLogin = "Forgot Password ?";
+  static const loginsuccessful = 'Login successful';
 }
