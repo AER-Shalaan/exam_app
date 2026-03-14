@@ -1,4 +1,3 @@
-import 'package:exam_app/features/auth/sign_up/domain/entities/sign_up_entitiies.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_model.g.dart';
