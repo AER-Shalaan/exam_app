@@ -6,5 +6,5 @@ class ApiParam {
   static const String phone = "phone";
   static const String name = "name";
   static const String lastName = "lastName";
-  static const String sharedTokenKey = 'token';
+  static const String rePassword = "rePassword";
 }

@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class SetUserCubit extends Cubit<BaseState> {
+class SetUserCubit extends Cubit<BaseState<SignUpEntitiies>> {
   final SetUserusecase _userusecase;
 
   void doEvent(SignUpEvent event) {
@@ -19,7 +19,8 @@ class SetUserCubit extends Cubit<BaseState> {
     }
   }
 
-  SetUserCubit(this._userusecase) : super(BaseState());
+  SetUserCubit(this._userusecase) : super(BaseState<
+      SignUpEntitiies>());
   Future<void> _setUsers(SignUpRequest request) async {
     emit(state.copyWith(isLoadingParam: true));
     final users = await _userusecase.call(

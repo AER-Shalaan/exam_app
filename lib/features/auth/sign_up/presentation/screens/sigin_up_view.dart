@@ -1,10 +1,12 @@
 import 'package:exam_app/core/state/base_state.dart';
+import 'package:exam_app/core/storage/secure_storage.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/core/values/validation/app_validation.dart';
 import 'package:exam_app/features/auth/sign_up/data/models/sign_up_request/sign_up_request.dart';
+import 'package:exam_app/features/auth/sign_up/domain/entities/sign_up_entitiies.dart';
 import 'package:exam_app/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:exam_app/features/auth/sign_up/presentation/cubit/sign_up_events.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +37,8 @@ class SiginUpView extends StatelessWidget {
                   controller: userNameController,
                   validator: (value) => AppValidation.validateRequired(value),
                   decoration: InputDecoration(
-                    hintText: "Enter you user name ",
-                    label: Text("User name"),
+                    hintText: AppStrings.usernameHint,
+                    label: Text(AppStrings.userName),
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -48,8 +50,8 @@ class SiginUpView extends StatelessWidget {
                             AppValidation.validateRequired(value),
                         controller: firstNameController,
                         decoration: InputDecoration(
-                          hintText: "Enter first name ",
-                          label: Text("First name"),
+                          hintText: AppStrings.firstnameHint,
+                          label: Text(AppStrings.firstName),
                         ),
                       ),
                     ),
@@ -60,8 +62,8 @@ class SiginUpView extends StatelessWidget {
                             AppValidation.validateRequired(value),
                         controller: lastNameController,
                         decoration: InputDecoration(
-                          hintText: "Enter last name ",
-                          label: Text("Last name"),
+                          hintText: AppStrings.lastnameHint,
+                          label: Text(AppStrings.lastName),
                         ),
                       ),
                     ),
@@ -72,8 +74,8 @@ class SiginUpView extends StatelessWidget {
                   validator: (value) => AppValidation.validateEmail(value),
                   controller: emailController,
                   decoration: InputDecoration(
-                    hintText: "Enter you email ",
-                    label: Text("Email"),
+                    hintText: AppStrings.emailHint,
+                    label: Text(AppStrings.email),
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -85,8 +87,8 @@ class SiginUpView extends StatelessWidget {
                             AppValidation.validatePassword(value),
                         controller: passwordController,
                         decoration: InputDecoration(
-                          hintText: "Enter password ",
-                          label: Text("Password"),
+                          hintText: AppStrings.passwordHint,
+                          label: Text(AppStrings.password),
                         ),
                       ),
                     ),
@@ -100,8 +102,8 @@ class SiginUpView extends StatelessWidget {
                             ),
                         controller: confirmPasswordController,
                         decoration: InputDecoration(
-                          hintText: "Confirm password ",
-                          label: Text("Confirm password"),
+                          hintText: AppStrings.confirmPassword,
+                          label: Text(AppStrings.confirmPassword),
                         ),
                       ),
                     ),
@@ -112,12 +114,12 @@ class SiginUpView extends StatelessWidget {
                   validator: (value) => AppValidation.validatePhone(value),
                   controller: phoneNumberController,
                   decoration: InputDecoration(
-                    hintText: "Enter phone number ",
-                    label: Text("Phone number"),
+                    hintText: AppStrings.phoneHint,
+                    label: Text(AppStrings.phone),
                   ),
                 ),
                 const SizedBox(height: 48),
-                BlocListener<SetUserCubit, BaseState>(
+                BlocListener<SetUserCubit, BaseState<SignUpEntitiies>>(
                   listener: (context, state) {
                     if (state.isLoading) {
                       showDialog(
@@ -142,6 +144,7 @@ class SiginUpView extends StatelessWidget {
                   child: FilledButton(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
+
                         context.read<SetUserCubit>().doEvent(
                           SignUpEventSetUsers(
                             request: SignUpRequest(
@@ -156,9 +159,8 @@ class SiginUpView extends StatelessWidget {
                           ),
                         );
                       }
-                 
                     },
-                    child: Text("Signup"),
+                    child: Text(AppStrings.signUpTitle),
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -166,7 +168,7 @@ class SiginUpView extends StatelessWidget {
                   mainAxisAlignment: .center,
                   children: [
                     Text(
-                      "Already have an account? ",
+                      AppStrings.alreadyhaveanaccount,
                       style: TextStyles.bodyRegular16,
                     ),
                     GestureDetector(
@@ -176,7 +178,7 @@ class SiginUpView extends StatelessWidget {
                         // ).pushNamed(AppRoutes.loginViewRouteName);
                       },
                       child: Text(
-                        "Login",
+                        AppStrings.loginTitle,
                         style: TextStyles.bodyRegular16.copyWith(
                           color: AppColors.primary,
                         ),
@@ -201,13 +203,3 @@ final TextEditingController emailController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
 final TextEditingController confirmPasswordController = TextEditingController();
 final TextEditingController phoneNumberController = TextEditingController();
-  // @override
-  // void dispose() {
-  //   userNameController.dispose();
-  //   firstNameController.dispose();
-  //   lastNameController.dispose();
-  //   emailController.dispose();
-  //   passwordController.dispose();
-  //   confirmPasswordController.dispose();
-  //   phoneNumberController.dispose();
-  //   super.dispose();}
