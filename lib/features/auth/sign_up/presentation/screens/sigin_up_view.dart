@@ -1,4 +1,5 @@
 import 'package:exam_app/config/di/di.dart';
+import 'package:exam_app/core/state/base_state.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
@@ -6,7 +7,6 @@ import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/core/values/validation/app_validation.dart';
 import 'package:exam_app/features/auth/sign_up/data/models/sign_up_request/sign_up_request.dart';
 import 'package:exam_app/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
-import 'package:exam_app/features/auth/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,8 +32,7 @@ class SiginUpView extends StatelessWidget {
             child: BlocProvider<SetUserCubit>(
               //             SetUserCubit setUser = getIt.get<SetUserCubit>();
               // setUser.setUsers(SignUpRequest());
-              create: (context) =>
-                  getIt.get<SetUserCubit>(),
+              create: (context) => getIt.get<SetUserCubit>(),
               child: Column(
                 children: [
                   TextFormField(
@@ -122,22 +121,15 @@ class SiginUpView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 48),
-                  BlocBuilder<SetUserCubit, SignUpState>(
+                  BlocBuilder<SetUserCubit, BaseState>(
                     builder: (context, state) {
-                      if (state is SignUpLoading) {
-                        return const CircularProgressIndicator();
-                      }
-
-                      if (state is SignUpError) {
-                        return SnackBar(content: Text(state.message));
-                      }
-
-                      if (state is SignUpSuccess) {
-                        return Text(" ${state.signUpEntitiies.name}");
+                      if (state.errorMessage != null &&
+                          state.errorMessage!.isNotEmpty) {
+                        return SnackBar(content: Text(state.errorMessage!));
                       }
                       return FilledButton(
                         onPressed: () {
-                          if (formKey.currentState!.validate()) {
+                          if (formKey.currentState!.validate() ) {
                             context.read<SetUserCubit>().setUsers(
                               SignUpRequest(
                                 firstName: firstNameController.text,
