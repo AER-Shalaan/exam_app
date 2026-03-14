@@ -19,7 +19,7 @@ class AppStrings {
   static const hintTextpass = 'Enter your password';
   static const hintTextemail = 'Enter your email';
   static const dontAcont = 'Don\'t have an account?';
-  static const appBar = 'Login';
+  static const appBarLogin = 'Login';
   static const email = 'email';
   static const password = 'password';
   static const forgetPasswordLogin = "Forgot Password ?";

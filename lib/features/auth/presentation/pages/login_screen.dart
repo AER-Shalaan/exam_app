@@ -20,9 +20,9 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<GetUserCubit>(),
+      create: (context) => getIt.get<GetUserCubit>(),
       child: Scaffold(
-        appBar: AppBar(title: const Text(AppStrings.appBar)),
+        appBar: AppBar(title: const Text(AppStrings.appBarLogin)),
         body: BlocConsumer<GetUserCubit, BaseState>(
           listener: (context, state) {
             if (state is LoginError) {
