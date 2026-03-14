@@ -53,4 +53,18 @@ class AppStrings {
       "Password changed successfully.\nPlease login again.";
 
   static const continueString = "Continue";
+  static const connectiontimeout = "Connection timeout, please try again";
+  static const requesttimeout = "Request timeout";
+  static const servertooktoolongtorespond = "Server took too long to respond";
+  static const badcertificate = "Bad certificate";
+  static const cancel = "Request was cancelled";
+  static const connectionerror = "No internet connection";
+  static const unexpectederroroccurred = "Unexpected error occurred";
+  static const servererroroccurred = "Server error occurred";
+  static const somethingwentwrong = "Something went wrong";
+  static const message = "message";
+
+
+
+
 }

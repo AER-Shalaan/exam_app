@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:exam_app/core/values/app_strings.dart';
 
- class ErrorHandler {
+class ErrorHandler {
   static String handle(Exception exception) {
     if (exception is DioException) {
       if (exception.response != null) {
@@ -8,38 +9,38 @@ import 'package:dio/dio.dart';
 
         if (response?.data != null &&
             response!.data is Map &&
-            response.data['message'] != null) {
-          return response.data['message'];
+            response.data[AppStrings.message] != null) {
+          return response.data[AppStrings.message];
         }
       }
 
       switch (exception.type) {
         case DioExceptionType.connectionTimeout:
-          return "Connection timeout, please try again";
+          return AppStrings.connectiontimeout;
 
         case DioExceptionType.sendTimeout:
-          return "Request timeout";
+          return AppStrings.requestTimeout;
 
         case DioExceptionType.receiveTimeout:
-          return "Server took too long to respond";
+          return AppStrings.servertooktoolongtorespond;
 
         case DioExceptionType.badCertificate:
-          return "Bad certificate";
+          return AppStrings.badcertificate;
 
         case DioExceptionType.cancel:
-          return "Request was cancelled";
+          return AppStrings.cancel;
 
         case DioExceptionType.connectionError:
-          return "No internet connection";
+          return AppStrings.noInternetConnection;
 
         case DioExceptionType.unknown:
-          return "Unexpected error occurred";
+          return AppStrings.unexpectederroroccurred;
 
         case DioExceptionType.badResponse:
-          return "Server error occurred";
+          return AppStrings.servererroroccurred;
       }
     }
 
-    return "Something went wrong";
+    return AppStrings.somethingwentwrong;
   }
 }
