@@ -7,6 +7,7 @@ import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/core/values/validation/app_validation.dart';
 import 'package:exam_app/features/auth/sign_up/data/models/sign_up_request/sign_up_request.dart';
 import 'package:exam_app/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
+import 'package:exam_app/features/auth/sign_up/presentation/cubit/sign_up_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -30,8 +31,6 @@ class SiginUpView extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: BlocProvider<SetUserCubit>(
-              //             SetUserCubit setUser = getIt.get<SetUserCubit>();
-              // setUser.setUsers(SignUpRequest());
               create: (context) => getIt.get<SetUserCubit>(),
               child: Column(
                 children: [
@@ -121,17 +120,32 @@ class SiginUpView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 48),
-                  BlocBuilder<SetUserCubit, BaseState>(
-                    builder: (context, state) {
-                      if (state.errorMessage != null &&
-                          state.errorMessage!.isNotEmpty) {
-                        return SnackBar(content: Text(state.errorMessage!));
+                  BlocListener<SetUserCubit, BaseState>(
+                    listener: (context, state) {
+                      if (state.isLoading) {
+                        showDialog(
+                          context: context,
+                          builder: (context) =>
+                              const Center(child: CircularProgressIndicator()),
+                        );
                       }
-                      return FilledButton(
-                        onPressed: () {
-                          if (formKey.currentState!.validate() ) {
-                            context.read<SetUserCubit>().setUsers(
-                              SignUpRequest(
+
+                      if (state.errorMessage!.isNotEmpty &&
+                          state.errorMessage != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(state.errorMessage.toString()),
+                          ),
+                        );
+                      }
+                    },
+
+                    child: FilledButton(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          context.read<SetUserCubit>().add(
+                            SignUpEventSetUsers(
+                              request: SignUpRequest(
                                 firstName: firstNameController.text,
                                 lastName: lastNameController.text,
                                 email: emailController.text,
@@ -140,12 +154,12 @@ class SiginUpView extends StatelessWidget {
                                 phone: phoneNumberController.text,
                                 username: userNameController.text,
                               ),
-                            );
-                          }
-                        },
-                        child: Text("Signup"),
-                      );
-                    },
+                            ),
+                          );
+                        }
+                      },
+                      child: Text("Signup"),
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Row(
