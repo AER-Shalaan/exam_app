@@ -20,12 +20,14 @@ class _SignUpApiClient implements SignUpApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<SetUserResponse> setUsers({required SignUpRequest request}) async {
+  Future<SetUserResponse> setUsers({
+    required Map<String, dynamic> request,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
+    _data.addAll(request);
     final _options = _setStreamType<SetUserResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(

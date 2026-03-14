@@ -22,7 +22,15 @@ class SetUserCubit extends Cubit<BaseState> {
   SetUserCubit(this._userusecase) : super(BaseState());
   Future<void> _setUsers(SignUpRequest request) async {
     emit(state.copyWith(isLoadingParam: true));
-    final users = await _userusecase.call();
+    final users = await _userusecase.call(
+      request.username,
+      request.firstName,
+      request.lastName,
+      request.email,
+      request.phone,
+      request.password,
+      request.rePassword,
+    );
     switch (users) {
       case SuccessBaseResponse<SignUpEntitiies>():
         emit(state.copyWith(isLoadingParam: false, dataParam: users.data));

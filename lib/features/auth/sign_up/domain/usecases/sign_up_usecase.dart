@@ -9,6 +9,23 @@ class SetUserusecase {
   final SignUpRepoContract _repository;
 
   SetUserusecase(this._repository);
-  Future<BaseResponse<SignUpEntitiies>> call() =>
-      _repository.setUsers(request: SignUpRequest());
+  Future<BaseResponse<SignUpEntitiies>> call(
+    String? username,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? phone,
+    String? password,
+    String? rePassword,
+  ) => _repository.setUsers(
+    request: SignUpRequest(
+      username: username.toString(),
+      firstName: firstName.toString(),
+      lastName: lastName.toString(),
+      email: email.toString(),
+      phone: phone.toString(),
+      password: password.toString(),
+      rePassword: rePassword.toString(),
+    ),
+  );
 }

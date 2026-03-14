@@ -15,7 +15,7 @@ class SignUpRemoteDatasorceImpl implements SignUpRemoteDatasourceContract {
     required SignUpRequest request,
   }) async {
     try {
-      final response = await _signUpApiClient.setUsers(request: request);
+      final response = await _signUpApiClient.setUsers(request: request.toJson());
       return SuccessBaseResponse<SetUserResponse>(data: response);
     } on Exception catch (e) {
       return ErrorBaseResponse<SetUserResponse>(
