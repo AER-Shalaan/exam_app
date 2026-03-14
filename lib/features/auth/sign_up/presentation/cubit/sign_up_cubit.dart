@@ -8,24 +8,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class SetUserCubit extends Bloc<SignUpEvent, BaseState> {
+class SetUserCubit extends Cubit<BaseState> {
   final SetUserusecase _userusecase;
 
-  SetUserCubit(this._userusecase) : super(BaseState()) {
-    on<SignUpEventSetUsers>(
-      (event, emit) => _setUsers(event.request, emit, event),
-    );
+  void doEvent(SignUpEvent event) {
+    switch (event) {
+      case SignUpEventSetUsers():
+        _setUsers(event.request);
+        break;
+    }
   }
-  Future<void> _setUsers(
-    SignUpRequest request,
-    Emitter<BaseState> emit,
-    SignUpEventSetUsers event,
-  ) async {
+
+  SetUserCubit(this._userusecase) : super(BaseState());
+  Future<void> _setUsers(SignUpRequest request) async {
     emit(state.copyWith(isLoadingParam: true));
     final users = await _userusecase.call();
     switch (users) {
       case SuccessBaseResponse<SignUpEntitiies>():
         emit(state.copyWith(isLoadingParam: false, dataParam: users.data));
+
         break;
       case ErrorBaseResponse<SignUpEntitiies>():
         emit(

@@ -7,9 +7,4 @@ class SignUpEventSetUsers extends SignUpEvent {
   SignUpEventSetUsers({required this.request});
 }
 
-class SignUpEventError extends SignUpEvent {
-  final String message;
-  SignUpEventError({required this.message});
-}
 
-class SignUpEventSuccess extends SignUpEvent {}

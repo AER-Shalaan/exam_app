@@ -143,7 +143,7 @@ class SiginUpView extends StatelessWidget {
                     child: FilledButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          context.read<SetUserCubit>().add(
+                          context.read<SetUserCubit>().doEvent(
                             SignUpEventSetUsers(
                               request: SignUpRequest(
                                 firstName: firstNameController.text,
