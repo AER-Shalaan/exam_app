@@ -50,8 +50,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i662.SetUserusecase>(
       () => _i662.SetUserusecase(gh<_i496.SignUpRepoContract>()),
     );
-    gh.factory<_i809.SetUserCubit>(
-      () => _i809.SetUserCubit(gh<_i662.SetUserusecase>()),
+    gh.factory<_i809.SignUpCubit>(
+      () => _i809.SignUpCubit(gh<_i662.SetUserusecase>()),
     );
     return this;
   }

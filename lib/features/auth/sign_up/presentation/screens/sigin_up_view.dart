@@ -4,7 +4,7 @@ import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/core/values/validation/app_validation.dart';
-import 'package:exam_app/features/auth/sign_up/data/models/sign_up_request/sign_up_request.dart';
+import 'package:exam_app/features/auth/sign_up/apis/sign_up_request/sign_up_request.dart';
 import 'package:exam_app/features/auth/sign_up/domain/entities/sign_up_entitiies.dart';
 import 'package:exam_app/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:exam_app/features/auth/sign_up/presentation/cubit/sign_up_events.dart';
@@ -118,7 +118,7 @@ class SiginUpView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 48),
-                BlocListener<SetUserCubit, BaseState<SignUpEntitiies>>(
+                BlocListener<SignUpCubit, BaseState<SignUpEntitiies>>(
                   listener: (context, state) {
                     if (state.isLoading) {
                       showDialog(
@@ -143,7 +143,7 @@ class SiginUpView extends StatelessWidget {
                   child: FilledButton(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        context.read<SetUserCubit>().doEvent(
+                        context.read<SignUpCubit>().doEvent(
                           SignUpEventSetUsers(
                             request: SignUpRequest(
                               firstName: firstNameController.text,

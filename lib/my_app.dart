@@ -1,7 +1,7 @@
 import 'package:exam_app/config/app_theme.dart';
 import 'package:exam_app/config/di/di.dart';
 import 'package:exam_app/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart'
-    show SetUserCubit;
+    show SetUserCubit, SignUpCubit;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<SetUserCubit>(
-      create: (context) => getIt.get<SetUserCubit>(),
+    return BlocProvider<SignUpCubit>(
+      create: (context) => getIt.get<SignUpCubit>(),
       child: MaterialApp(
         title: 'Exam App',
         debugShowCheckedModeBanner: false,
