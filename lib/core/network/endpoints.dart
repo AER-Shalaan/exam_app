@@ -15,6 +15,4 @@ class Endpoints {
   static const String putEditProfileEndpoint = '$baseUrl/auth/editProfile';
   static const String deleteMyAccountEndpoint = '$baseUrl/auth/deleteMe';
   static const String getLogoutEndpoint = '$baseUrl/auth/logout';
-  static const String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjA2MjkxY2ViMmM1OWY4NGEzY2UzYyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzczMTY3MjUwfQ.cx_4s3FIsdKwHaicnpj-uTWMDPg7D_FtpxztPtvKGKk";
 }
