@@ -1,5 +1,4 @@
 import 'package:exam_app/core/state/base_state.dart';
-import 'package:exam_app/core/storage/secure_storage.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
@@ -144,7 +143,6 @@ class SiginUpView extends StatelessWidget {
                   child: FilledButton(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-
                         context.read<SetUserCubit>().doEvent(
                           SignUpEventSetUsers(
                             request: SignUpRequest(

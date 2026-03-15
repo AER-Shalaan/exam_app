@@ -11,16 +11,7 @@ import 'package:injectable/injectable.dart';
 class SetUserCubit extends Cubit<BaseState<SignUpEntitiies>> {
   final SetUserusecase _userusecase;
 
-  void doEvent(SignUpEvent event) {
-    switch (event) {
-      case SignUpEventSetUsers():
-        _setUsers(event.request);
-        break;
-    }
-  }
-
-  SetUserCubit(this._userusecase) : super(BaseState<
-      SignUpEntitiies>());
+  SetUserCubit(this._userusecase) : super(BaseState<SignUpEntitiies>());
   Future<void> _setUsers(SignUpRequest request) async {
     emit(state.copyWith(isLoadingParam: true));
     final users = await _userusecase.call(
@@ -44,6 +35,14 @@ class SetUserCubit extends Cubit<BaseState<SignUpEntitiies>> {
             errorMessageParam: users.exception.toString(),
           ),
         );
+        break;
+    }
+  }
+
+  void doEvent(SignUpEvent event) {
+    switch (event) {
+      case SignUpEventSetUsers():
+        _setUsers(event.request);
         break;
     }
   }

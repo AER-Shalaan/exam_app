@@ -17,3 +17,6 @@ abstract class SignUpApiClient {
     @Body() required Map<String, dynamic> request,
   });
 }
+
+
+
