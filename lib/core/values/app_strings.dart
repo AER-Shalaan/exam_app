@@ -63,8 +63,5 @@ class AppStrings {
   static const servererroroccurred = "Server error occurred";
   static const somethingwentwrong = "Something went wrong";
   static const message = "message";
-
-
-
-
+  static const registersuccessfuly = " Register Successfuly";
 }

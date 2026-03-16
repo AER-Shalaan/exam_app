@@ -121,21 +121,29 @@ class SiginUpView extends StatelessWidget {
                 BlocListener<SignUpCubit, BaseState<SignUpEntitiies>>(
                   listener: (context, state) {
                     if (state.isLoading) {
-                      showDialog(
-                        context: context,
-                        builder: (context) =>
-                            const Center(child: CircularProgressIndicator()),
-                      );
-                    }
-
-                    if (!state.isLoading) {
-                      Navigator.pop(context);
-                    }
-
-                    if (state.errorMessage != null &&
-                        state.errorMessage!.isNotEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(state.errorMessage.toString())),
+                        const SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          content: Center(child: Text("Loading...")),
+                        ),
+                      );
+                    } else if ((state.errorMessage ?? '').isNotEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: AppColors.errorColor,
+                          content: Center(child: Text(state.errorMessage!)),
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: AppColors.successColor,
+                          content: Center(
+                            child: Text(AppStrings.registersuccessfuly),
+                          ),
+                        ),
                       );
                     }
                   },
