@@ -12,11 +12,13 @@ class LoginRemoteDatasorceImpl implements LoginRemoteDatasourceContract {
   LoginRemoteDatasorceImpl(this._loginApiClient);
   @override
   Future<BaseResponse<userModel>> getUsers({
-    required LoginRequest request ,
+    required LoginRequest request,
   }) async {
     try {
-      final response = await _loginApiClient.getUsers(request: request.toJson());
-      return SuccessBaseResponse<userModel>(data: response.user!);
+      final response = await _loginApiClient.getUsers(
+        request: request.toJson(),
+      );
+      return SuccessBaseResponse<userModel>(data: response.user ?? userModel());
     } on Exception catch (e) {
       return ErrorBaseResponse<userModel>(
         exception: Exception(ErrorHandler.handle(e)),
