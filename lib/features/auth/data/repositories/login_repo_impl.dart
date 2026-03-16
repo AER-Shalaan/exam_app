@@ -1,14 +1,14 @@
 import 'package:exam_app/config/base_response/base_response.dart';
+import 'package:exam_app/features/auth/Apis/respones/login_respons.dart';
 import 'package:exam_app/features/auth/data/datasources/Remote/login_remote_datasource_contract.dart';
-import 'package:exam_app/features/auth/data/mapper/login_mappers.dart';
-import 'package:exam_app/features/auth/data/models/get_user_model.dart';
 import 'package:exam_app/features/login_screen/domain/entities/login_entitiies.dart';
 import 'package:exam_app/features/login_screen/domain/repositories/Login_repo_contract.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: LoginRepoContract)
+@injectable
 class LoginRepoImpl implements LoginRepoContract {
   final LoginRemoteDatasourceContract _loginDataSourceContract;
+
 
   LoginRepoImpl(this._loginDataSourceContract);
 
@@ -20,12 +20,12 @@ class LoginRepoImpl implements LoginRepoContract {
 
     return response.then((value) {
       switch (value) {
-        case SuccessBaseResponse<UserModel>():
+        case SuccessBaseResponse<LoginRespons>():
           return SuccessBaseResponse<LoginEntitiies>(
-            data: value.data.toEntity(),
+            data: value.data.toDomain(),
           );
 
-        case ErrorBaseResponse<UserModel>():
+        case ErrorBaseResponse<LoginRespons>():
           return ErrorBaseResponse<LoginEntitiies>(exception: value.exception);
       }
     });

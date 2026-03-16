@@ -20,13 +20,13 @@ class _LoginApiClient implements LoginApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<GetUserResponse> getUsers({required Map<String, dynamic> body}) async {
+  Future<InvalidType> getUsers({required Map<String, dynamic> body}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _options = _setStreamType<GetUserResponse>(
+    final _options = _setStreamType<InvalidType>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -37,9 +37,9 @@ class _LoginApiClient implements LoginApiClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late GetUserResponse _value;
+    late InvalidType _value;
     try {
-      _value = GetUserResponse.fromJson(_result.data!);
+      _value = InvalidType.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

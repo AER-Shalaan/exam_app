@@ -1,6 +1,9 @@
-import 'package:exam_app/features/auth/data/models/get_user_model.dart';
 import 'package:exam_app/features/login_screen/domain/entities/login_entitiies.dart';
 
-extension SignUpMapper on UserModel {
-  LoginEntitiies toEntity() => LoginEntitiies(email: email, password: password);
+extension LoginEntitiiesMapper on LoginEntitiies {
+  LoginEntitiies toEntity() => LoginEntitiies(
+    token: token,
+    email: email,
+    password: password,
+  );
 }

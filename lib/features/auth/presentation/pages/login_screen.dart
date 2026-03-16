@@ -60,7 +60,7 @@ class LoginView extends StatelessWidget {
                         labelText: AppStrings.password,
                         hintText: AppStrings.hintTextpass,
                       ),
-                      controller: emailController,
+                      controller: passwordController,
                       keyboardType: TextInputType.visiblePassword,
                     ),
 

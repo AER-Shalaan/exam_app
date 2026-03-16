@@ -1,7 +1,7 @@
 import 'package:exam_app/config/base_response/base_response.dart';
 import 'package:exam_app/core/state/base_state.dart';
 import 'package:exam_app/core/storage/secure_storage.dart';
-import 'package:exam_app/features/auth/data/models/get_user_model.dart';
+import 'package:exam_app/features/auth/Apis/respones/login_respons.dart';
 import 'package:exam_app/features/auth/presentation/cubit/login_events.dart';
 
 import 'package:exam_app/features/login_screen/domain/usecases/login_usecase.dart';
@@ -29,11 +29,11 @@ class GetUserCubit extends Cubit<BaseState> {
       //     ),
       //   );
       //   break;
-      case SuccessBaseResponse<UserModel>():
+      case SuccessBaseResponse<LoginRespons>():
         emit(state.copyWith(isLoadingParam: false, dataParam: users.data));
         SecureStorage.saveToken(users.data.token ?? '');
         break;
-      case ErrorBaseResponse<UserModel>():
+      case ErrorBaseResponse<LoginRespons>():
         emit(
           state.copyWith(
             isLoadingParam: false,
