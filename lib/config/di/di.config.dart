@@ -14,15 +14,15 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
 import '../../core/network/dio_module.dart' as _i673;
-import '../../features/auth/login/Apis/api_client/login_api_client.dart'
+import '../../features/auth/login/apis/api_client/login_api_client.dart'
     as _i537;
-import '../../features/auth/login/Apis/login_datasors_iplm/login_remote_datasorce_impl.dart'
+import '../../features/auth/login/apis/login_datasors_iplm/login_remote_datasorce_impl.dart'
     as _i959;
 import '../../features/auth/login/data/datasources/Remote/login_remote_datasource_contract.dart'
     as _i660;
 import '../../features/auth/login/data/repositories/login_repo_impl.dart'
     as _i453;
-import '../../features/auth/login/domain/repositories/Login_repo_contract.dart'
+import '../../features/auth/login/domain/repositories/login_repo_contract.dart'
     as _i1037;
 import '../../features/auth/login/domain/usecases/login_usecase.dart' as _i401;
 import '../../features/auth/login/presentation/cubit/login_screen_cubit.dart'

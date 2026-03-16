@@ -1,4 +1,4 @@
-import 'package:exam_app/features/auth/login/Apis/respones/user_model.dart';
+import 'package:exam_app/features/auth/login/apis/respones/user_model.dart';
 
 class LoginEntitiies {
   String? email;

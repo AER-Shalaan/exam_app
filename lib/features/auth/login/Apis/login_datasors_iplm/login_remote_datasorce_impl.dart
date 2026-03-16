@@ -1,8 +1,8 @@
 import 'package:exam_app/config/base_response/base_response.dart';
 import 'package:exam_app/core/error/error_handler.dart';
-import 'package:exam_app/features/auth/login/Apis/api_client/login_api_client.dart';
-import 'package:exam_app/features/auth/login/Apis/request/login_request.dart';
-import 'package:exam_app/features/auth/login/Apis/respones/user_model.dart';
+import 'package:exam_app/features/auth/login/apis/api_client/login_api_client.dart';
+import 'package:exam_app/features/auth/login/apis/request/login_request.dart';
+import 'package:exam_app/features/auth/login/apis/respones/user_model.dart';
 import 'package:exam_app/features/auth/login/data/datasources/Remote/login_remote_datasource_contract.dart';
 import 'package:injectable/injectable.dart';
 

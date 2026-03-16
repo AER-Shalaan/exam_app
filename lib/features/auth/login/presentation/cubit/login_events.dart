@@ -1,4 +1,4 @@
-import 'package:exam_app/features/auth/login/Apis/request/login_request.dart';
+import 'package:exam_app/features/auth/login/apis/request/login_request.dart';
 
 sealed class LoginEvents {}
 
