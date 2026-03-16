@@ -2,8 +2,8 @@ import 'package:exam_app/config/di/di.dart';
 import 'package:exam_app/core/state/base_state.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
-import 'package:exam_app/features/auth/presentation/cubit/login_screen_cubit.dart';
-import 'package:exam_app/features/auth/presentation/cubit/login_screen_state.dart';
+import 'package:exam_app/features/auth/login/presentation/cubit/login_screen_cubit.dart';
+import 'package:exam_app/features/auth/login/presentation/cubit/login_screen_state.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

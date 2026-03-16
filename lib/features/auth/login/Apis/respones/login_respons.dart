@@ -1,4 +1,4 @@
-import 'package:exam_app/features/auth/Apis/respones/user_model.dart';
+import 'package:exam_app/features/auth/login/Apis/respones/user_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'login_respons.g.dart';
 

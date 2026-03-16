@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:exam_app/core/network/endpoints.dart';
-import 'package:exam_app/features/auth/Apis/respones/login_respons.dart';
+import 'package:exam_app/features/auth/login/Apis/respones/login_respons.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -13,7 +13,5 @@ abstract class LoginApiClient {
   factory LoginApiClient(Dio dio) = _LoginApiClient;
 
   @POST(Endpoints.postSignInEndpoint)
-  Future<LoginRespons> getUsers({
-    @Body() required Map<String, dynamic> body,
-  });
+  Future<LoginRespon> getUsers({@Body() required Map<String, dynamic> request});
 }

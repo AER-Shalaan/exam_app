@@ -1,4 +1,4 @@
-import 'package:exam_app/features/auth/presentation/pages/login_screen.dart';
+import 'package:exam_app/features/auth/login/presentation/pages/login_screen.dart';
 import 'package:exam_app/features/splash_screen/presentation/splash_screen.dart';
 import 'package:flutter/material.dart';
 
