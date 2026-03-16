@@ -1,7 +1,8 @@
-import 'package:exam_app/config/di/di.dart';
 import 'package:exam_app/core/state/base_state.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
+import 'package:exam_app/features/auth/login/Apis/request/login_request.dart';
+import 'package:exam_app/features/auth/login/presentation/cubit/login_events.dart';
 import 'package:exam_app/features/auth/login/presentation/cubit/login_screen_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,32 +11,40 @@ import 'package:gap/gap.dart';
 class LoginView extends StatelessWidget {
   LoginView({super.key});
 
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final ValueNotifier<bool> isRememberMe = ValueNotifier<bool>(false);
-
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt.get<LoginScreenCubit>(),
-      child: Scaffold(
-        appBar: AppBar(title: const Text(AppStrings.appBarLogin)),
-        body: BlocConsumer<LoginScreenCubit, BaseState>(
-          listener: (context, state) {
-            if (state.isLoading) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.errorMessage.toString())),
-              );
-            } else if (state.errorMessage!.isNotEmpty) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text(AppStrings.loginsuccessful)),
-              );
-            }
-          },
-          builder: (context, state) {
-            return SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: Form(
+    return Scaffold(
+      appBar: AppBar(title: const Text(AppStrings.appBarLogin)),
+      body: BlocConsumer<LoginScreenCubit, BaseState>(
+        listener: (context, state) {
+          if (state.isLoading) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.errorMessage.toString())),
+            );
+          } else if (state.errorMessage!.isNotEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text(AppStrings.loginsuccessful)),
+            );
+          }
+        },
+        builder: (context, state) {
+          return SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: Form(
+              child: BlocListener<LoginScreenCubit, BaseState>(
+                listener: (context, state) {
+                  if (state.isLoading) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(state.errorMessage.toString())),
+                    );
+                  }
+
+                  if (state.errorMessage!.isNotEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text(AppStrings.loginsuccessful)),
+                    );
+                  }
+                },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -93,6 +102,9 @@ class LoginView extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
+                            if (form) {
+                              isRememberMe.value = false;
+                            }
                             // Navigator.push(
 
                             //   context,
@@ -139,6 +151,17 @@ class LoginView extends StatelessWidget {
                         const Text(AppStrings.dontAcont),
                         TextButton(
                           onPressed: () {
+                            if (form.currentState!.validate()) {
+                              context.read<LoginScreenCubit>().doEvent(
+                                GetUser(
+                                  request:
+                                      LoginRequest(
+                                        email: emailController.text,
+                                        password: passwordController.text,
+                                      ),
+                                ),
+                              );
+                            }
                             // Navigator.push(
 
                             //   context,
@@ -160,10 +183,16 @@ class LoginView extends StatelessWidget {
                   ],
                 ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final ValueNotifier<bool> isRememberMe = ValueNotifier<bool>(false);
+
+  final GlobalKey<FormState> form = GlobalKey<FormState>();
 }
