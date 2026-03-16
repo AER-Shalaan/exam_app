@@ -1,6 +1,8 @@
+import 'package:exam_app/features/auth/login/Apis/request/login_request.dart';
+
 sealed class LoginEvents {}
 
 class GetUser extends LoginEvents {
-  final bool request;
+  final LoginRequest request;
   GetUser({required this.request});
 }

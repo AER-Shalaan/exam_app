@@ -34,7 +34,7 @@ class LoginScreenCubit extends Cubit<BaseState<LoginEntitiies>> {
   void doEvent(LoginEvents event) {
     switch (event) {
       case GetUser():
-        _getUsers(event.request as LoginRequest);
+        _getUsers(event.request);
         break;
     }
   }

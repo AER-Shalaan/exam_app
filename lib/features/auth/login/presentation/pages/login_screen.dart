@@ -102,9 +102,6 @@ class LoginView extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            if (form) {
-                              isRememberMe.value = false;
-                            }
                             // Navigator.push(
 
                             //   context,
@@ -133,6 +130,16 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
+                        if (form.currentState!.validate()) {
+                          context.read<LoginScreenCubit>().doEvent(
+                            GetUser(
+                              request: LoginRequest(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              ),
+                            ),
+                          );
+                        }
                         // Navigator.push(
 
                         //   context,
@@ -151,17 +158,6 @@ class LoginView extends StatelessWidget {
                         const Text(AppStrings.dontAcont),
                         TextButton(
                           onPressed: () {
-                            if (form.currentState!.validate()) {
-                              context.read<LoginScreenCubit>().doEvent(
-                                GetUser(
-                                  request:
-                                      LoginRequest(
-                                        email: emailController.text,
-                                        password: passwordController.text,
-                                      ),
-                                ),
-                              );
-                            }
                             // Navigator.push(
 
                             //   context,
