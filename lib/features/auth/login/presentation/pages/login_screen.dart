@@ -3,11 +3,8 @@ import 'package:exam_app/core/state/base_state.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/features/auth/login/presentation/cubit/login_screen_cubit.dart';
-import 'package:exam_app/features/auth/login/presentation/cubit/login_screen_state.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:gap/gap.dart';
 
 class LoginView extends StatelessWidget {
@@ -20,16 +17,16 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt.get<GetUserCubit>(),
+      create: (context) => getIt.get<LoginScreenCubit>(),
       child: Scaffold(
         appBar: AppBar(title: const Text(AppStrings.appBarLogin)),
-        body: BlocConsumer<GetUserCubit, BaseState>(
+        body: BlocConsumer<LoginScreenCubit, BaseState>(
           listener: (context, state) {
-            if (state is LoginError) {
+            if (state.isLoading) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.errorMessage.toString())),
               );
-            } else if (state is LoginSuccess) {
+            } else if (state.errorMessage!.isNotEmpty) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text(AppStrings.loginsuccessful)),
               );
