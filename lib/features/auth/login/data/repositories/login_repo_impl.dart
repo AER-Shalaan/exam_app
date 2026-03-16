@@ -7,7 +7,7 @@ import 'package:exam_app/features/auth/login/domain/entities/login_entitiies.dar
 import 'package:exam_app/features/auth/login/domain/repositories/login_repo_contract.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@Injectable(as: LoginRepoContract)
 class LoginRepoImpl implements LoginRepoContract {
   final LoginRemoteDatasourceContract _loginDataSourceContract;
 

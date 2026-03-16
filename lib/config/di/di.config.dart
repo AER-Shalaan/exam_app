@@ -15,15 +15,15 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../../core/network/dio_module.dart' as _i673;
 import '../../features/auth/login/apis/api_client/login_api_client.dart'
-    as _i537;
+    as _i934;
 import '../../features/auth/login/apis/login_datasors_iplm/login_remote_datasorce_impl.dart'
-    as _i959;
+    as _i1014;
 import '../../features/auth/login/data/datasources/Remote/login_remote_datasource_contract.dart'
     as _i660;
 import '../../features/auth/login/data/repositories/login_repo_impl.dart'
     as _i453;
 import '../../features/auth/login/domain/repositories/login_repo_contract.dart'
-    as _i1037;
+    as _i628;
 import '../../features/auth/login/domain/usecases/login_usecase.dart' as _i401;
 import '../../features/auth/login/presentation/cubit/login_screen_cubit.dart'
     as _i594;
@@ -37,17 +37,17 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
     gh.singleton<_i361.Dio>(() => dioModule.dio);
-    gh.lazySingleton<_i537.LoginApiClient>(
-      () => _i537.LoginApiClient(gh<_i361.Dio>()),
+    gh.lazySingleton<_i934.LoginApiClient>(
+      () => _i934.LoginApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i660.LoginRemoteDatasourceContract>(
-      () => _i959.LoginRemoteDatasorceImpl(gh<_i537.LoginApiClient>()),
+      () => _i1014.LoginRemoteDatasorceImpl(gh<_i934.LoginApiClient>()),
     );
-    gh.factory<_i453.LoginRepoImpl>(
+    gh.factory<_i628.LoginRepoContract>(
       () => _i453.LoginRepoImpl(gh<_i660.LoginRemoteDatasourceContract>()),
     );
     gh.factory<_i401.LoginUsecase>(
-      () => _i401.LoginUsecase(gh<_i1037.LoginRepoContract>()),
+      () => _i401.LoginUsecase(gh<_i628.LoginRepoContract>()),
     );
     gh.factory<_i594.LoginScreenCubit>(
       () => _i594.LoginScreenCubit(gh<_i401.LoginUsecase>()),
