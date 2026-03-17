@@ -1,3 +1,4 @@
+import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -22,7 +23,7 @@ class _SplashViewState extends State<SplashView>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2000),
+      duration: const Duration(seconds: 2),
     );
 
     _fadeLogo = Tween<double>(
@@ -43,6 +44,14 @@ class _SplashViewState extends State<SplashView>
     );
 
     _controller.forward();
+
+    _controller.addStatusListener((status) async {
+      final navigator = Navigator.of(context);
+      if (status == AnimationStatus.completed) {
+        await Future.delayed(const Duration(seconds: 2));
+        navigator.pushReplacementNamed(AppRoutes.loginViewRouteName);
+      }
+    });
   }
 
   @override
@@ -66,7 +75,7 @@ class _SplashViewState extends State<SplashView>
               position: _slideLogo,
               child: FadeTransition(
                 opacity: _fadeLogo,
-                child: Image.asset(Assets.assetsImagesSplash, height: 100),
+                child: Image.asset(Assets.assetsImagesExamSplash, height: 100),
               ),
             ),
             Gap(200),
