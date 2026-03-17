@@ -1,70 +1,77 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
-  static const String assetsIconsAdd = "assets/icons/add.svg";
 
-  static const String assetsIconsAddress = "assets/icons/address.svg";
+  static const String imagePath = "assets/icons";
+  static const String assetsIconsAdd = "$imagePath/add.svg";
 
-  static const String assetsIconsAlarmClock = "assets/icons/alarm_clock.svg";
+  static const String assetsIconsAddress = "$imagePath/address.svg";
 
-  static const String assetsIconsArrowBack = "assets/icons/arrow_back.svg";
+  static const String assetsIconsAlarmClock = "$imagePath/alarm_clock.svg";
 
-  static const String assetsIconsCarbonResult = "assets/icons/carbon_result.svg";
+  static const String assetsIconsArrowBack = "$imagePath/arrow_back.svg";
 
-  static const String assetsIconsCategory = "assets/icons/category.svg";
+  static const String assetsIconsCarbonResult =
+      "$imagePath/carbon_result.svg";
 
-  static const String assetsIconsCheck = "assets/icons/check.svg";
+  static const String assetsIconsCategory = "$imagePath/category.svg";
 
-  static const String assetsIconsDelete = "assets/icons/delete.svg";
+  static const String assetsIconsCheck = "$imagePath/check.svg";
 
-  static const String assetsIconsDiamond = "assets/icons/diamond.svg";
+  static const String assetsIconsDelete = "$imagePath/delete.svg";
 
-  static const String assetsIconsGift = "assets/icons/gift.svg";
+  static const String assetsIconsDiamond = "$imagePath/diamond.svg";
 
-  static const String assetsIconsGiftOpen = "assets/icons/gift_open.svg";
+  static const String assetsIconsGift = "$imagePath/gift.svg";
 
-  static const String assetsIconsHeartEyes = "assets/icons/heart_eyes.svg";
+  static const String assetsIconsGiftOpen = "$imagePath/gift_open.svg";
 
-  static const String assetsIconsHome = "assets/icons/home.svg";
+  static const String assetsIconsHeartEyes = "$imagePath/heart_eyes.svg";
 
-  static const String assetsIconsLocation = "assets/icons/location.svg";
+  static const String assetsIconsHome = "$imagePath/home.svg";
 
-  static const String assetsIconsLocationOn = "assets/icons/location_on.svg";
+  static const String assetsIconsLocation = "$imagePath/location.svg";
 
-  static const String assetsIconsLogout = "assets/icons/logout.svg";
+  static const String assetsIconsLocationOn = "$imagePath/location_on.svg";
 
-  static const String assetsIconsPerson = "assets/icons/person.svg";
+  static const String assetsIconsLogout = "$imagePath/logout.svg";
 
-  static const String assetsIconsPhotoCamera = "assets/icons/photo_camera.svg";
+  static const String assetsIconsPerson = "$imagePath/person.svg";
 
-  static const String assetsIconsRemove = "assets/icons/remove.svg";
+  static const String assetsIconsPhotoCamera = "$imagePath/photo_camera.svg";
 
-  static const String assetsIconsSearch = "assets/icons/search.svg";
+  static const String assetsIconsRemove = "$imagePath/remove.svg";
 
-  static const String assetsIconsShoppingCart = "assets/icons/shopping_cart.svg";
+  static const String assetsIconsSearch = "$imagePath/search.svg";
 
-  static const String assetsIconsSort = "assets/icons/sort.svg";
+  static const String assetsIconsShoppingCart =
+      "$imagePath/shopping_cart.svg";
 
-  static const String assetsIconsTranslate = "assets/icons/translate.svg";
+  static const String assetsIconsSort = "$imagePath/sort.svg";
 
-  static const String assetsIconsTulip = "assets/icons/tulip.svg";
+  static const String assetsIconsTranslate = "$imagePath/translate.svg";
 
-  static const String assetsIconsTune = "assets/icons/tune.svg";
+  static const String assetsIconsTulip = "$imagePath/tulip.svg";
 
-  static const String assetsIconsVisibility = "assets/icons/visibility.svg";
+  static const String assetsIconsTune = "$imagePath/tune.svg";
 
-  static const String assetsIconsVisibilityOff = "assets/icons/visibility_off.svg";
+  static const String assetsIconsVisibility = "$imagePath/visibility.svg";
 
-  static const String assetsIconsWarning = "assets/icons/warning.svg";
+  static const String assetsIconsVisibilityOff =
+      "$imagePath/visibility_off.svg";
+
+  static const String assetsIconsWarning = "$imagePath/warning.svg";
 
   static const String assetsImagesClock = "assets/images/clock.svg";
 
-  static const String assetsImagesColorPalette = "assets/images/color_palette.svg";
+  static const String assetsImagesColorPalette =
+      "assets/images/color_palette.svg";
 
-  static const String assetsImagesDraftingTools = "assets/images/drafting_tools.svg";
+  static const String assetsImagesDraftingTools =
+      "assets/images/drafting_tools.svg";
 
-  static const String assetsImagesLanguageTranslator = "assets/images/language_translator.svg";
+  static const String assetsImagesLanguageTranslator =
+      "assets/images/language_translator.svg";
 
   static const String assetsImagesMath = "assets/images/math.svg";
 
@@ -73,5 +80,5 @@ class Assets {
   static const String assetsImagesProfit = "assets/images/profit.svg";
 
   static const String assetsImagesSandClock = "assets/images/sand_clock.svg";
+  static const String assetsImagesSplash = "assets/Images/Exam splash.png";
 }
-
