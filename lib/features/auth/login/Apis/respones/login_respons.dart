@@ -1,10 +1,10 @@
 import 'package:exam_app/features/auth/login/apis/respones/user_model.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'login_respons.g.dart';
 
 @JsonSerializable()
-
-class LoginRespon {
+class LoginResponse {
   @JsonKey(name: "message")
   String? message;
   @JsonKey(name: "token")
@@ -12,10 +12,10 @@ class LoginRespon {
   @JsonKey(name: "user")
   userModel? user;
 
-  LoginRespon({this.message, this.token, this.user});
+  LoginResponse({this.message, this.token, this.user});
 
-  factory LoginRespon.fromJson(Map<String, dynamic> json) =>
-      _$LoginResponFromJson(json);
+  factory LoginResponse.fromJson(Map<String, dynamic> json) =>
+      _$LoginResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$LoginResponToJson(this);
+  Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
 }

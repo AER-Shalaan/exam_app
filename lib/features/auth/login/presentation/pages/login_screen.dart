@@ -135,6 +135,7 @@ class LoginView extends StatelessWidget {
                     ),
                     onPressed: () {
                       if (form.currentState!.validate()) {
+
                         context.read<LoginScreenCubit>().doEvent(
                           GetUser(
                             request: LoginRequest(

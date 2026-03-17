@@ -13,5 +13,7 @@ abstract class LoginApiClient {
   factory LoginApiClient(Dio dio) = _LoginApiClient;
 
   @POST(Endpoints.postSignInEndpoint)
-  Future<LoginRespon> getUsers({@Body() required Map<String, dynamic> request});
+  Future<LoginResponse> getUsers({
+    @Body() required Map<String, dynamic> request,
+  });
 }

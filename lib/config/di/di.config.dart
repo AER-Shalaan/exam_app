@@ -16,8 +16,8 @@ import 'package:injectable/injectable.dart' as _i526;
 import '../../core/network/dio_module.dart' as _i673;
 import '../../features/auth/login/apis/api_client/login_api_client.dart'
     as _i934;
-import '../../features/auth/login/apis/login_datasors_iplm/login_remote_datasorce_impl.dart'
-    as _i1014;
+import '../../features/auth/login/apis/login_datasource_impl/login_remote_datasorce_impl.dart'
+    as _i445;
 import '../../features/auth/login/data/datasources/Remote/login_remote_datasource_contract.dart'
     as _i660;
 import '../../features/auth/login/data/repositories/login_repo_impl.dart'
@@ -41,7 +41,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i934.LoginApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i660.LoginRemoteDatasourceContract>(
-      () => _i1014.LoginRemoteDatasorceImpl(gh<_i934.LoginApiClient>()),
+      () => _i445.LoginRemoteDatasorceImpl(gh<_i934.LoginApiClient>()),
     );
     gh.factory<_i628.LoginRepoContract>(
       () => _i453.LoginRepoImpl(gh<_i660.LoginRemoteDatasourceContract>()),

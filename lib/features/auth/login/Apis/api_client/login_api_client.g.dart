@@ -20,13 +20,15 @@ class _LoginApiClient implements LoginApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<LoginRespon> getUsers({required Map<String, dynamic> request}) async {
+  Future<LoginResponse> getUsers({
+    required Map<String, dynamic> request,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request);
-    final _options = _setStreamType<LoginRespon>(
+    final _options = _setStreamType<LoginResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -37,9 +39,9 @@ class _LoginApiClient implements LoginApiClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late LoginRespon _value;
+    late LoginResponse _value;
     try {
-      _value = LoginRespon.fromJson(_result.data!);
+      _value = LoginResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
