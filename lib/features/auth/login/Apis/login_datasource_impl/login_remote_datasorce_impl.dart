@@ -1,6 +1,5 @@
-import 'package:exam_app/core/error/error_handler.dart';
-import 'package:exam_app/core/network/base_response/base_response.dart';
-import 'package:exam_app/features/auth/login/apis/respones/user_model.dart';
+import 'package:exam_app/core/network/base_response.dart';
+import 'package:exam_app/features/auth/login/apis/respones/login_respons.dart';
 import 'package:exam_app/features/auth/login/apis/api_client/login_api_client.dart';
 import 'package:exam_app/features/auth/login/apis/request/login_request.dart';
 import 'package:exam_app/features/auth/login/data/datasources/Remote/login_remote_datasource_contract.dart';
@@ -11,18 +10,16 @@ class LoginRemoteDatasorceImpl implements LoginRemoteDatasourceContract {
   final LoginApiClient _loginApiClient;
   LoginRemoteDatasorceImpl(this._loginApiClient);
   @override
-  Future<BaseResponse<userModel>> getUsers({
+  Future<BaseResponse<LoginResponse>> getUser({
     required LoginRequest request,
   }) async {
     try {
       final response = await _loginApiClient.getUsers(
         request: request.toJson(),
       );
-      return SuccessBaseResponse<userModel>(data: response.user ?? userModel());
+      return SuccessBaseResponse<LoginResponse>(data: response);
     } on Exception catch (e) {
-      return ErrorBaseResponse<userModel>(
-        exception: Exception(ErrorHandler.handle(e)),
-      );
+      return ErrorBaseResponse<LoginResponse>(exception: e);
     }
   }
 }

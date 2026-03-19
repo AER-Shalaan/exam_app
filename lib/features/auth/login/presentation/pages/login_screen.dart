@@ -1,3 +1,4 @@
+import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/state/base_state.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
@@ -36,13 +37,7 @@ class LoginView extends StatelessWidget {
               ),
             );
           } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                behavior: SnackBarBehavior.floating,
-                backgroundColor: AppColors.successColor,
-                content: Center(child: Text(AppStrings.loginsuccessful)),
-              ),
-            );
+            Navigator.pushReplacementNamed(context, AppRoutes.homeViewRouteName);
           }
         },
         builder: (context, state) {
@@ -135,15 +130,14 @@ class LoginView extends StatelessWidget {
                     ),
                     onPressed: () {
                       if (form.currentState!.validate()) {
-
-                        context.read<LoginScreenCubit>().doEvent(
-                          GetUser(
-                            request: LoginRequest(
-                              email: emailController.text,
-                              password: passwordController.text,
-                            ),
-                          ),
-                        );
+                        // context.read<LoginScreenCubit>().doEvent(
+                        //   GetUser(
+                        //     request: LoginRequest(
+                        //       email: emailController.text,
+                        //       password: passwordController.text,
+                        //     ),
+                        //   ),
+                        // );
                       }
                     },
                     child: Text(
