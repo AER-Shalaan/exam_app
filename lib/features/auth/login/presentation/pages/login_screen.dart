@@ -2,9 +2,9 @@ import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/state/base_state.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
+
 import 'package:exam_app/core/values/validation/app_validation.dart';
-import 'package:exam_app/features/auth/login/apis/request/login_request.dart';
-import 'package:exam_app/features/auth/login/presentation/cubit/login_events.dart';
+
 import 'package:exam_app/features/auth/login/presentation/cubit/login_screen_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,7 +37,10 @@ class LoginView extends StatelessWidget {
               ),
             );
           } else {
-            Navigator.pushReplacementNamed(context, AppRoutes.homeViewRouteName);
+            Navigator.pushReplacementNamed(
+              context,
+              AppRoutes.homeViewRouteName,
+            );
           }
         },
         builder: (context, state) {
