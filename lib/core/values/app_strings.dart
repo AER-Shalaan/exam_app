@@ -1,43 +1,38 @@
 class AppStrings {
   AppStrings._();
-  static const appName = "Exam App";
-  static const splashScreenTitle = "Welcome to Exam App";
-  static const signUpTitle = "Sign Up";
-  static const loginTitle = "Login";
-  static const forgotPasswordTitle = "Forgot Password";
-  static const fieldCannotBeEmpty = 'This field cannot be empty';
-  static const emailCannotBeEmpty = 'Email address cannot be empty';
-  static const invalidEmail = 'Invalid email address.';
-  static const phoneCannotBeEmpty = 'Mobile number cannot be empty';
-  static const invalidPhone = 'Invalid phone number';
-  static const passwordCannotBeEmpty = 'Password cannot be empty';
-  static const passwordTooWeak = 'Password is too weak.';
-  static const confirmPasswordCannotBeEmpty =
-      'Confirm password cannot be empty';
-  static const passwordsDoNotMatch = 'Passwords do not match.';
-  static const rememberMe = 'Remember me';
-  static const dontAcont = 'Don\'t have an account? ';
-  static const forgotPasswordDescription =
-      "Please enter your email associated to\nyour account";
-  static const email = 'Email';
-  static const emailHint = "Enter you email";
-  static const password = 'Password';
-  static const newPassword = 'New password';
-  static const confirmPassword = 'Confirm password';
-  static const passwordHint = "Enter you password";
-  static const confirmPasswordHint = "Enter you confirm password";
-  static const login = "Login";
-  static const signUp = "Sign Up";
-  static const verifyCodeTitle = "Email verification";
-  static const verifyCodeDescription =
-      "Please enter your code that send to\n your email address";
-  static const resendCodeString = "Didn't receive the code? ";
-  static const resend = "Resend";
-  static const resetPassword = "Reset password";
-  static const resetPasswordDescription =
-      "Password must not be empty and must contain\n6 characters with upper case letter and one\nnumber at least ";
-  static const passwordChanged = "Password Changed";
-  static const passwordChangedDescription =
-      "Password changed successfully.\nPlease login again.";
-  static const continueString = "Continue";
+ static const appName = "Exam App";
+static const confirmPassword = 'Confirm password';
+static const confirmPasswordCannotBeEmpty = 'Confirm password cannot be empty';
+static const confirmPasswordHint = "Enter you confirm password";
+static const continueString = "Continue";
+static const dontAcont = 'Don\'t have an account? ';
+static const email = 'Email';
+static const emailCannotBeEmpty = 'Email address cannot be empty';
+static const emailHint = "Enter you email";
+static const fieldCannotBeEmpty = 'This field cannot be empty';
+static const forgotPasswordDescription = "Please enter your email associated to\nyour account";
+static const forgotPasswordTitle = "Forget password";
+static const invalidEmail = 'Invalid email address.';
+static const invalidPhone = 'Invalid phone number';
+static const login = "Login";
+static const loginTitle = "Login";
+static const newPassword = 'New password';
+static const password = 'Password';
+static const passwordChanged = "Password Changed";
+static const passwordChangedDescription = "Password changed successfully.\nPlease login again.";
+static const passwordCannotBeEmpty = 'Password cannot be empty';
+static const passwordHint = "Enter you password";
+static const passwordTooWeak = 'Password is too weak.';
+static const rememberMe = 'Remember me';
+static const resend = "Resend";
+static const resendCodeString = "Didn't receive the code? ";
+static const resetPassword = "Reset password";
+static const resetPasswordDescription = "Password must not be empty and must contain\n6 characters with upper case letter and one\nnumber at least ";
+static const signUp = "Sign Up";
+static const signUpTitle = "Sign Up";
+static const splashScreenTitle = "Welcome to Exam App";
+static const verifyCodeDescription = "Please enter your code that send to\n your email address";
+static const verifyCodeTitle = "Email verification";
+static const phoneCannotBeEmpty = 'Mobile number cannot be empty';
+static const passwordsDoNotMatch = 'Passwords do not match.';
 }

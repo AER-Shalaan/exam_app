@@ -14,6 +14,24 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
 import '../../core/network/dio_module.dart' as _i673;
+import '../../features/auth/forget_password/api/api_client/forget_password_api_client.dart'
+    as _i478;
+import '../../features/auth/forget_password/api/data_sources_impl/forget_password_data_source_impl.dart'
+    as _i500;
+import '../../features/auth/forget_password/data/data_sources_contract/forget_password_data_source_contract.dart'
+    as _i413;
+import '../../features/auth/forget_password/data/repositories_impl/forget_password_repo_impl.dart'
+    as _i656;
+import '../../features/auth/forget_password/domain/repositories_contract/forget_password_repo_contract.dart'
+    as _i193;
+import '../../features/auth/forget_password/domain/use_cases/reset_password_use_case.dart'
+    as _i22;
+import '../../features/auth/forget_password/domain/use_cases/send_email_use_case.dart'
+    as _i779;
+import '../../features/auth/forget_password/domain/use_cases/verify_otp_use_case.dart'
+    as _i722;
+import '../../features/auth/forget_password/presentation/cubit/forget_password_view_model.dart'
+    as _i759;
 import '../../features/auth/login/apis/api_client/login_api_client.dart'
     as _i934;
 import '../../features/auth/login/apis/login_datasource_impl/login_remote_datasorce_impl.dart'
@@ -37,6 +55,38 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
     gh.singleton<_i361.Dio>(() => dioModule.dio);
+    gh.factory<_i478.ForgetPasswordApiClient>(
+      () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i413.ForgetPasswordDataSourceContract>(
+      () => _i500.ForgetPasswordDataSourceImpl(
+        gh<_i478.ForgetPasswordApiClient>(),
+      ),
+    );
+    gh.factory<_i193.ForgetPasswordRepositoryContract>(
+      () => _i656.ForgetPasswordRepoImpl(
+        gh<_i413.ForgetPasswordDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i722.VerifyOtpUseCase>(
+      () =>
+          _i722.VerifyOtpUseCase(gh<_i193.ForgetPasswordRepositoryContract>()),
+    );
+    gh.factory<_i22.ResetPasswordUseCase>(
+      () => _i22.ResetPasswordUseCase(
+        gh<_i193.ForgetPasswordRepositoryContract>(),
+      ),
+    );
+    gh.factory<_i779.SendEmailUseCase>(
+      () =>
+          _i779.SendEmailUseCase(gh<_i193.ForgetPasswordRepositoryContract>()),
+    );
+    gh.factory<_i759.ForgetPasswordViewModel>(
+      () => _i759.ForgetPasswordViewModel(
+        gh<_i779.SendEmailUseCase>(),
+        gh<_i722.VerifyOtpUseCase>(),
+        gh<_i22.ResetPasswordUseCase>(),
+      ),
     gh.factory<_i934.LoginApiClient>(
       () => _i934.LoginApiClient(gh<_i361.Dio>()),
     );

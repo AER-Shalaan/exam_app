@@ -4,7 +4,6 @@ publish_to: "none"
 
 environment:
   sdk: ^3.11.0
-
 dependencies:
   cupertino_icons: ^1.0.8
   dio: ^5.9.2
@@ -20,6 +19,7 @@ dependencies:
   google_fonts: ^8.0.2
   injectable: null
   json_annotation: ^4.11.0
+  pinput: ^6.0.2
   retrofit: ^4.9.0
 
 dev_dependencies:
