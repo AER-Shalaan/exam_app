@@ -24,8 +24,13 @@ class SignUpCubit extends Cubit<BaseState<SignUpEntitiies>> {
       request.rePassword,
     );
     switch (users) {
+
       case SuccessBaseResponse<SignUpEntitiies>():
-        emit(state.copyWith(isLoadingParam: false, dataParam: users.data.token ?? ""));
+          final data=users.data;
+                 if ( data.token!.isNotEmpty) {
+          await TokenManager.setToken(data.token,);
+        }
+        emit(state.copyWith(isLoadingParam: false, dataParam: data));
 
         break;
       case ErrorBaseResponse<SignUpEntitiies>():
