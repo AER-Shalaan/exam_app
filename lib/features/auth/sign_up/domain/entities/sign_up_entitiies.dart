@@ -1,16 +1,19 @@
-class SignUpEntitiies {
-  String? email;
-  String? password;
-  String? name;
-  String? lastName;
-  String? phone;
-  String? address;
+import 'package:exam_app/features/auth/sign_up/apis/response/models/sign_up_user_model.dart/user_model.dart';
 
-  SignUpEntitiies({
-    this.email,
-    this.password,
-    this.name,
-    this.lastName,
-    this.phone,
-    this.address,
-  });}
+class SignUpEntitiies {
+  String? message;
+
+  String? token;
+
+  UserModel? user;
+
+  SignUpEntitiies({this.message, this.token, this.user});
+
+  SignUpEntitiies copyWith({String? message, String? token, UserModel? user}) {
+    return SignUpEntitiies(
+      message: message ?? this.message,
+      token: token ?? this.token,
+      user: user ?? this.user,
+    );
+  }
+}

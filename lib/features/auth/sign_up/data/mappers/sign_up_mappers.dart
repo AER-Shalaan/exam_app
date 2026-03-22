@@ -3,9 +3,8 @@ import 'package:exam_app/features/auth/sign_up/domain/entities/sign_up_entitiies
 
 extension SignUpMapper on UserModel {
   SignUpEntitiies toEntity() => SignUpEntitiies(
-    name: username,
-    email: email,
-    phone: phone,
-    lastName: lastName,
+    message: "message",
+    token: "token",
+    user: this,
   );
 }

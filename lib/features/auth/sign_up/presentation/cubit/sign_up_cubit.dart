@@ -25,7 +25,7 @@ class SignUpCubit extends Cubit<BaseState<SignUpEntitiies>> {
     );
     switch (users) {
       case SuccessBaseResponse<SignUpEntitiies>():
-        emit(state.copyWith(isLoadingParam: false, dataParam: users.data));
+        emit(state.copyWith(isLoadingParam: false, dataParam: users.data.token ?? ""));
 
         break;
       case ErrorBaseResponse<SignUpEntitiies>():
