@@ -14,8 +14,10 @@ class LoginView extends StatelessWidget {
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
   final ValueNotifier<bool> isRememberMe = ValueNotifier<bool>(false);
-  final GlobalKey<FormState> form = GlobalKey<FormState>();
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,8 @@ class LoginView extends StatelessWidget {
       appBar: AppBar(title: const Text(AppStrings.appBarLogin)),
       body: BlocConsumer<LoginScreenCubit, BaseState>(
         listener: (context, state) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
           if (state.isLoading) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Center(child: Text("Loading..."))),
@@ -47,35 +51,37 @@ class LoginView extends StatelessWidget {
         },
         builder: (context, state) {
           return SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Form(
-              key: form,
+              key: formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Gap(10),
 
                   TextFormField(
+                    controller: emailController,
                     validator: (value) => AppValidation.validateEmail(value),
+                    keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       labelText: AppStrings.email,
                       hintText: AppStrings.hintTextemail,
+                      prefixIcon: Icon(Icons.email_outlined),
                     ),
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress,
                   ),
 
                   const Gap(20),
 
                   TextFormField(
+                    controller: passwordController,
                     validator: (value) => AppValidation.validatePassword(value),
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
                     decoration: const InputDecoration(
                       labelText: AppStrings.password,
                       hintText: AppStrings.hintTextpass,
+                      prefixIcon: Icon(Icons.lock_outline),
                     ),
-                    controller: passwordController,
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
                   ),
 
                   const Gap(12),
@@ -85,14 +91,14 @@ class LoginView extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          ValueListenableBuilder(
+                          ValueListenableBuilder<bool>(
                             valueListenable: isRememberMe,
-                            builder: (context, value, child) {
+                            builder: (context, rememberValue, child) {
                               return SizedBox(
                                 height: 24,
                                 width: 24,
                                 child: Checkbox(
-                                  value: value,
+                                  value: rememberValue,
                                   activeColor: AppColors.primary50,
                                   onChanged: (newValue) {
                                     isRememberMe.value = newValue ?? false;
@@ -133,23 +139,36 @@ class LoginView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                    onPressed: () {
-                      if (form.currentState!.validate()) {
+                    onPressed: state.isLoading
+                        ? null
+                        : () {
+                            if (formKey.currentState!.validate()) {
+                              final bool rememberStatus = isRememberMe.value;
 
-                        context.read<LoginScreenCubit>().doEvent(
-                          GetUser(
-                            request: LoginRequest(
-                              email: emailController.text,
-                              password: passwordController.text,
+                              context.read<LoginScreenCubit>().doEvent(
+                                GetUser(
+                                  request: LoginRequest(
+                                    email: emailController.text.trim(),
+                                    password: passwordController.text,
+                                    // rememberMe: rememberStatus,
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                    child: state.isLoading
+                        ? const SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2,
                             ),
+                          )
+                        : const Text(
+                            AppStrings.loginTitle,
+                            style: TextStyle(color: AppColors.primary10),
                           ),
-                        );
-                      }
-                    },
-                    child: Text(
-                      AppStrings.loginTitle,
-                      style: TextStyle(color: AppColors.primary10),
-                    ),
                   ),
 
                   const Gap(12),
