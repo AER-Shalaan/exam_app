@@ -1,3 +1,4 @@
+import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
@@ -41,11 +42,10 @@ class ResetPasswordView extends StatelessWidget {
               actions: [
                 TextButton(
                   onPressed: () {
-                    // Navigator.pushNamedAndRemoveUntil(
-                    //   context,
-                    //   AppRoutes.loginViewRouteName,
-                    //   (route) => false,
-                    // );
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      AppRoutes.loginViewRouteName,
+                      (route) => false,
+                    );
                   },
                   child: const Text(AppStrings.login),
                 ),

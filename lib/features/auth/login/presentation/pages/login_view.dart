@@ -20,6 +20,7 @@ class LoginView extends StatelessWidget {
   final loginViewModel = getIt<LoginViewModel>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final ValueNotifier<bool> isPasswordHidden = ValueNotifier(true);
   final ValueNotifier<bool> isRememberMe = ValueNotifier<bool>(false);
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -87,15 +88,32 @@ class LoginView extends StatelessWidget {
 
                     const Gap(24),
 
-                    TextFormField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        labelText: AppStrings.password,
-                        hintText: AppStrings.passwordHint,
-                      ),
-                      validator: (value) =>
-                          AppValidation.validatePassword(value),
+                    ValueListenableBuilder(
+                      valueListenable: isPasswordHidden,
+                      builder: (BuildContext context, hidden, _) {
+                        return TextFormField(
+                          controller: passwordController,
+                          obscureText: hidden,
+                          decoration: InputDecoration(
+                            labelText: AppStrings.password,
+                            hintText: AppStrings.passwordHint,
+                            suffixIcon: IconButton(
+                              icon: SvgPicture.asset(
+                                hidden
+                                    ? Assets.assetsIconsVisibilityOff
+                                    : Assets.assetsIconsVisibility,
+                                height: 22,
+                              ),
+                              onPressed: () {
+                                isPasswordHidden.value = !hidden;
+                              },
+                            ),
+                          ),
+
+                          validator: (value) =>
+                              AppValidation.validatePassword(value),
+                        );
+                      },
                     ),
 
                     const Gap(12),
@@ -125,7 +143,10 @@ class LoginView extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            // Navigator.pushNamed(context, AppRoutes.forgetPasswordRouteName);
+                            Navigator.pushNamed(
+                              context,
+                              AppRoutes.forgotPasswordRouteName,
+                            );
                           },
                           child: Text(
                             '${AppStrings.forgotPasswordTitle} ?',

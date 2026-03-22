@@ -58,15 +58,27 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i478.ForgetPasswordApiClient>(
       () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
     );
+    gh.factory<_i934.LoginApiClient>(
+      () => _i934.LoginApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i413.ForgetPasswordDataSourceContract>(
       () => _i500.ForgetPasswordDataSourceImpl(
         gh<_i478.ForgetPasswordApiClient>(),
       ),
     );
+    gh.factory<_i660.LoginRemoteDatasourceContract>(
+      () => _i445.LoginRemoteDatasorceImpl(gh<_i934.LoginApiClient>()),
+    );
     gh.factory<_i193.ForgetPasswordRepositoryContract>(
       () => _i656.ForgetPasswordRepoImpl(
         gh<_i413.ForgetPasswordDataSourceContract>(),
       ),
+    );
+    gh.factory<_i1046.LoginRepositoryContract>(
+      () => _i453.LoginRepoImpl(gh<_i660.LoginRemoteDatasourceContract>()),
+    );
+    gh.factory<_i401.LoginUsecase>(
+      () => _i401.LoginUsecase(gh<_i1046.LoginRepositoryContract>()),
     );
     gh.factory<_i722.VerifyOtpUseCase>(
       () =>
@@ -81,26 +93,15 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i779.SendEmailUseCase(gh<_i193.ForgetPasswordRepositoryContract>()),
     );
+    gh.factory<_i465.LoginViewModel>(
+      () => _i465.LoginViewModel(gh<_i401.LoginUsecase>()),
+    );
     gh.factory<_i759.ForgetPasswordViewModel>(
       () => _i759.ForgetPasswordViewModel(
         gh<_i779.SendEmailUseCase>(),
         gh<_i722.VerifyOtpUseCase>(),
         gh<_i22.ResetPasswordUseCase>(),
       ),
-    gh.factory<_i934.LoginApiClient>(
-      () => _i934.LoginApiClient(gh<_i361.Dio>()),
-    );
-    gh.factory<_i660.LoginRemoteDatasourceContract>(
-      () => _i445.LoginRemoteDatasorceImpl(gh<_i934.LoginApiClient>()),
-    );
-    gh.factory<_i1046.LoginRepositoryContract>(
-      () => _i453.LoginRepoImpl(gh<_i660.LoginRemoteDatasourceContract>()),
-    );
-    gh.factory<_i401.LoginUsecase>(
-      () => _i401.LoginUsecase(gh<_i1046.LoginRepositoryContract>()),
-    );
-    gh.factory<_i465.LoginViewModel>(
-      () => _i465.LoginViewModel(gh<_i401.LoginUsecase>()),
     );
     return this;
   }
