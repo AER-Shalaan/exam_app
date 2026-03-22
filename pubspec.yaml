@@ -4,20 +4,21 @@ publish_to: "none"
 
 environment:
   sdk: ^3.11.0
-
 dependencies:
   cupertino_icons: ^1.0.8
   dio: ^5.9.2
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_bloc_effects: ^1.0.1
   flutter_launcher_icons: ^0.14.4
   flutter_secure_storage: ^10.0.0
   flutter_svg: ^2.2.4
+  gap: ^3.0.1
   get_it: null
   google_fonts: ^8.0.2
   injectable: null
-  json_annotation: ^4.9.0
+  json_annotation: ^4.11.0
   pinput: ^6.0.2
   retrofit: ^4.9.0
 

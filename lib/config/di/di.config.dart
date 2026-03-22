@@ -32,6 +32,19 @@ import '../../features/auth/forget_password/domain/use_cases/verify_otp_use_case
     as _i722;
 import '../../features/auth/forget_password/presentation/cubit/forget_password_view_model.dart'
     as _i759;
+import '../../features/auth/login/apis/api_client/login_api_client.dart'
+    as _i934;
+import '../../features/auth/login/apis/login_datasource_impl/login_remote_datasorce_impl.dart'
+    as _i445;
+import '../../features/auth/login/data/datasources/Remote/login_remote_datasource_contract.dart'
+    as _i660;
+import '../../features/auth/login/data/repositories/login_repo_impl.dart'
+    as _i453;
+import '../../features/auth/login/domain/repositories/login_repository_contract.dart'
+    as _i1046;
+import '../../features/auth/login/domain/usecases/login_usecase.dart' as _i401;
+import '../../features/auth/login/presentation/cubit/login_view_model.dart'
+    as _i465;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -74,6 +87,20 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i722.VerifyOtpUseCase>(),
         gh<_i22.ResetPasswordUseCase>(),
       ),
+    gh.factory<_i934.LoginApiClient>(
+      () => _i934.LoginApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i660.LoginRemoteDatasourceContract>(
+      () => _i445.LoginRemoteDatasorceImpl(gh<_i934.LoginApiClient>()),
+    );
+    gh.factory<_i1046.LoginRepositoryContract>(
+      () => _i453.LoginRepoImpl(gh<_i660.LoginRemoteDatasourceContract>()),
+    );
+    gh.factory<_i401.LoginUsecase>(
+      () => _i401.LoginUsecase(gh<_i1046.LoginRepositoryContract>()),
+    );
+    gh.factory<_i465.LoginViewModel>(
+      () => _i465.LoginViewModel(gh<_i401.LoginUsecase>()),
     );
     return this;
   }

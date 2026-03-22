@@ -29,6 +29,14 @@ class TextStyles {
     letterSpacing: 0.5,
   );
 
+  static TextStyle bodyRegularUnderLine12 = GoogleFonts.inter(
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+    color: AppColors.baseBlack,
+    decoration: TextDecoration.underline,
+    decorationColor: AppColors.baseBlack,
+  );
+
   static const TextStyle errorTextFieldStyle = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
@@ -39,6 +47,11 @@ class TextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w600,
     color: AppColors.whiteColor,
+  );
+  static TextStyle bodyRegular13 = GoogleFonts.inter(
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+    color: AppColors.baseBlack,
   );
 
   static TextStyle bodyRegular13grey = GoogleFonts.inter(
