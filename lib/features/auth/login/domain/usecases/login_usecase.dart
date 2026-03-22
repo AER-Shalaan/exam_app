@@ -9,11 +9,7 @@ class LoginUsecase {
   final LoginRepositoryContract _repository;
 
   LoginUsecase(this._repository);
-  Future<BaseResponse<LoginEntity>> call(String? email, String? password) =>
-      _repository.getUser(
-        request: LoginRequest(
-          email: email.toString(),
-          password: password.toString(),
-        ),
-      );
+
+  Future<BaseResponse<LoginEntity>> call(LoginRequest request) =>
+      _repository.getUser(request: request);
 }

@@ -1,7 +1,7 @@
 import 'package:exam_app/config/app_routes.dart';
+import 'package:exam_app/core/auth/token_manager.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -12,15 +12,19 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _fadeLogo;
-  late Animation<double> _fadeImage;
-  late Animation<Offset> _slideLogo;
+  late final AnimationController _controller;
+  late final Animation<double> _fadeLogo;
+  late final Animation<double> _fadeText;
+  late final Animation<Offset> _slideLogo;
 
   @override
   void initState() {
     super.initState();
+    _setupAnimations();
+    _navigate();
+  }
 
+  void _setupAnimations() {
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -32,11 +36,11 @@ class _SplashViewState extends State<SplashView>
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
     _slideLogo = Tween<Offset>(
-      begin: const Offset(0, .3),
+      begin: const Offset(0, 0.3),
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
-    _fadeImage = Tween<double>(begin: 0, end: 1).animate(
+    _fadeText = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.5, 1, curve: Curves.easeOut),
@@ -44,14 +48,24 @@ class _SplashViewState extends State<SplashView>
     );
 
     _controller.forward();
+  }
 
-    _controller.addStatusListener((status) async {
-      final navigator = Navigator.of(context);
-      if (status == AnimationStatus.completed) {
-        await Future.delayed(const Duration(seconds: 2));
-        navigator.pushReplacementNamed(AppRoutes.loginViewRouteName);
-      }
-    });
+  Future<void> _navigate() async {
+    await TokenManager.init();
+
+    final hasToken = TokenManager.isLoggedIn;
+
+    await Future.delayed(
+      hasToken ? const Duration(milliseconds: 500) : const Duration(seconds: 2),
+    );
+
+    if (!mounted) return;
+
+    final route = hasToken
+        ? AppRoutes.homeViewRouteName
+        : AppRoutes.loginViewRouteName;
+
+    Navigator.pushReplacementNamed(context, route);
   }
 
   @override
@@ -62,15 +76,15 @@ class _SplashViewState extends State<SplashView>
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Gap(250),
+            SizedBox(height: height * 0.3),
 
-            /// Logo fade + slide
             SlideTransition(
               position: _slideLogo,
               child: FadeTransition(
@@ -78,13 +92,17 @@ class _SplashViewState extends State<SplashView>
                 child: Image.asset(Assets.assetsImagesExamSplash, height: 100),
               ),
             ),
-            Gap(200),
+
+            SizedBox(height: height * 0.25),
+
             FadeTransition(
-              opacity: _fadeImage,
-              child: Center(
-                child: Text(
-                  'Study…Test…Succeed',
-                  style: TextStyle(color: Colors.white70, fontSize: 20),
+              opacity: _fadeText,
+              child: const Text(
+                'Study…Test…Succeed',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),

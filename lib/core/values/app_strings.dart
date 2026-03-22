@@ -15,13 +15,29 @@ class AppStrings {
   static const confirmPasswordCannotBeEmpty =
       'Confirm password cannot be empty';
   static const passwordsDoNotMatch = 'Passwords do not match.';
-  static const rememberMe = 'remember Me';
-  static const hintTextpass = 'Enter your password';
-  static const hintTextemail = 'Enter your email';
-  static const dontAcont = 'Don\'t have an account?';
-  static const appBarLogin = 'Login';
-  static const email = 'email';
-  static const password = 'password';
-  static const forgetPasswordLogin = "Forgot Password ?";
-  static const loginsuccessful = 'Login successful';
+  static const rememberMe = 'Remember me';
+  static const dontAcont = 'Don\'t have an account? ';
+  static const forgotPasswordDescription =
+      "Please enter your email associated to\nyour account";
+  static const email = 'Email';
+  static const emailHint = "Enter you email";
+  static const password = 'Password';
+  static const newPassword = 'New password';
+  static const confirmPassword = 'Confirm password';
+  static const passwordHint = "Enter you password";
+  static const confirmPasswordHint = "Enter you confirm password";
+  static const login = "Login";
+  static const signUp = "Sign Up";
+  static const verifyCodeTitle = "Email verification";
+  static const verifyCodeDescription =
+      "Please enter your code that send to\n your email address";
+  static const resendCodeString = "Didn't receive the code? ";
+  static const resend = "Resend";
+  static const resetPassword = "Reset password";
+  static const resetPasswordDescription =
+      "Password must not be empty and must contain\n6 characters with upper case letter and one\nnumber at least ";
+  static const passwordChanged = "Password Changed";
+  static const passwordChangedDescription =
+      "Password changed successfully.\nPlease login again.";
+  static const continueString = "Continue";
 }

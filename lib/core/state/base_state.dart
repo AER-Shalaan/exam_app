@@ -1,7 +1,7 @@
 class BaseState<T> {
-  final bool isLoading;
-  final String? errorMessage;
-  final T? data;
+  bool isLoading;
+  String? errorMessage;
+  T? data;
 
   BaseState({this.isLoading = false, this.errorMessage, this.data});
 
