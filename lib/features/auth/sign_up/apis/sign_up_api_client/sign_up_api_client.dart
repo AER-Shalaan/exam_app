@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:exam_app/core/network/endpoints.dart';
-import 'package:exam_app/features/auth/sign_up/apis/response/set_user_response.dart';
+import 'package:exam_app/features/auth/sign_up/apis/response/sign_up_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -13,10 +13,7 @@ abstract class SignUpApiClient {
   factory SignUpApiClient(Dio dio) = _SignUpApiClient;
 
   @POST(Endpoints.postSignUpEndpoint)
-  Future<SetUserResponse> setUsers({
+  Future<RegisterResponse> setUsers({
     @Body() required Map<String, dynamic> request,
   });
 }
-
-
-

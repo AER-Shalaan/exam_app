@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'set_user_response.dart';
+part of 'sign_up_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-SetUserResponse _$SetUserResponseFromJson(Map<String, dynamic> json) =>
-    SetUserResponse(
+RegisterResponse _$RegisterResponseFromJson(Map<String, dynamic> json) =>
+    RegisterResponse(
       message: json['message'] as String?,
       token: json['token'] as String?,
       user: json['user'] == null
@@ -15,7 +15,7 @@ SetUserResponse _$SetUserResponseFromJson(Map<String, dynamic> json) =>
           : UserModel.fromJson(json['user'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$SetUserResponseToJson(SetUserResponse instance) =>
+Map<String, dynamic> _$RegisterResponseToJson(RegisterResponse instance) =>
     <String, dynamic>{
       'message': instance.message,
       'token': instance.token,
