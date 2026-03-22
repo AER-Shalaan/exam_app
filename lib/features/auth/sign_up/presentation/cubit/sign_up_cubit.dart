@@ -1,3 +1,4 @@
+import 'package:exam_app/core/auth/token_manager.dart';
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/core/state/base_state.dart';
 import 'package:exam_app/features/auth/sign_up/apis/sign_up_request/sign_up_request.dart';
@@ -24,11 +25,10 @@ class SignUpCubit extends Cubit<BaseState<SignUpEntitiies>> {
       request.rePassword,
     );
     switch (users) {
-
       case SuccessBaseResponse<SignUpEntitiies>():
-          final data=users.data;
-                 if ( data.token!.isNotEmpty) {
-          await TokenManager.setToken(data.token,);
+        final data = users.data;
+        if (data.token!.isNotEmpty) {
+          await TokenManager.saveRegisterToken(data.token!);
         }
         emit(state.copyWith(isLoadingParam: false, dataParam: data));
 
