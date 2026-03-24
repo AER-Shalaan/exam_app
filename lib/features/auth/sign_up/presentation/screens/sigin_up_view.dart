@@ -8,6 +8,7 @@ import 'package:exam_app/features/auth/sign_up/apis/sign_up_request/sign_up_requ
 import 'package:exam_app/features/auth/sign_up/domain/entities/sign_up_entitiies.dart';
 import 'package:exam_app/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:exam_app/features/auth/sign_up/presentation/cubit/sign_up_events.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -120,14 +121,16 @@ class SiginUpView extends StatelessWidget {
                 const SizedBox(height: 48),
                 BlocListener<SignUpCubit, BaseState<SignUpEntitiies>>(
                   listener: (context, state) {
-                    if (state.isLoading) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          behavior: SnackBarBehavior.floating,
-                          content: Center(child: Text("Loading...")),
+                    final signUpState = state;
+                    if (signUpState.isLoading) {
+                      const SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(
+                          color: AppColors.whiteColor,
                         ),
                       );
-                    } else if ((state.errorMessage ?? '').isNotEmpty) {
+                    } else if ((signUpState.errorMessage ?? '').isNotEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           behavior: SnackBarBehavior.floating,
@@ -148,49 +151,51 @@ class SiginUpView extends StatelessWidget {
                     }
                   },
 
-                  child: FilledButton(
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        context.read<SignUpCubit>().doEvent(
-                          SignUpEventSetUsers(
-                            request: SignUpRequest(
-                              firstName: firstNameController.text,
-                              lastName: lastNameController.text,
-                              email: emailController.text,
-                              password: passwordController.text,
-                              rePassword: confirmPasswordController.text,
-                              phone: phoneNumberController.text,
-                              username: userNameController.text,
-                            ),
+                  child: isClicked
+                      ? FilledButton(
+                          style: FilledButton.styleFrom(
+                            backgroundColor: AppColors.grey,
                           ),
-                        );
-                      }
-                    },
-                    child: Text(AppStrings.signUpTitle),
-                  ),
+                          onPressed: () {},
+                          child: null,
+                        )
+                      : FilledButton(
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              context.read<SignUpCubit>().doEvent(
+                                SignUpEventSetUsers(
+                                  request: SignUpRequest(
+                                    firstName: firstNameController.text,
+                                    lastName: lastNameController.text,
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                    rePassword: confirmPasswordController.text,
+                                    phone: phoneNumberController.text,
+                                    username: userNameController.text,
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                          child: null,
+                        ),
                 ),
                 const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: .center,
-                  children: [
-                    Text(
-                      AppStrings.alreadyhaveanaccount,
-                      style: TextStyles.bodyRegular16,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        // Navigator.of(
-                        //   context,
-                        // ).pushNamed(AppRoutes.loginViewRouteName);
-                      },
-                      child: Text(
-                        AppStrings.loginTitle,
-                        style: TextStyles.bodyRegular16.copyWith(
-                          color: AppColors.primary,
-                        ),
+                Text.rich(
+                  TextSpan(
+                    text: AppStrings.alreadyhaveanaccount,
+                    style: TextStyles.bodyRegular16,
+                    children: [
+                      TextSpan(
+                        text: AppStrings.loginTitle,
+                        style: TextStyles.bodyMedium16PrimaryUnderline,
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            //Navigator.pushNamed(context, AppRoutes.loginViewRouteName);
+                          },
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -201,6 +206,7 @@ class SiginUpView extends StatelessWidget {
   }
 }
 
+final bool isClicked = false;
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 final TextEditingController userNameController = TextEditingController();
 final TextEditingController firstNameController = TextEditingController();
