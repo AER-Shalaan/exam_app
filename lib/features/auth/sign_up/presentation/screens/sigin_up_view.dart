@@ -13,8 +13,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SiginUpView extends StatelessWidget {
+class SiginUpView extends StatefulWidget {
   const SiginUpView({super.key});
+
+  @override
+  State<SiginUpView> createState() => _SiginUpViewState();
+}
+
+class _SiginUpViewState extends State<SiginUpView> {
+  bool isClicked = false;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -151,34 +167,34 @@ class SiginUpView extends StatelessWidget {
                     }
                   },
 
-                  child: isClicked
-                      ? FilledButton(
-                          style: FilledButton.styleFrom(
-                            backgroundColor: AppColors.grey,
+                  child: FilledButton(
+                    style: FilledButton.styleFrom(
+                      backgroundColor: isClicked
+                          ? AppColors.primary
+                          : AppColors.grey,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isClicked = true;
+                      });
+                      if (formKey.currentState!.validate()) {
+                        context.read<SignUpCubit>().doEvent(
+                          SignUpEventSetUsers(
+                            request: SignUpRequest(
+                              firstName: firstNameController.text,
+                              lastName: lastNameController.text,
+                              email: emailController.text,
+                              password: passwordController.text,
+                              rePassword: confirmPasswordController.text,
+                              phone: phoneNumberController.text,
+                              username: userNameController.text,
+                            ),
                           ),
-                          onPressed: () {},
-                          child: null,
-                        )
-                      : FilledButton(
-                          onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              context.read<SignUpCubit>().doEvent(
-                                SignUpEventSetUsers(
-                                  request: SignUpRequest(
-                                    firstName: firstNameController.text,
-                                    lastName: lastNameController.text,
-                                    email: emailController.text,
-                                    password: passwordController.text,
-                                    rePassword: confirmPasswordController.text,
-                                    phone: phoneNumberController.text,
-                                    username: userNameController.text,
-                                  ),
-                                ),
-                              );
-                            }
-                          },
-                          child: null,
-                        ),
+                        );
+                      }
+                    },
+                    child: Text(AppStrings.signUpTitle),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Text.rich(
@@ -205,13 +221,3 @@ class SiginUpView extends StatelessWidget {
     );
   }
 }
-
-final bool isClicked = false;
-GlobalKey<FormState> formKey = GlobalKey<FormState>();
-final TextEditingController userNameController = TextEditingController();
-final TextEditingController firstNameController = TextEditingController();
-final TextEditingController lastNameController = TextEditingController();
-final TextEditingController emailController = TextEditingController();
-final TextEditingController passwordController = TextEditingController();
-final TextEditingController confirmPasswordController = TextEditingController();
-final TextEditingController phoneNumberController = TextEditingController();
