@@ -13,24 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SiginUpView extends StatefulWidget {
+class SiginUpView extends StatelessWidget {
   const SiginUpView({super.key});
-
-  @override
-  State<SiginUpView> createState() => _SiginUpViewState();
-}
-
-class _SiginUpViewState extends State<SiginUpView> {
-  bool isClicked = false;
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController userNameController = TextEditingController();
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +22,9 @@ class _SiginUpViewState extends State<SiginUpView> {
       appBar: AppBar(
         title: Text(AppStrings.signUpTitle),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: SvgPicture.asset(Assets.assetsIconsArrowBack),
         ),
       ),
@@ -58,13 +44,14 @@ class _SiginUpViewState extends State<SiginUpView> {
                   ),
                 ),
                 const SizedBox(height: 24),
+
                 Row(
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: firstNameController,
                         validator: (value) =>
                             AppValidation.validateRequired(value),
-                        controller: firstNameController,
                         decoration: InputDecoration(
                           hintText: AppStrings.firstnameHint,
                           label: Text(AppStrings.firstName),
@@ -74,9 +61,9 @@ class _SiginUpViewState extends State<SiginUpView> {
                     const SizedBox(width: 16),
                     Expanded(
                       child: TextFormField(
+                        controller: lastNameController,
                         validator: (value) =>
                             AppValidation.validateRequired(value),
-                        controller: lastNameController,
                         decoration: InputDecoration(
                           hintText: AppStrings.lastnameHint,
                           label: Text(AppStrings.lastName),
@@ -85,23 +72,26 @@ class _SiginUpViewState extends State<SiginUpView> {
                     ),
                   ],
                 ),
+
                 const SizedBox(height: 24),
                 TextFormField(
-                  validator: (value) => AppValidation.validateEmail(value),
                   controller: emailController,
+                  validator: (value) => AppValidation.validateEmail(value),
                   decoration: InputDecoration(
                     hintText: AppStrings.emailHint,
                     label: Text(AppStrings.email),
                   ),
                 ),
+
                 const SizedBox(height: 24),
+
                 Row(
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: passwordController,
                         validator: (value) =>
                             AppValidation.validatePassword(value),
-                        controller: passwordController,
                         decoration: InputDecoration(
                           hintText: AppStrings.passwordHint,
                           label: Text(AppStrings.password),
@@ -111,12 +101,12 @@ class _SiginUpViewState extends State<SiginUpView> {
                     const SizedBox(width: 16),
                     Expanded(
                       child: TextFormField(
+                        controller: confirmPasswordController,
                         validator: (value) =>
                             AppValidation.validatePasswordConfirmation(
                               passwordController.text,
                               value,
                             ),
-                        controller: confirmPasswordController,
                         decoration: InputDecoration(
                           hintText: AppStrings.confirmPassword,
                           label: Text(AppStrings.confirmPassword),
@@ -125,28 +115,23 @@ class _SiginUpViewState extends State<SiginUpView> {
                     ),
                   ],
                 ),
+
                 const SizedBox(height: 24),
+
                 TextFormField(
-                  validator: (value) => AppValidation.validatePhone(value),
                   controller: phoneNumberController,
+                  validator: (value) => AppValidation.validatePhone(value),
                   decoration: InputDecoration(
                     hintText: AppStrings.phoneHint,
                     label: Text(AppStrings.phone),
                   ),
                 ),
+
                 const SizedBox(height: 48),
-                BlocListener<SignUpCubit, BaseState<SignUpEntitiies>>(
+
+                BlocConsumer<SignUpCubit, BaseState<SignUpEntitiies>>(
                   listener: (context, state) {
-                    final signUpState = state;
-                    if (signUpState.isLoading) {
-                      const SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: CircularProgressIndicator(
-                          color: AppColors.whiteColor,
-                        ),
-                      );
-                    } else if ((signUpState.errorMessage ?? '').isNotEmpty) {
+                    if ((state.errorMessage ?? '').isNotEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           behavior: SnackBarBehavior.floating,
@@ -154,7 +139,7 @@ class _SiginUpViewState extends State<SiginUpView> {
                           content: Center(child: Text(state.errorMessage!)),
                         ),
                       );
-                    } else {
+                    } else if (state.data != null) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           behavior: SnackBarBehavior.floating,
@@ -166,37 +151,48 @@ class _SiginUpViewState extends State<SiginUpView> {
                       );
                     }
                   },
-
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      backgroundColor: isClicked
-                          ? AppColors.primary
-                          : AppColors.grey,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        isClicked = true;
-                      });
-                      if (formKey.currentState!.validate()) {
-                        context.read<SignUpCubit>().doEvent(
-                          SignUpEventSetUsers(
-                            request: SignUpRequest(
-                              firstName: firstNameController.text,
-                              lastName: lastNameController.text,
-                              email: emailController.text,
-                              password: passwordController.text,
-                              rePassword: confirmPasswordController.text,
-                              phone: phoneNumberController.text,
-                              username: userNameController.text,
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                    child: Text(AppStrings.signUpTitle),
-                  ),
+                  builder: (context, state) {
+                    return FilledButton(
+                      style: FilledButton.styleFrom(
+                        backgroundColor: state.isLoading
+                            ? AppColors.grey
+                            : AppColors.primary,
+                      ),
+                      onPressed: state.isLoading
+                          ? null
+                          : () {
+                              if (formKey.currentState!.validate()) {
+                                context.read<SignUpCubit>().doEvent(
+                                  SignUpEventSetUsers(
+                                    request: SignUpRequest(
+                                      firstName: firstNameController.text,
+                                      lastName: lastNameController.text,
+                                      email: emailController.text,
+                                      password: passwordController.text,
+                                      rePassword:
+                                          confirmPasswordController.text,
+                                      phone: phoneNumberController.text,
+                                      username: userNameController.text,
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                      child: state.isLoading
+                          ? const SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: CircularProgressIndicator(
+                                color: AppColors.whiteColor,
+                              ),
+                            )
+                          : Text(AppStrings.signUpTitle),
+                    );
+                  },
                 ),
+
                 const SizedBox(height: 16),
+
                 Text.rich(
                   TextSpan(
                     text: AppStrings.alreadyhaveanaccount,
@@ -207,7 +203,7 @@ class _SiginUpViewState extends State<SiginUpView> {
                         style: TextStyles.bodyMedium16PrimaryUnderline,
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            //Navigator.pushNamed(context, AppRoutes.loginViewRouteName);
+                            // Navigator.pushNamed(context, AppRoutes.loginViewRouteName);
                           },
                       ),
                     ],
@@ -221,3 +217,19 @@ class _SiginUpViewState extends State<SiginUpView> {
     );
   }
 }
+
+GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+final TextEditingController userNameController = TextEditingController();
+
+final TextEditingController firstNameController = TextEditingController();
+
+final TextEditingController lastNameController = TextEditingController();
+
+final TextEditingController emailController = TextEditingController();
+
+final TextEditingController passwordController = TextEditingController();
+
+final TextEditingController confirmPasswordController = TextEditingController();
+
+final TextEditingController phoneNumberController = TextEditingController();
