@@ -12,23 +12,17 @@ class TokenManager {
   static Future<void> setToken(String token, {required bool rememberMe}) async {
     _token = token;
 
-    // await SecureStorage.saveRememberMe(rememberMe);
+    await SecureStorage.saveRememberMe(rememberMe);
 
-    if (rememberMe) {
+    if (rememberMe == true) {
       await SecureStorage.saveToken(token);
     }
   }
-  static Future<void> saveRegisterToken(String token,) async {
-    _token = token;
-
-    // await SecureStorage.saveRememberMe(rememberMe);
-await SecureStorage.saveToken(token);
-  }
 
   static Future<void> init() async {
-    // final rememberMe = await SecureStorage.getRememberMe();
+    final rememberMe = await SecureStorage.getRememberMe();
 
-    // if (!rememberMe) return;
+    if (!rememberMe) return;
 
     final savedToken = await SecureStorage.getToken();
 
@@ -37,8 +31,8 @@ await SecureStorage.saveToken(token);
     }
   }
 
-  // static Future<void> clearToken() async {
-  //   _token = null;
-  //   await SecureStorage.clearAll();
-  // }
+  static Future<void> clearToken() async {
+    _token = null;
+    await SecureStorage.clearAll();
+  }
 }

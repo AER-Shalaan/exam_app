@@ -2,8 +2,10 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorage {
   SecureStorage._();
-  static final FlutterSecureStorage storage = const FlutterSecureStorage();
+
+  static const FlutterSecureStorage storage = FlutterSecureStorage();
   static const String tokenKey = 'user_token';
+  static const String rememberKey = 'remember_me';
 
   static Future<void> saveToken(String token) async {
     await storage.write(key: tokenKey, value: token);
@@ -17,8 +19,16 @@ class SecureStorage {
     await storage.delete(key: tokenKey);
   }
 
-  static Future<bool> hasToken() async {
-    final token = await getToken();
-    return token != null && token.isNotEmpty;
+  static Future<void> saveRememberMe(bool value) async {
+    await storage.write(key: rememberKey, value: value.toString());
+  }
+
+  static Future<bool> getRememberMe() async {
+    final value = await storage.read(key: rememberKey);
+    return value == 'true';
+  }
+
+  static Future<void> clearAll() async {
+    await storage.deleteAll();
   }
 }

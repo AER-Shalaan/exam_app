@@ -1,4 +1,3 @@
-import 'package:exam_app/core/error/error_handler.dart';
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/features/auth/sign_up/apis/response/sign_up_response.dart';
 import 'package:exam_app/features/auth/sign_up/apis/sign_up_api_client/sign_up_api_client.dart';
@@ -11,16 +10,16 @@ class SignUpRemoteDatasorceImpl implements SignUpRemoteDatasourceContract {
   final SignUpApiClient _signUpApiClient;
   SignUpRemoteDatasorceImpl(this._signUpApiClient);
   @override
-  Future<BaseResponse<RegisterResponse>> setUsers({
+  Future<BaseResponse<SignUpResponse>> setUsers({
     required SignUpRequest request,
   }) async {
     try {
-      final response = await _signUpApiClient.setUsers(request: request.toJson());
-      return SuccessBaseResponse<RegisterResponse>(data: response);
-    } on Exception catch (e) {
-      return ErrorBaseResponse<RegisterResponse>(
-        exception: Exception(ErrorHandler.handle(e)),
+      final response = await _signUpApiClient.setUsers(
+        request: request.toJson(),
       );
+      return SuccessBaseResponse<SignUpResponse>(data: response);
+    } on Exception catch (e) {
+      return ErrorBaseResponse<SignUpResponse>(exception: e);
     }
   }
 }

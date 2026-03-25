@@ -3,7 +3,7 @@ import 'package:exam_app/features/auth/sign_up/apis/response/sign_up_response.da
 import 'package:exam_app/features/auth/sign_up/apis/sign_up_request/sign_up_request.dart';
 
 abstract class SignUpRemoteDatasourceContract {
-  Future<BaseResponse<RegisterResponse>> setUsers({
+  Future<BaseResponse<SignUpResponse>> setUsers({
     required SignUpRequest request,
   });
 }

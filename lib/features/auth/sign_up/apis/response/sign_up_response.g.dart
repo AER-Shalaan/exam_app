@@ -6,8 +6,8 @@ part of 'sign_up_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RegisterResponse _$RegisterResponseFromJson(Map<String, dynamic> json) =>
-    RegisterResponse(
+SignUpResponse _$SignUpResponseFromJson(Map<String, dynamic> json) =>
+    SignUpResponse(
       message: json['message'] as String?,
       token: json['token'] as String?,
       user: json['user'] == null
@@ -15,7 +15,7 @@ RegisterResponse _$RegisterResponseFromJson(Map<String, dynamic> json) =>
           : UserModel.fromJson(json['user'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$RegisterResponseToJson(RegisterResponse instance) =>
+Map<String, dynamic> _$SignUpResponseToJson(SignUpResponse instance) =>
     <String, dynamic>{
       'message': instance.message,
       'token': instance.token,

@@ -13,7 +13,7 @@ abstract class SignUpApiClient {
   factory SignUpApiClient(Dio dio) = _SignUpApiClient;
 
   @POST(Endpoints.postSignUpEndpoint)
-  Future<RegisterResponse> setUsers({
+  Future<SignUpResponse> setUsers({
     @Body() required Map<String, dynamic> request,
   });
 }

@@ -1,10 +1,10 @@
-import 'package:exam_app/features/auth/sign_up/apis/response/models/sign_up_user_model.dart/user_model.dart';
+import 'package:exam_app/features/auth/sign_up/apis/response/user_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'sign_up_response.g.dart';
 
 @JsonSerializable()
-class RegisterResponse {
+class SignUpResponse {
   @JsonKey(name: "message")
   String? message;
   @JsonKey(name: "token")
@@ -12,10 +12,10 @@ class RegisterResponse {
   @JsonKey(name: "user")
   UserModel? user;
 
-  RegisterResponse({this.message, this.token, this.user});
+  SignUpResponse({this.message, this.token, this.user});
 
-  factory RegisterResponse.fromJson(Map<String, dynamic> json) =>
-      _$RegisterResponseFromJson(json);
+  factory SignUpResponse.fromJson(Map<String, dynamic> json) =>
+      _$SignUpResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$RegisterResponseToJson(this);
+  Map<String, dynamic> toJson() => _$SignUpResponseToJson(this);
 }
