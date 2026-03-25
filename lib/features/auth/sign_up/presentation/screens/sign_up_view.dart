@@ -14,16 +14,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SiginUpView extends StatelessWidget {
-  const SiginUpView({super.key});
+class SignUpView extends StatelessWidget {
+  const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    final TextEditingController userNameController = TextEditingController();
+    final TextEditingController firstNameController = TextEditingController();
+    final TextEditingController lastNameController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+    final TextEditingController confirmPasswordController =
+        TextEditingController();
+    final TextEditingController phoneNumberController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: Text(AppStrings.signUpTitle),
         leading: IconButton(
           onPressed: () {
+            //TODO: check is coming from login
             Navigator.pop(context);
           },
           icon: SvgPicture.asset(Assets.assetsIconsArrowBack),
@@ -134,7 +144,8 @@ class SiginUpView extends StatelessWidget {
 
                   BlocConsumer<SignUpCubit, SignUpStates>(
                     listener: (context, state) {
-                      if ((state.signUpState.errorMessage ?? '').isNotEmpty) {
+                      if (state.signUpState.errorMessage != null &&
+                          state.signUpState.errorMessage!.isNotEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             behavior: SnackBarBehavior.floating,
@@ -144,9 +155,10 @@ class SiginUpView extends StatelessWidget {
                             ),
                           ),
                         );
+                        state.signUpState.errorMessage = null;
                       } else if (state.signUpState.data != null) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
+                          SnackBar(
                             behavior: SnackBarBehavior.floating,
                             backgroundColor: AppColors.successColor,
                             content: Center(
@@ -154,6 +166,12 @@ class SiginUpView extends StatelessWidget {
                             ),
                           ),
                         );
+                        Future.delayed(const Duration(seconds: 2), () {
+                          if (!context.mounted) return;
+                          Navigator.of(
+                            context,
+                          ).popAndPushNamed(AppRoutes.homeViewRouteName);
+                        });
                       }
                     },
                     builder: (context, state) {
@@ -180,9 +198,6 @@ class SiginUpView extends StatelessWidget {
                                         username: userNameController.text,
                                       ),
                                     ),
-                                  );
-                                  Navigator.of(context).pushReplacementNamed(
-                                    AppRoutes.homeViewRouteName,
                                   );
                                 }
                               },
@@ -226,19 +241,3 @@ class SiginUpView extends StatelessWidget {
     );
   }
 }
-
-GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-final TextEditingController userNameController = TextEditingController();
-
-final TextEditingController firstNameController = TextEditingController();
-
-final TextEditingController lastNameController = TextEditingController();
-
-final TextEditingController emailController = TextEditingController();
-
-final TextEditingController passwordController = TextEditingController();
-
-final TextEditingController confirmPasswordController = TextEditingController();
-
-final TextEditingController phoneNumberController = TextEditingController();
