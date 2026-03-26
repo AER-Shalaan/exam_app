@@ -2,7 +2,6 @@ import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/config/di/di.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
-import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/core/values/validation/app_validation.dart';
 import 'package:exam_app/features/auth/sign_up/apis/sign_up_request/sign_up_request.dart';
@@ -12,31 +11,26 @@ import 'package:exam_app/features/auth/sign_up/presentation/cubit/sign_up_states
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SignUpView extends StatelessWidget {
-  const SignUpView({super.key});
+  SignUpView({super.key});
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    final TextEditingController userNameController = TextEditingController();
-    final TextEditingController firstNameController = TextEditingController();
-    final TextEditingController lastNameController = TextEditingController();
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-    final TextEditingController confirmPasswordController =
-        TextEditingController();
-    final TextEditingController phoneNumberController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppStrings.signUpTitle),
-        leading: IconButton(
-          onPressed: () {
-            //TODO: check is coming from login
-            Navigator.pop(context);
-          },
-          icon: SvgPicture.asset(Assets.assetsIconsArrowBack),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: Text(AppStrings.signUpTitle),
         ),
       ),
       body: BlocProvider(
