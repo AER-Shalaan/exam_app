@@ -16,13 +16,13 @@ class ErrorHandler {
 
       switch (exception.type) {
         case DioExceptionType.connectionTimeout:
-          return AppStrings.connectiontimeout;
+          return AppStrings.connectionTimeout;
 
         case DioExceptionType.sendTimeout:
           return AppStrings.requestTimeout;
 
         case DioExceptionType.receiveTimeout:
-          return AppStrings.servertooktoolongtorespond;
+          return AppStrings.serverTookTooLongToRespond;
 
         case DioExceptionType.badCertificate:
           return AppStrings.badcertificate;

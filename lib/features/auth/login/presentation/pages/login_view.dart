@@ -197,7 +197,9 @@ class LoginView extends StatelessWidget {
                             style: TextStyles.bodyMedium16PrimaryUnderline,
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                // Navigator.pushNamed(context, AppRoutes.signUpRouteName);
+                                Navigator.of(context).pushReplacementNamed(
+                                  AppRoutes.signUpViewRouteName,
+                                );
                               },
                           ),
                         ],

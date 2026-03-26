@@ -15,24 +15,22 @@ dependencies:
   flutter_secure_storage: ^10.0.0
   flutter_svg: ^2.2.4
   gap: ^3.0.1
-  get_it: null
+  get_it: ^9.2.1
   google_fonts: ^8.0.2
-  injectable: null
+  injectable: ^2.7.1+4
   json_annotation: ^4.11.0
   pinput: ^6.0.2
   retrofit: ^4.9.0
-  bloc: ^9.2.0
   equatable: ^2.0.8
   dart_either: ^2.1.0
   shared_preferences: ^2.5.4
-  flutter_bloc: ^9.1.1
 
 dev_dependencies:
-  build_runner: null
+  build_runner: ^2.13.1
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
-  injectable_generator: null
+  injectable_generator: ^2.12.1
   json_serializable: ^6.10.0
   retrofit_generator: ^10.0.1
 

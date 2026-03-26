@@ -220,7 +220,9 @@ class SignUpView extends StatelessWidget {
                           style: TextStyles.bodyMedium16PrimaryUnderline,
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              // Navigator.pushNamed(context, AppRoutes.loginViewRouteName);
+                              Navigator.of(context).pushReplacementNamed(
+                                AppRoutes.loginViewRouteName,
+                              );
                             },
                         ),
                       ],
