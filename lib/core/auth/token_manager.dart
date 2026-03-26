@@ -14,7 +14,7 @@ class TokenManager {
 
     await SecureStorage.saveRememberMe(rememberMe);
 
-    if (rememberMe == true) {
+    if (rememberMe) {
       await SecureStorage.saveToken(token);
     }
   }
