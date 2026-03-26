@@ -20,7 +20,9 @@ class AppTheme {
       iconTheme: IconThemeData(color: AppColors.baseBlack, size: 24),
       leadingWidth: 40,
     ),
+    //===========================textFormFieldStyle
     inputDecorationTheme: InputDecorationTheme(
+      constraints: const BoxConstraints(minHeight: 56, maxHeight: 56),
       floatingLabelBehavior: FloatingLabelBehavior.always,
       floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
         if (states.contains(WidgetState.error)) {
@@ -55,6 +57,7 @@ class AppTheme {
         borderSide: BorderSide(color: AppColors.errorColor),
       ),
     ),
+    //================================== filledButtonTheme
     filledButtonTheme: FilledButtonThemeData(
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.all(AppColors.primary),
@@ -70,6 +73,7 @@ class AppTheme {
         ),
       ),
     ),
+    //outlinedButtonTheme
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: ButtonStyle(
         side: WidgetStateProperty.all<BorderSide>(
@@ -79,9 +83,7 @@ class AppTheme {
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
-        minimumSize: WidgetStateProperty.all<Size>(
-          const Size(162, 48),
-        ),
+        minimumSize: WidgetStateProperty.all<Size>(const Size(162, 48)),
         textStyle: WidgetStateProperty.all<TextStyle>(
           TextStyles.buttonTextStyle,
         ),

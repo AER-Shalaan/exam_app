@@ -1,3 +1,4 @@
+import 'package:exam_app/features/auth/sign_up/presentation/screens/sign_up_view.dart';
 import 'package:exam_app/features/auth/forget_password/presentation/forget_password_view.dart';
 import 'package:exam_app/features/auth/login/presentation/pages/login_view.dart';
 import 'package:exam_app/features/home/presentation/home_view.dart';
@@ -15,8 +16,10 @@ class AppRoutes {
     return {
       splashRouteName: (_) => const SplashView(),
       loginViewRouteName: (_) => LoginView(),
-      homeViewRouteName: (_) => HomeView(),
+      signUpViewRouteName: (_) => SignUpView(),
       forgotPasswordRouteName: (context) => ForgetPasswordView(),
+      homeViewRouteName: (_) => HomeView(),
+
     };
   }
 }
