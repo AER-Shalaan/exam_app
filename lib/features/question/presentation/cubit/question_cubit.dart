@@ -14,10 +14,10 @@ class QuestionCubit extends Cubit<QuestionState> {
       : _getQuestionsUseCase = getQuestionsUseCase,
         super(QuestionState());
   final GetQuestionsUseCase _getQuestionsUseCase;
-  void doQuestionEvent(QuestionEvent event, String token, String examId) {
+  void doQuestionEvent(QuestionEvent event) {
     switch (event) {
       case QuestionsUseCase():
-        _getQuestionsOnExam(token, examId);
+        _getQuestionsOnExam(event.questionModelEntity.id, event.token ?? '');
         break;
     }
   }

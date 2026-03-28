@@ -1,7 +1,14 @@
+import 'package:exam_app/features/question/domain/entities/questions/questions_model_entity.dart';
+
 sealed class QuestionEvent {}
 
 class QuestionsUseCase extends QuestionEvent {
-  String token;
-  String examId;
-  QuestionsUseCase({required this.token, required this.examId});
+  String? token;
+  String? examId;
+  final QuestionModelEntity questionModelEntity;
+  QuestionsUseCase({
+    this.token,
+    this.examId,
+    required this.questionModelEntity,
+  });
 }

@@ -5,7 +5,9 @@ import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/features/question/data/models/question_model/question_model.dart';
+import 'package:exam_app/features/question/domain/entities/questions/questions_model_entity.dart';
 import 'package:exam_app/features/question/presentation/cubit/question_cubit.dart';
+import 'package:exam_app/features/question/presentation/cubit/question_event.dart';
 import 'package:exam_app/features/question/presentation/widgets/exam_questions_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,7 +41,7 @@ class _QuestionsState extends State<Questions> {
           Text(
             hasQuestions
                 ? questionModel[currentIndex].createdAt.toString()
-                : '',
+                : '20:00',
             style: TextStyles.appBarTextStyle.copyWith(
               color: AppColors.successColor,
             ),
@@ -56,21 +58,19 @@ class _QuestionsState extends State<Questions> {
                 final questionData = state.questionState.data;
                 if (questionData != null) {
                   setState(() {
-                    questionModel
-                      ..clear()
-                      ..add(
-                        QuestionModel(
-                          answers: questionData.answers,
-                          type: questionData.type,
-                          id: questionData.id,
-                          question: questionData.question,
-                          correct: questionData.correct,
-                          subject: questionData.subject,
-                          exam: questionData.exam,
-                          createdAt: questionData.createdAt,
-                          isSelected: false,
-                        ),
-                      );
+                    context.read<QuestionCubit>().doQuestionEvent(
+                          QuestionsUseCase(
+                            questionModelEntity: QuestionModelEntity(
+                                answers: questionData.answers,
+                                type: questionData.type,
+                                id: questionData.id,
+                                question: questionData.question,
+                                correct: questionData.correct,
+                                subject: questionData.subject,
+                                exam: questionData.exam,
+                                createdAt: questionData.createdAt),
+                          ),
+                        );
 
                     if (currentIndex >= questionModel.length) {
                       currentIndex = 0;
@@ -102,7 +102,7 @@ class _QuestionsState extends State<Questions> {
                     ),
                     SizedBox(height: 20),
                     Text(
-                      questionModel[currentIndex].question,
+                      "Select the correctly punctuated sentence.",
                       style: TextStyles.bodyMedium18,
                     ),
                     SizedBox(height: 16),
