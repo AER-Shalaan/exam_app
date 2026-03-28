@@ -1,17 +1,19 @@
+import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
+import 'package:exam_app/features/question/data/models/exam_score/exam_score_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ExamScore extends StatelessWidget {
-  const ExamScore({super.key, required this.correct, required this.total});
-  final int correct;
-  final int total;
+  const ExamScore({super.key, required this.examScoreModel});
+  final ExamScoreModel examScoreModel;
   @override
   Widget build(BuildContext context) {
-    double percent = correct / total;
+    double percent = examScoreModel.correct / examScoreModel.total;
+    final PageController pageController = PageController();
     return Scaffold(
       appBar: AppBar(
         leading: SvgPicture.asset(Assets.assetsIconsArrowBack),
@@ -35,7 +37,7 @@ class ExamScore extends StatelessWidget {
                   progressColor: AppColors.primary,
                   backgroundColor: AppColors.errorColor,
                   center: Text(
-                    "80%",
+                    examScoreModel.percent.toString(),
                     style: TextStyles.scoreText.copyWith(fontSize: 20),
                   ),
                 ),
@@ -46,7 +48,7 @@ class ExamScore extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "correct",
+                          "Correct",
                           style: TextStyles.bodyMedium16.copyWith(
                             color: AppColors.primary,
                           ),
@@ -57,7 +59,7 @@ class ExamScore extends StatelessWidget {
                           lineWidth: 1.5,
                           backgroundColor: AppColors.primary,
                           center: Text(
-                            "18",
+                            examScoreModel.correct.toString(),
                             style: TextStyles.scoreText.copyWith(
                               color: AppColors.primary,
                             ),
@@ -69,7 +71,7 @@ class ExamScore extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "incorrect",
+                          "Incorrect",
                           style: TextStyles.bodyMedium16.copyWith(
                             color: AppColors.errorColor,
                           ),
@@ -80,7 +82,7 @@ class ExamScore extends StatelessWidget {
                           lineWidth: 1.5,
                           backgroundColor: AppColors.errorColor,
                           center: Text(
-                            "2",
+                            examScoreModel.incorrect.toString(),
                             style: TextStyles.scoreText.copyWith(
                               color: AppColors.errorColor,
                             ),
@@ -96,7 +98,12 @@ class ExamScore extends StatelessWidget {
             FilledButton(onPressed: () {}, child: Text("Show results")),
             SizedBox(height: 24),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacementNamed(
+                  context,
+                  AppRoutes.questionsRouteName,
+                );
+              },
               style: OutlinedButton.styleFrom(
                 minimumSize: Size(double.infinity, 48),
                 shape: RoundedRectangleBorder(

@@ -1,37 +1,38 @@
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
+import 'package:exam_app/features/question/data/models/questions/questions_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class ExamQuestionDetalis extends StatefulWidget {
-  const ExamQuestionDetalis({super.key});
+class ExamQuestionsCardDetalis extends StatelessWidget {
+  final QuestionsModel questionModel;
 
-  @override
-  State<ExamQuestionDetalis> createState() => _ExtractquestioncardState();
-}
-
-class _ExtractquestioncardState extends State<ExamQuestionDetalis> {
-  bool isSelected = false;
+  const ExamQuestionsCardDetalis({
+    super.key,
+    required this.questionModel,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 8, right: 8),
       decoration: BoxDecoration(
-        color: isSelected ? AppColors.primary10 : AppColors.lightBlue,
+        color:questionModel. isSelected ? AppColors.primary10 : AppColors.lightBlue,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
         mainAxisAlignment: .center,
         children: [
           GestureDetector(
-            onTap: () => setState(() {
-              isSelected = !isSelected;
-            }),
+            onTap: ()
+            {
+              questionModel.isSelected = !questionModel.isSelected;
+            },
+
             child: Row(
               crossAxisAlignment: .center,
               children: [
-                isSelected
+                 questionModel.isSelected
                     ? SvgPicture.asset(
                         Assets.assetsIconsSelected,
                         width: 40,
@@ -43,7 +44,7 @@ class _ExtractquestioncardState extends State<ExamQuestionDetalis> {
                         height: 40,
                       ),
                 Text(
-                  "Its going to rain today.",
+                  questionModel.question,
                   style: TextStyles.bodyMedium16,
                 ),
               ],

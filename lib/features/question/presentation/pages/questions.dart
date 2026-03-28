@@ -1,7 +1,9 @@
+import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
+import 'package:exam_app/features/question/data/models/questions/questions_model.dart';
 import 'package:exam_app/features/question/presentation/widgets/exam_questions_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,6 +18,28 @@ class Questions extends StatefulWidget {
 class _QuestionsState extends State<Questions> {
   int currentIndex = 0;
   final PageController _pageController = PageController();
+  final List<QuestionsModel> questionModel = [
+    QuestionsModel(
+      question: "The first sentence is co",
+      isSelected: true,
+      dateTime: " 10:00",
+    ),
+    QuestionsModel(
+      question: "The first sentence is false.",
+      isSelected: true,
+      dateTime: " 12:00",
+    ),
+    QuestionsModel(
+      question: "The first sentence is semi.",
+      isSelected: true,
+      dateTime: " 11:00",
+    ),
+    QuestionsModel(
+      question: "The first sentence is true.",
+      isSelected: true,
+      dateTime: " 1:00",
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +53,7 @@ class _QuestionsState extends State<Questions> {
         actions: [
           SvgPicture.asset(Assets.assetsImagesClock, height: 30, width: 24),
           Text(
-            "30:00",
+            questionModel[currentIndex].dateTime,
             style: TextStyles.appBarTextStyle.copyWith(
               color: AppColors.successColor,
             ),
@@ -42,12 +66,12 @@ class _QuestionsState extends State<Questions> {
           child: Column(
             children: [
               Text(
-                "question ${currentIndex + 1} of 20",
+                "question ${currentIndex + 1} of ${questionModel.length}",
                 style: TextStyles.bodyMedium16,
                 textAlign: TextAlign.center,
               ),
               LinearProgressIndicator(
-                value: (currentIndex + 1) / 20,
+                value: (currentIndex + 1) / questionModel.length,
                 backgroundColor: AppColors.grey,
               ),
               SizedBox(height: 20),
@@ -59,8 +83,9 @@ class _QuestionsState extends State<Questions> {
               SizedBox(
                 height: 256,
                 child: PageView.builder(
-                  itemCount: 20,
-                  itemBuilder: (context, index) => ExamQuestionsCard(),
+                  itemCount: questionModel.length,
+                  itemBuilder: (context, index) =>
+                      ExamQuestionsCard(questionModel: questionModel[index]),
                   physics: NeverScrollableScrollPhysics(),
                   controller: _pageController,
                 ),
@@ -88,15 +113,20 @@ class _QuestionsState extends State<Questions> {
                   Expanded(
                     child: FilledButton(
                       onPressed: () {
-                        if (currentIndex < 19) {
+                        if (currentIndex < questionModel.length - 1) {
                           setState(() {
                             ++currentIndex;
                           });
+                          _pageController.nextPage(
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                          );
+                        } else {
+                          Navigator.pushNamed(
+                            context,
+                            AppRoutes.examScoreRouteName,
+                          );
                         }
-                        _pageController.nextPage(
-                          duration: Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                        );
                       },
 
                       style: FilledButton.styleFrom(
