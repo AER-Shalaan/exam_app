@@ -18,7 +18,7 @@ class AppTheme {
       titleSpacing: 0,
       backgroundColor: AppColors.whiteColor,
       iconTheme: IconThemeData(color: AppColors.baseBlack, size: 24),
-      leadingWidth: 40,
+      leadingWidth: 20,
     ),
     //===========================textFormFieldStyle
     inputDecorationTheme: InputDecorationTheme(

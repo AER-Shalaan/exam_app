@@ -4,6 +4,7 @@ class AppStrings {
   static const appName = "Exam App";
   static const splashScreenTitle = "Welcome to Exam App";
   // Titles
+  static const examTitle = "Exam";
   static const loginTitle = "Login";
   static const signUpTitle = "Sign Up";
   static const login = "Login";
@@ -73,8 +74,7 @@ class AppStrings {
   static const noInternetConnection = "No internet connection";
   static const connectionTimeout = "Connection timeout, please try again";
   static const requestTimeout = "Request timeout";
-  static const serverTookTooLongToRespond =
-      "Server took too long to respond";
+  static const serverTookTooLongToRespond = "Server took too long to respond";
   static const badcertificate = "Bad certificate";
   static const cancel = "Request was cancelled";
   static const connectionerror = "No internet connection";

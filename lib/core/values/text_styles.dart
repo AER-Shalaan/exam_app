@@ -53,6 +53,12 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.baseBlack,
   );
+  static TextStyle scoreText = GoogleFonts.inter(
+    fontSize: 13,
+    fontWeight: FontWeight.w500,
+    color: AppColors.baseBlack,
+    letterSpacing: 0,
+  );
 
   static TextStyle bodyRegular13grey = GoogleFonts.inter(
     fontSize: 13,
@@ -78,6 +84,7 @@ class TextStyles {
     fontSize: 18,
     fontWeight: FontWeight.w500,
     color: AppColors.baseBlack,
+    letterSpacing: 0,
   );
 
   static TextStyle bodyMedium16 = GoogleFonts.inter(

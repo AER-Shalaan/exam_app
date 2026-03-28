@@ -10,7 +10,8 @@ class Assets {
 
   static const String assetsIconsArrowBack = "assets/icons/arrow_back.svg";
 
-  static const String assetsIconsCarbonResult = "assets/icons/carbon_result.svg";
+  static const String assetsIconsCarbonResult =
+      "assets/icons/carbon_result.svg";
 
   static const String assetsIconsCategory = "assets/icons/category.svg";
 
@@ -42,7 +43,8 @@ class Assets {
 
   static const String assetsIconsSearch = "assets/icons/search.svg";
 
-  static const String assetsIconsShoppingCart = "assets/icons/shopping_cart.svg";
+  static const String assetsIconsShoppingCart =
+      "assets/icons/shopping_cart.svg";
 
   static const String assetsIconsSort = "assets/icons/sort.svg";
 
@@ -54,19 +56,26 @@ class Assets {
 
   static const String assetsIconsVisibility = "assets/icons/visibility.svg";
 
-  static const String assetsIconsVisibilityOff = "assets/icons/visibility_off.svg";
+  static const String assetsIconsVisibilityOff =
+      "assets/icons/visibility_off.svg";
 
   static const String assetsIconsWarning = "assets/icons/Warning.svg";
+  static const String assetsIconsSelected = "assets/icons/selected_icon.svg";
+  static const String assetsIconsUnSelected =
+      "assets/icons/unselected_icon.svg";
 
   static const String assetsImagesClock = "assets/images/clock.svg";
 
-  static const String assetsImagesColorPalette = "assets/images/color_palette.svg";
+  static const String assetsImagesColorPalette =
+      "assets/images/color_palette.svg";
 
-  static const String assetsImagesDraftingTools = "assets/images/drafting_tools.svg";
+  static const String assetsImagesDraftingTools =
+      "assets/images/drafting_tools.svg";
 
   static const String assetsImagesExamSplash = "assets/images/exam_splash.png";
 
-  static const String assetsImagesLanguageTranslator = "assets/images/language_translator.svg";
+  static const String assetsImagesLanguageTranslator =
+      "assets/images/language_translator.svg";
 
   static const String assetsImagesMath = "assets/images/math.svg";
 
