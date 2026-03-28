@@ -4,7 +4,6 @@ import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/features/question/data/models/question_model/question_model.dart';
-import 'package:exam_app/features/question/data/models/questions/questions_model.dart';
 import 'package:exam_app/features/question/presentation/widgets/exam_questions_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -19,9 +18,7 @@ class Questions extends StatefulWidget {
 class _QuestionsState extends State<Questions> {
   int currentIndex = 0;
   final PageController _pageController = PageController();
-  final List<QuestionModel> questionModel = [
-
-  ];
+  final List<QuestionModel> questionModel = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,7 +107,6 @@ class _QuestionsState extends State<Questions> {
                           );
                         }
                       },
-
                       style: FilledButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),

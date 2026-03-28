@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:exam_app/core/network/endpoints.dart';
 import 'package:exam_app/features/question/data/models/question_model/question_model.dart';
-import 'package:exam_app/features/question/data/models/responce/question_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 

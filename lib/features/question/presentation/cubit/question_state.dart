@@ -1,10 +1,14 @@
 part of 'question_cubit.dart';
 
-abstract class QuestionState extends Equatable {
-  const QuestionState();
+class QuestionState {
+  BaseState<QuestionModelEntity> questionState;
 
-  @override
-  List<Object> get props => [];
+  QuestionState({BaseState<QuestionModelEntity>? questionstate})
+      : questionState = questionstate ?? BaseState<QuestionModelEntity>();
+
+  QuestionState copyWith({BaseState<QuestionModelEntity>? questionState}) {
+    return QuestionState(
+
+    );
+  }
 }
-
-class QuestionInitial extends QuestionState {}
