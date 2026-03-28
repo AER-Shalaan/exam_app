@@ -59,6 +59,18 @@ import '../../features/auth/sign_up/domain/usecases/sign_up_usecase.dart'
     as _i662;
 import '../../features/auth/sign_up/presentation/cubit/sign_up_cubit.dart'
     as _i809;
+import '../../features/question/api/api_client/question_api_client.dart'
+    as _i159;
+import '../../features/question/api/datasource_impl/questions_data_source_impl.dart'
+    as _i104;
+import '../../features/question/data/datasources_contract/question_datasource_contract.dart'
+    as _i501;
+import '../../features/question/data/repositories_impl/questions_repo_impl.dart'
+    as _i517;
+import '../../features/question/domain/repositories_contract/question_repo_contract.dart'
+    as _i349;
+import '../../features/question/domain/usecases/get_questions_use_case.dart'
+    as _i756;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -69,6 +81,14 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
     gh.singleton<_i361.Dio>(() => dioModule.dio);
+    gh.factory<_i501.QuestionDataSourceContract>(
+      () => _i104.QuestionsDataSourceImpl(gh<_i159.QuestionApiClient>()),
+    );
+    gh.factory<_i349.QuestionRepoContract>(
+      () => _i517.QuestionsRepoImpl(
+        questionDataSourceContract: gh<_i501.QuestionDataSourceContract>(),
+      ),
+    );
     gh.lazySingleton<_i844.SignUpApiClient>(
       () => _i844.SignUpApiClient(gh<_i361.Dio>()),
     );
@@ -85,6 +105,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i791.SignUpRemoteDatasourceContract>(
       () => _i455.SignUpRemoteDatasorceImpl(gh<_i844.SignUpApiClient>()),
+    );
+    gh.factory<_i756.GetQuestionsUseCase>(
+      () => _i756.GetQuestionsUseCase(gh<_i349.QuestionRepoContract>()),
     );
     gh.factory<_i660.LoginRemoteDatasourceContract>(
       () => _i445.LoginRemoteDatasorceImpl(gh<_i934.LoginApiClient>()),
