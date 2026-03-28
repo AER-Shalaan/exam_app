@@ -2,7 +2,7 @@ import 'package:exam_app/features/question/presentation/widgets/1.dart';
 import 'package:flutter/material.dart';
 
 class CustomQuestionCard extends StatelessWidget {
-  const CustomQuestionCard({super.key});
+const  CustomQuestionCard({super.key,});
 
   @override
   Widget build(BuildContext context) {
