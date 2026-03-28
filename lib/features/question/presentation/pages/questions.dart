@@ -3,6 +3,7 @@ import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
+import 'package:exam_app/features/question/data/models/question_model/question_model.dart';
 import 'package:exam_app/features/question/data/models/questions/questions_model.dart';
 import 'package:exam_app/features/question/presentation/widgets/exam_questions_card.dart';
 import 'package:flutter/material.dart';
@@ -18,27 +19,8 @@ class Questions extends StatefulWidget {
 class _QuestionsState extends State<Questions> {
   int currentIndex = 0;
   final PageController _pageController = PageController();
-  final List<QuestionsModel> questionModel = [
-    QuestionsModel(
-      question: "The first sentence is co",
-      isSelected: true,
-      dateTime: " 10:00",
-    ),
-    QuestionsModel(
-      question: "The first sentence is false.",
-      isSelected: true,
-      dateTime: " 12:00",
-    ),
-    QuestionsModel(
-      question: "The first sentence is semi.",
-      isSelected: true,
-      dateTime: " 11:00",
-    ),
-    QuestionsModel(
-      question: "The first sentence is true.",
-      isSelected: true,
-      dateTime: " 1:00",
-    ),
+  final List<QuestionModel> questionModel = [
+
   ];
   @override
   Widget build(BuildContext context) {
@@ -53,7 +35,7 @@ class _QuestionsState extends State<Questions> {
         actions: [
           SvgPicture.asset(Assets.assetsImagesClock, height: 30, width: 24),
           Text(
-            questionModel[currentIndex].dateTime,
+            questionModel[currentIndex].createdAt.toString(),
             style: TextStyles.appBarTextStyle.copyWith(
               color: AppColors.successColor,
             ),

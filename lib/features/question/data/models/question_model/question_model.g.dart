@@ -18,6 +18,7 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) =>
       subject: json['subject'],
       exam: ExamModel.fromJson(json['exam'] as Map<String, dynamic>),
       createdAt: DateTime.parse(json['createdAt'] as String),
+      isSelected: json['isSelected'] as bool,
     );
 
 Map<String, dynamic> _$QuestionModelToJson(QuestionModel instance) =>
@@ -30,9 +31,12 @@ Map<String, dynamic> _$QuestionModelToJson(QuestionModel instance) =>
       'subject': instance.subject,
       'exam': instance.exam,
       'createdAt': instance.createdAt.toIso8601String(),
+      'isSelected': instance.isSelected,
     };
 
-const _$TypeEnumMap = {Type.SINGLE_CHOICE: 'single_choice'};
+const _$TypeEnumMap = {
+  Type.SINGLE_CHOICE: 'single_choice',
+};
 
 const _$CorrectModelEnumMap = {
   CorrectModel.A1: 'A1',

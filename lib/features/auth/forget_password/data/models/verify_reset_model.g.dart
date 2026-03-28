@@ -7,7 +7,11 @@ part of 'verify_reset_model.dart';
 // **************************************************************************
 
 VerifyResetModel _$VerifyResetModelFromJson(Map<String, dynamic> json) =>
-    VerifyResetModel(status: json['status'] as String?);
+    VerifyResetModel(
+      status: json['status'] as String?,
+    );
 
 Map<String, dynamic> _$VerifyResetModelToJson(VerifyResetModel instance) =>
-    <String, dynamic>{'status': instance.status};
+    <String, dynamic>{
+      'status': instance.status,
+    };

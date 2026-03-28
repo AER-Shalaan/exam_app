@@ -13,7 +13,7 @@ class ExamScore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double percent = examScoreModel.correct / examScoreModel.total;
-    final PageController pageController = PageController();
+
     return Scaffold(
       appBar: AppBar(
         leading: SvgPicture.asset(Assets.assetsIconsArrowBack),
@@ -25,7 +25,7 @@ class ExamScore extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
-          crossAxisAlignment: .start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Your score", style: TextStyles.bodyMedium18),
             SizedBox(height: 24),
@@ -43,7 +43,7 @@ class ExamScore extends StatelessWidget {
                 ),
                 SizedBox(width: 23),
                 Column(
-                  crossAxisAlignment: .start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [

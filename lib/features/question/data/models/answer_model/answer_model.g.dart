@@ -7,9 +7,9 @@ part of 'answer_model.dart';
 // **************************************************************************
 
 AnswerModel _$AnswerModelFromJson(Map<String, dynamic> json) => AnswerModel(
-  answer: json['answer'] as String,
-  key: $enumDecode(_$CorrectModelEnumMap, json['key']),
-);
+      answer: json['answer'] as String,
+      key: $enumDecode(_$CorrectModelEnumMap, json['key']),
+    );
 
 Map<String, dynamic> _$AnswerModelToJson(AnswerModel instance) =>
     <String, dynamic>{

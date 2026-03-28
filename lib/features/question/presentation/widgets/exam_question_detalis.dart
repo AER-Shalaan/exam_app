@@ -1,12 +1,12 @@
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
-import 'package:exam_app/features/question/data/models/questions/questions_model.dart';
+import 'package:exam_app/features/question/data/models/question_model/question_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ExamQuestionsCardDetalis extends StatelessWidget {
-  final QuestionsModel questionModel;
+  final QuestionModel questionModel;
 
   const ExamQuestionsCardDetalis({
     super.key,
@@ -17,22 +17,22 @@ class ExamQuestionsCardDetalis extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(left: 8, right: 8),
       decoration: BoxDecoration(
-        color:questionModel. isSelected ? AppColors.primary10 : AppColors.lightBlue,
+        color: questionModel.isSelected
+            ? AppColors.primary10
+            : AppColors.lightBlue,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
-        mainAxisAlignment: .center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: ()
-            {
+            onTap: () {
               questionModel.isSelected = !questionModel.isSelected;
             },
-
             child: Row(
-              crossAxisAlignment: .center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                 questionModel.isSelected
+                questionModel.isSelected
                     ? SvgPicture.asset(
                         Assets.assetsIconsSelected,
                         width: 40,

@@ -7,24 +7,24 @@ part of 'exam_model.dart';
 // **************************************************************************
 
 ExamModel _$ExamModelFromJson(Map<String, dynamic> json) => ExamModel(
-  id: $enumDecode(_$IdEnumMap, json['_id']),
-  title: $enumDecode(_$TitleEnumMap, json['title']),
-  duration: (json['duration'] as num).toInt(),
-  subject: $enumDecode(_$SubjectEnumMap, json['subject']),
-  numberOfQuestions: (json['numberOfQuestions'] as num).toInt(),
-  active: json['active'] as bool,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-);
+      id: $enumDecode(_$IdEnumMap, json['_id']),
+      title: $enumDecode(_$TitleEnumMap, json['title']),
+      duration: (json['duration'] as num).toInt(),
+      subject: $enumDecode(_$SubjectEnumMap, json['subject']),
+      numberOfQuestions: (json['numberOfQuestions'] as num).toInt(),
+      active: json['active'] as bool,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+    );
 
 Map<String, dynamic> _$ExamModelToJson(ExamModel instance) => <String, dynamic>{
-  '_id': _$IdEnumMap[instance.id]!,
-  'title': _$TitleEnumMap[instance.title]!,
-  'duration': instance.duration,
-  'subject': _$SubjectEnumMap[instance.subject]!,
-  'numberOfQuestions': instance.numberOfQuestions,
-  'active': instance.active,
-  'createdAt': instance.createdAt.toIso8601String(),
-};
+      '_id': _$IdEnumMap[instance.id]!,
+      'title': _$TitleEnumMap[instance.title]!,
+      'duration': instance.duration,
+      'subject': _$SubjectEnumMap[instance.subject]!,
+      'numberOfQuestions': instance.numberOfQuestions,
+      'active': instance.active,
+      'createdAt': instance.createdAt.toIso8601String(),
+    };
 
 const _$IdEnumMap = {
   Id.THE_6700707030_A3_C3_C1944_A9_C5_D: '6700707030a3c3c1944a9c5d',

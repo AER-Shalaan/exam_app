@@ -73,88 +73,64 @@ import '../../features/question/domain/usecases/get_questions_use_case.dart'
     as _i756;
 
 extension GetItInjectableX on _i174.GetIt {
-  // initializes the registration of main-scope dependencies inside of GetIt
+// initializes the registration of main-scope dependencies inside of GetIt
   _i174.GetIt init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
   }) {
-    final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final gh = _i526.GetItHelper(
+      this,
+      environment,
+      environmentFilter,
+    );
     final dioModule = _$DioModule();
     gh.singleton<_i361.Dio>(() => dioModule.dio);
     gh.factory<_i501.QuestionDataSourceContract>(
-      () => _i104.QuestionsDataSourceImpl(gh<_i159.QuestionApiClient>()),
-    );
-    gh.factory<_i349.QuestionRepoContract>(
-      () => _i517.QuestionsRepoImpl(
-        questionDataSourceContract: gh<_i501.QuestionDataSourceContract>(),
-      ),
-    );
+        () => _i104.QuestionsDataSourceImpl(gh<_i159.QuestionApiClient>()));
     gh.lazySingleton<_i844.SignUpApiClient>(
-      () => _i844.SignUpApiClient(gh<_i361.Dio>()),
-    );
+        () => _i844.SignUpApiClient(gh<_i361.Dio>()));
     gh.factory<_i478.ForgetPasswordApiClient>(
-      () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
-    );
+        () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()));
     gh.factory<_i934.LoginApiClient>(
-      () => _i934.LoginApiClient(gh<_i361.Dio>()),
-    );
-    gh.factory<_i413.ForgetPasswordDataSourceContract>(
-      () => _i500.ForgetPasswordDataSourceImpl(
-        gh<_i478.ForgetPasswordApiClient>(),
-      ),
-    );
+        () => _i934.LoginApiClient(gh<_i361.Dio>()));
+    gh.factory<_i413.ForgetPasswordDataSourceContract>(() =>
+        _i500.ForgetPasswordDataSourceImpl(
+            gh<_i478.ForgetPasswordApiClient>()));
     gh.factory<_i791.SignUpRemoteDatasourceContract>(
-      () => _i455.SignUpRemoteDatasorceImpl(gh<_i844.SignUpApiClient>()),
-    );
-    gh.factory<_i756.GetQuestionsUseCase>(
-      () => _i756.GetQuestionsUseCase(gh<_i349.QuestionRepoContract>()),
-    );
+        () => _i455.SignUpRemoteDatasorceImpl(gh<_i844.SignUpApiClient>()));
     gh.factory<_i660.LoginRemoteDatasourceContract>(
-      () => _i445.LoginRemoteDatasorceImpl(gh<_i934.LoginApiClient>()),
-    );
+        () => _i445.LoginRemoteDatasorceImpl(gh<_i934.LoginApiClient>()));
     gh.factory<_i496.SignUpRepoContract>(
-      () => _i197.SignUpRepoImpl(gh<_i791.SignUpRemoteDatasourceContract>()),
-    );
-    gh.factory<_i193.ForgetPasswordRepositoryContract>(
-      () => _i656.ForgetPasswordRepoImpl(
-        gh<_i413.ForgetPasswordDataSourceContract>(),
-      ),
-    );
+        () => _i197.SignUpRepoImpl(gh<_i791.SignUpRemoteDatasourceContract>()));
+    gh.factory<_i193.ForgetPasswordRepositoryContract>(() =>
+        _i656.ForgetPasswordRepoImpl(
+            gh<_i413.ForgetPasswordDataSourceContract>()));
     gh.factory<_i1046.LoginRepositoryContract>(
-      () => _i453.LoginRepoImpl(gh<_i660.LoginRemoteDatasourceContract>()),
-    );
+        () => _i453.LoginRepoImpl(gh<_i660.LoginRemoteDatasourceContract>()));
+    gh.factory<_i349.QuestionRepoContract>(() => _i517.QuestionsRepoImpl(
+        questionDataSourceContract: gh<_i501.QuestionDataSourceContract>()));
     gh.factory<_i401.LoginUsecase>(
-      () => _i401.LoginUsecase(gh<_i1046.LoginRepositoryContract>()),
-    );
-    gh.factory<_i722.VerifyOtpUseCase>(
-      () =>
-          _i722.VerifyOtpUseCase(gh<_i193.ForgetPasswordRepositoryContract>()),
-    );
+        () => _i401.LoginUsecase(gh<_i1046.LoginRepositoryContract>()));
+    gh.factory<_i722.VerifyOtpUseCase>(() =>
+        _i722.VerifyOtpUseCase(gh<_i193.ForgetPasswordRepositoryContract>()));
     gh.factory<_i662.SetUserusecase>(
-      () => _i662.SetUserusecase(gh<_i496.SignUpRepoContract>()),
-    );
-    gh.factory<_i22.ResetPasswordUseCase>(
-      () => _i22.ResetPasswordUseCase(
-        gh<_i193.ForgetPasswordRepositoryContract>(),
-      ),
-    );
-    gh.factory<_i779.SendEmailUseCase>(
-      () =>
-          _i779.SendEmailUseCase(gh<_i193.ForgetPasswordRepositoryContract>()),
-    );
+        () => _i662.SetUserusecase(gh<_i496.SignUpRepoContract>()));
+    gh.factory<_i756.GetQuestionsUseCase>(
+        () => _i756.GetQuestionsUseCase(gh<_i349.QuestionRepoContract>()));
+    gh.factory<_i22.ResetPasswordUseCase>(() => _i22.ResetPasswordUseCase(
+        gh<_i193.ForgetPasswordRepositoryContract>()));
+    gh.factory<_i779.SendEmailUseCase>(() =>
+        _i779.SendEmailUseCase(gh<_i193.ForgetPasswordRepositoryContract>()));
     gh.factory<_i465.LoginViewModel>(
-      () => _i465.LoginViewModel(gh<_i401.LoginUsecase>()),
-    );
+        () => _i465.LoginViewModel(gh<_i401.LoginUsecase>()));
     gh.factory<_i759.ForgetPasswordViewModel>(
-      () => _i759.ForgetPasswordViewModel(
-        gh<_i779.SendEmailUseCase>(),
-        gh<_i722.VerifyOtpUseCase>(),
-        gh<_i22.ResetPasswordUseCase>(),
-      ),
-    );
+        () => _i759.ForgetPasswordViewModel(
+              gh<_i779.SendEmailUseCase>(),
+              gh<_i722.VerifyOtpUseCase>(),
+              gh<_i22.ResetPasswordUseCase>(),
+            ));
     gh.factory<_i809.SignUpCubit>(
-      () => _i809.SignUpCubit(gh<_i662.SetUserusecase>()),
-    );
+        () => _i809.SignUpCubit(gh<_i662.SetUserusecase>()));
     return this;
   }
 }
