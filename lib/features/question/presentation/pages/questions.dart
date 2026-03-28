@@ -60,6 +60,9 @@ class _QuestionsState extends State<Questions> {
                   setState(() {
                     context.read<QuestionCubit>().doQuestionEvent(
                           QuestionsUseCase(
+                            examId: "670070a830a3c3c1944a9c63",
+                            token:
+                                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YzMxYTc4Y2ViMmM1OWY4NGEzZTgxNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc0MzkzOTc2fQ.MDrScrZMqTJRUaWkB99hiQJQ94PCmhetTstWeRKI6bo",
                             questionModelEntity: QuestionModelEntity(
                                 answers: questionData.answers,
                                 type: questionData.type,
