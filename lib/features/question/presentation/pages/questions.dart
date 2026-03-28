@@ -2,7 +2,7 @@ import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
-import 'package:exam_app/features/question/presentation/widgets/custom_question_card.dart';
+import 'package:exam_app/features/question/presentation/widgets/exam_questions_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -60,7 +60,7 @@ class _QuestionsState extends State<Questions> {
                 height: 256,
                 child: PageView.builder(
                   itemCount: 20,
-                  itemBuilder: (context, index) => CustomQuestionCard(),
+                  itemBuilder: (context, index) => ExamQuestionsCard(),
                   physics: NeverScrollableScrollPhysics(),
                   controller: _pageController,
                 ),

@@ -4,14 +4,14 @@ import 'package:exam_app/core/values/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Extractquestioncard extends StatefulWidget {
-  const Extractquestioncard({super.key});
+class ExamQuestionDetalis extends StatefulWidget {
+  const ExamQuestionDetalis({super.key});
 
   @override
-  State<Extractquestioncard> createState() => _ExtractquestioncardState();
+  State<ExamQuestionDetalis> createState() => _ExtractquestioncardState();
 }
 
-class _ExtractquestioncardState extends State<Extractquestioncard> {
+class _ExtractquestioncardState extends State<ExamQuestionDetalis> {
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {
