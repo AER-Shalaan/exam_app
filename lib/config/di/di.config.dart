@@ -71,6 +71,8 @@ import '../../features/question/domain/repositories_contract/question_repo_contr
     as _i349;
 import '../../features/question/domain/usecases/get_questions_use_case.dart'
     as _i756;
+import '../../features/question/presentation/cubit/question_cubit.dart'
+    as _i179;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -85,10 +87,10 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final dioModule = _$DioModule();
     gh.singleton<_i361.Dio>(() => dioModule.dio);
-    gh.factory<_i501.QuestionDataSourceContract>(
-        () => _i104.QuestionsDataSourceImpl(gh<_i159.QuestionApiClient>()));
     gh.lazySingleton<_i844.SignUpApiClient>(
         () => _i844.SignUpApiClient(gh<_i361.Dio>()));
+    gh.lazySingleton<_i159.QuestionApiClient>(
+        () => _i159.QuestionApiClient(gh<_i361.Dio>()));
     gh.factory<_i478.ForgetPasswordApiClient>(
         () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()));
     gh.factory<_i934.LoginApiClient>(
@@ -107,20 +109,20 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i413.ForgetPasswordDataSourceContract>()));
     gh.factory<_i1046.LoginRepositoryContract>(
         () => _i453.LoginRepoImpl(gh<_i660.LoginRemoteDatasourceContract>()));
-    gh.factory<_i349.QuestionRepoContract>(() => _i517.QuestionsRepoImpl(
-        questionDataSourceContract: gh<_i501.QuestionDataSourceContract>()));
+    gh.factory<_i501.QuestionDataSourceContract>(
+        () => _i104.QuestionsDataSourceImpl(gh<_i159.QuestionApiClient>()));
     gh.factory<_i401.LoginUsecase>(
         () => _i401.LoginUsecase(gh<_i1046.LoginRepositoryContract>()));
     gh.factory<_i722.VerifyOtpUseCase>(() =>
         _i722.VerifyOtpUseCase(gh<_i193.ForgetPasswordRepositoryContract>()));
     gh.factory<_i662.SetUserusecase>(
         () => _i662.SetUserusecase(gh<_i496.SignUpRepoContract>()));
-    gh.factory<_i756.GetQuestionsUseCase>(
-        () => _i756.GetQuestionsUseCase(gh<_i349.QuestionRepoContract>()));
     gh.factory<_i22.ResetPasswordUseCase>(() => _i22.ResetPasswordUseCase(
         gh<_i193.ForgetPasswordRepositoryContract>()));
     gh.factory<_i779.SendEmailUseCase>(() =>
         _i779.SendEmailUseCase(gh<_i193.ForgetPasswordRepositoryContract>()));
+    gh.factory<_i349.QuestionRepoContract>(() => _i517.QuestionsRepoImpl(
+        questionDataSourceContract: gh<_i501.QuestionDataSourceContract>()));
     gh.factory<_i465.LoginViewModel>(
         () => _i465.LoginViewModel(gh<_i401.LoginUsecase>()));
     gh.factory<_i759.ForgetPasswordViewModel>(
@@ -131,6 +133,10 @@ extension GetItInjectableX on _i174.GetIt {
             ));
     gh.factory<_i809.SignUpCubit>(
         () => _i809.SignUpCubit(gh<_i662.SetUserusecase>()));
+    gh.factory<_i756.GetQuestionsUseCase>(
+        () => _i756.GetQuestionsUseCase(gh<_i349.QuestionRepoContract>()));
+    gh.factory<_i179.QuestionCubit>(() => _i179.QuestionCubit(
+        getQuestionsUseCase: gh<_i756.GetQuestionsUseCase>()));
     return this;
   }
 }

@@ -4,9 +4,11 @@ import 'package:exam_app/features/question/domain/entities/questions/questions_m
 import 'package:exam_app/features/question/domain/usecases/get_questions_use_case.dart';
 import 'package:exam_app/features/question/presentation/cubit/question_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 part 'question_state.dart';
 
+@injectable
 class QuestionCubit extends Cubit<QuestionState> {
   QuestionCubit({required GetQuestionsUseCase getQuestionsUseCase})
       : _getQuestionsUseCase = getQuestionsUseCase,
@@ -28,9 +30,10 @@ class QuestionCubit extends Cubit<QuestionState> {
 
     switch (response) {
       case SuccessBaseResponse<QuestionModelEntity>():
+        final data = response.data;
         emit(state.copyWith(
             questionState: state.questionState
-                .copyWith(isLoadingParam: false, dataParam: response.data)));
+                .copyWith(isLoadingParam: false, dataParam: data)));
         break;
       case ErrorBaseResponse<QuestionModelEntity>():
         emit(state.copyWith(

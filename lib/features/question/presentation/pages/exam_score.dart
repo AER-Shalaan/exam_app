@@ -13,7 +13,7 @@ class ExamScore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double percent = examScoreModel.correct / examScoreModel.total;
-
+    
     return Scaffold(
       appBar: AppBar(
         leading: SvgPicture.asset(Assets.assetsIconsArrowBack),
