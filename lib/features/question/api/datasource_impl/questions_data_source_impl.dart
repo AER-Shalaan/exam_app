@@ -4,6 +4,7 @@ import 'package:exam_app/features/question/api/request/post_add_question_request
 import 'package:exam_app/features/question/data/datasources_contract/question_datasource_contract.dart';
 import 'package:exam_app/features/question/data/models/answer_model/answer_model.dart';
 import 'package:exam_app/features/question/data/models/question_model/question_model.dart';
+import 'package:exam_app/features/question/data/models/responce/question_response.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: QuestionDataSourceContract)
@@ -11,47 +12,47 @@ class QuestionsDataSourceImpl implements QuestionDataSourceContract {
   final QuestionApiClient apiClient;
 
   QuestionsDataSourceImpl(this.apiClient);
-
-  @override
-  Future<BaseResponse<QuestionModel>> getAllQuestions(String token) {
-    // TODO: implement getAllQuestions
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<BaseResponse<List<QuestionModel>>> getQuestionsOnExam(
+ @override
+  Future<BaseResponse<List<QuestionResponse>>> getQuestionsOnExam(
       String token, String examId) async {
     try {
       final response = await apiClient.getAllQuestiononExam(token, examId);
-      return SuccessBaseResponse<List<QuestionModel>>(data: response);
+      return SuccessBaseResponse<List<QuestionResponse>>(data: response);
     } on Exception catch (e) {
-      return ErrorBaseResponse<List<QuestionModel>>(exception: e);
+      return ErrorBaseResponse<List<QuestionResponse>>(exception: e);
     }
-  }
+  // }
+  // @override
+  // Future<BaseResponse<QuestionModel>> getAllQuestions(String token) {
+  //   // TODO: implement getAllQuestions
+  //   throw UnimplementedError();
+  // }
 
-  @override
-  Future<BaseResponse<QuestionModel>> getSingleQuestion(String token) {
-    // TODO: implement getSingleQuestion
-    throw UnimplementedError();
-  }
 
-  @override
-  Future<BaseResponse<QuestionModel>> getUserHistory(String token) {
-    // TODO: implement getUserHistory
-    throw UnimplementedError();
-  }
 
-  @override
-  Future<BaseResponse<QuestionModel>> postAddQuestion(
-      postAddQuestionRequest addquestionrequest, String token) {
-    // TODO: implement postAddQuestion
-    throw UnimplementedError();
-  }
+  // @override
+  // Future<BaseResponse<QuestionModel>> getSingleQuestion(String token) {
+  //   // TODO: implement getSingleQuestion
+  //   throw UnimplementedError();
+  // }
 
-  @override
-  Future<BaseResponse<QuestionModel>> postChechQuestion(
-      AnswerModel answermodel, String token) {
-    // TODO: implement postChechQuestion
-    throw UnimplementedError();
+  // @override
+  // Future<BaseResponse<QuestionModel>> getUserHistory(String token) {
+  //   // TODO: implement getUserHistory
+  //   throw UnimplementedError();
+  // }
+
+  // @override
+  // Future<BaseResponse<QuestionModel>> postAddQuestion(
+  //     postAddQuestionRequest addquestionrequest, String token) {
+  //   // TODO: implement postAddQuestion
+  //   throw UnimplementedError();
+  // }
+
+  // @override
+  // Future<BaseResponse<QuestionModel>> postChechQuestion(
+  //     AnswerModel answermodel, String token) {
+  //   // TODO: implement postChechQuestion
+  //   throw UnimplementedError();
   }
 }

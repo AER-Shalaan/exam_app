@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:exam_app/core/network/endpoints.dart';
-import 'package:exam_app/features/question/data/models/question_model/question_model.dart';
+import 'package:exam_app/features/question/data/models/responce/question_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -13,7 +13,7 @@ abstract class QuestionApiClient {
   factory QuestionApiClient(Dio dio) = _QuestionApiClient;
 
   @GET(Endpoints.getAllQuestionInExamEndpoint)
-  Future<List<QuestionModel>> getAllQuestiononExam(
+  Future<List<QuestionResponse>> getAllQuestiononExam(
     @Header("Authorization") String token,
     @Query("examId") String examId,
   );
