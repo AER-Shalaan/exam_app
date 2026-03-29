@@ -57,28 +57,26 @@ class _QuestionsState extends State<Questions> {
               listener: (context, state) {
                 final questionData = state.questionState.data;
                 if (questionData != null) {
-                  setState(() {
-                    context.read<QuestionCubit>().doQuestionEvent(
-                          QuestionsUseCase(
-                            examId: "670070a830a3c3c1944a9c63",
-                            token:
-                                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YzMxYTc4Y2ViMmM1OWY4NGEzZTgxNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc0MzkzOTc2fQ.MDrScrZMqTJRUaWkB99hiQJQ94PCmhetTstWeRKI6bo",
-                            questionModelEntity: QuestionModelEntity(
-                                answers: questionData.answers,
-                                type: questionData.type,
-                                id: questionData.id,
-                                question: questionData.question,
-                                correct: questionData.correct,
-                                subject: questionData.subject,
-                                exam: questionData.exam,
-                                createdAt: questionData.createdAt),
-                          ),
-                        );
+                  context.read<QuestionCubit>().doQuestionEvent(
+                        QuestionsUseCase(
+                          examId: "670070a830a3c3c1944a9c63",
+                          token:
+                              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YzMxYTc4Y2ViMmM1OWY4NGEzZTgxNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc0MzkzOTc2fQ.MDrScrZMqTJRUaWkB99hiQJQ94PCmhetTstWeRKI6bo",
+                          questionModelEntity: QuestionModelEntity(
+                              answers: questionData.answers,
+                              type: questionData.type,
+                              id: questionData.id,
+                              question: questionData.question,
+                              correct: questionData.correct,
+                              subject: questionData.subject,
+                              exam: questionData.exam,
+                              createdAt: questionData.createdAt),
+                        ),
+                      );
 
-                    if (currentIndex >= questionModel.length) {
-                      currentIndex = 0;
-                    }
-                  });
+                  if (currentIndex >= questionModel.length) {
+                    currentIndex = 0;
+                  }
                 }
                 if (state.questionState.errorMessage != null &&
                     state.questionState.errorMessage!.isNotEmpty) {

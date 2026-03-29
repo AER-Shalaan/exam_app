@@ -1,4 +1,3 @@
-import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/features/question/data/models/question_model/question_model.dart';
@@ -17,9 +16,9 @@ class ExamQuestionsCardDetalis extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(left: 8, right: 8),
       decoration: BoxDecoration(
-        color: questionModel.isSelected
-            ? AppColors.primary10
-            : AppColors.lightBlue,
+        // color: questionModel.isSelected
+        //     ? AppColors.primary10
+        //     : AppColors.lightBlue,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -27,22 +26,23 @@ class ExamQuestionsCardDetalis extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              questionModel.isSelected = !questionModel.isSelected;
+              // questionModel.isSelected = !questionModel.isSelected;
             },
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                questionModel.isSelected
-                    ? SvgPicture.asset(
-                        Assets.assetsIconsSelected,
-                        width: 40,
-                        height: 40,
-                      )
-                    : SvgPicture.asset(
-                        Assets.assetsIconsUnSelected,
-                        width: 40,
-                        height: 40,
-                      ),
+                // questionModel.isSelected
+                // ? SvgPicture.asset(
+                //     Assets.assetsIconsSelected,
+                //     width: 40,
+                //     height: 40,
+                //   )
+                // :
+                SvgPicture.asset(
+                  Assets.assetsIconsUnSelected,
+                  width: 40,
+                  height: 40,
+                ),
                 Text(
                   questionModel.question,
                   style: TextStyles.bodyMedium16,
