@@ -18,49 +18,16 @@ class QuestionsRepoImpl implements QuestionRepoContract {
         await questionDataSourceContract.getQuestionsOnExam(token, examId);
 
     switch (response) {
-      case SuccessBaseResponse<List<QuestionResponse>>():
+      case SuccessBaseResponse<QuestionResponse>():
         final responses = response.data;
-//todo==================
-        final questionEntity = responses.first.questions.first.modelToEntity();
+
+        final questionEntity = responses.questions.first.modelToEntity();
 
         return SuccessBaseResponse<QuestionModelEntity>(data: questionEntity);
-      case ErrorBaseResponse<List<QuestionResponse>>():
+      case ErrorBaseResponse<QuestionResponse>():
         return ErrorBaseResponse<QuestionModelEntity>(
           exception: response.exception,
         );
     }
-    // }
-
-    // @override
-    // Future<BaseResponse<void>> getQuestions() {
-    //   // TODO: implement getQuestions
-    //   throw UnimplementedError();
-    // }
-
-    // @override
-    // Future<BaseResponse<void>> getSingleQuestion(String token) {
-    //   // TODO: implement getSingleQuestion
-    //   throw UnimplementedError();
-    // }
-
-    // @override
-    // Future<BaseResponse<void>> getUserHistory(String token) {
-    //   // TODO: implement getUserHistory
-    //   throw UnimplementedError();
-    // }
-
-    // @override
-    // Future<BaseResponse<void>> postAddQuestion(
-    //     postAddQuestionRequest addquestionrequest, String token) {
-    //   // TODO: implement postAddQuestion
-    //   throw UnimplementedError();
-    // }
-
-    // @override
-    // Future<BaseResponse<void>> postChechQuestion(
-    //     AnswerModel answermodel, String token) {
-    //   // TODO: implement postChechQuestion
-    //   throw UnimplementedError();
-    // }
   }
 }

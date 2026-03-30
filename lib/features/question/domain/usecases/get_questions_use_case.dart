@@ -11,21 +11,5 @@ class GetQuestionsUseCase {
   Future<BaseResponse<QuestionModelEntity>> callOnExam(String token, String examId) =>
       questionRepoContract.getQuestionsOnExam(token, examId);
 
-  // Future<BaseResponse<void>> call() => questionRepoContract.getQuestions();
 
-  // Future<BaseResponse<void>> callSingleQuestion(String token) =>
-  //     questionRepoContract.getSingleQuestion(token);
-
-  // Future<BaseResponse<void>> callUserHistory(String token) =>
-  //     questionRepoContract.getUserHistory(token);
-
-  // Future<BaseResponse<void>> callAddQuestion(
-  //   postAddQuestionRequest addquestionrequest,
-  //   String token,
-  // ) => questionRepoContract.postAddQuestion(addquestionrequest, token);
-
-  // Future<BaseResponse<void>> callCheckQuestion(
-  //   AnswerModel answermodel,
-  //   String token,
-  // ) => questionRepoContract.postChechQuestion(answermodel, token);
 }

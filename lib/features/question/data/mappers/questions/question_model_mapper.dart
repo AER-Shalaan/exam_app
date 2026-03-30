@@ -3,14 +3,12 @@ import 'package:exam_app/features/question/domain/entities/questions/questions_m
 
 extension QuestionModelMapper on QuestionModel {
   QuestionModelEntity modelToEntity() => QuestionModelEntity(
-      id: id,
-      question: question,
-      type: type,
-      answers: answers,
-      correct: correct,
-      subject: subject,
-      exam: exam,
-      createdAt: createdAt,
-      
-       );
+        id: id,
+        question: question,
+        type: type,
+        correct: correct,
+        subject: subject,
+        exam: exam,
+        createdAt: createdAt,
+      );
 }

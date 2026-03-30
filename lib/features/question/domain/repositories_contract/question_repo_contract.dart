@@ -4,19 +4,5 @@ import 'package:exam_app/features/question/domain/entities/questions/questions_m
 abstract class QuestionRepoContract {
   Future<BaseResponse<QuestionModelEntity>> getQuestionsOnExam(
       String token, String examId);
-  // Future<BaseResponse<void>> getQuestions();
-
-  // Future<BaseResponse<void>> getSingleQuestion(String token);
-
-  // Future<BaseResponse<void>> getUserHistory(String token);
-
-  // Future<BaseResponse<void>> postAddQuestion(
-  //   postAddQuestionRequest addquestionrequest,
-  //   String token,
-  // );
-
-  // Future<BaseResponse<void>> postChechQuestion(
-  //   AnswerModel answermodel,
-  //   String token,
-  // );
+  
 }

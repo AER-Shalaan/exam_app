@@ -63,14 +63,15 @@ class _QuestionsState extends State<Questions> {
                           token:
                               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YzMxYTc4Y2ViMmM1OWY4NGEzZTgxNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc0MzkzOTc2fQ.MDrScrZMqTJRUaWkB99hiQJQ94PCmhetTstWeRKI6bo",
                           questionModelEntity: QuestionModelEntity(
-                              answers: questionData.answers,
-                              type: questionData.type,
-                              id: questionData.id,
-                              question: questionData.question,
-                              correct: questionData.correct,
-                              subject: questionData.subject,
-                              exam: questionData.exam,
-                              createdAt: questionData.createdAt),
+                            type: questionData.type,
+                            id: questionData.id,
+                            question: questionData.question,
+                            correct: questionData.correct,
+                            subject: questionData.subject,
+                            exam: questionData.exam,
+                            createdAt: questionData.createdAt,
+                            answermodelentity: questionData.answermodelentity,
+                          ),
                         ),
                       );
 

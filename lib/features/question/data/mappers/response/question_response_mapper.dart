@@ -2,6 +2,7 @@ import 'package:exam_app/features/question/data/models/responce/question_respons
 import 'package:exam_app/features/question/domain/entities/responce/question_response_entity.dart';
 
 extension QuestionResponseMapper on QuestionResponse {
-  QuestionResponseEntity responseToEntity() =>
-      QuestionResponseEntity(message: message, questions: questions);
+  QuestionResponseEntity responseToEntity() => QuestionResponseEntity(
+        message: message,
+      );
 }
