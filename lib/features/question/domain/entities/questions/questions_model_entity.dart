@@ -13,10 +13,10 @@ class QuestionModelEntity {
   final dynamic subject;
   final ExamModel exam;
   final DateTime createdAt;
-  final AnswerModelEntity ?answermodelentity;
+  final AnswerModelEntity? answermodelentity;
 
   QuestionModelEntity({
-     this.answermodelentity,
+    this.answermodelentity,
     required this.type,
     required this.id,
     required this.question,

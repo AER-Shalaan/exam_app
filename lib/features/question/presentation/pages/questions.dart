@@ -4,7 +4,6 @@ import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
-import 'package:exam_app/features/question/data/models/question_model/question_model.dart';
 import 'package:exam_app/features/question/domain/entities/questions/questions_model_entity.dart';
 import 'package:exam_app/features/question/presentation/cubit/question_cubit.dart';
 import 'package:exam_app/features/question/presentation/cubit/question_event.dart';
@@ -24,7 +23,26 @@ class _QuestionsState extends State<Questions> {
   final questionGetIt = getIt.get<QuestionCubit>();
   int currentIndex = 0;
   final PageController _pageController = PageController();
-  final List<QuestionModel> questionModel = [];
+  List<QuestionModelEntity> questionModel = [];
+
+  @override
+  void initState() {
+    super.initState();
+    questionGetIt.doQuestionEvent(
+      QuestionsUseCase(
+        examId: "670070a830a3c3c1944a9c63",
+        token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YzMxYTc4Y2ViMmM1OWY4NGEzZTgxNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc0MzkzOTc2fQ.MDrScrZMqTJRUaWkB99hiQJQ94PCmhetTstWeRKI6bo",
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final hasQuestions = questionModel.isNotEmpty;
@@ -57,27 +75,12 @@ class _QuestionsState extends State<Questions> {
               listener: (context, state) {
                 final questionData = state.questionState.data;
                 if (questionData != null) {
-                  context.read<QuestionCubit>().doQuestionEvent(
-                        QuestionsUseCase(
-                          examId: "670070a830a3c3c1944a9c63",
-                          token:
-                              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YzMxYTc4Y2ViMmM1OWY4NGEzZTgxNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc0MzkzOTc2fQ.MDrScrZMqTJRUaWkB99hiQJQ94PCmhetTstWeRKI6bo",
-                          questionModelEntity: QuestionModelEntity(
-                            type: questionData.type,
-                            id: questionData.id,
-                            question: questionData.question,
-                            correct: questionData.correct,
-                            subject: questionData.subject,
-                            exam: questionData.exam,
-                            createdAt: questionData.createdAt,
-                            answermodelentity: questionData.answermodelentity,
-                          ),
-                        ),
-                      );
-
-                  if (currentIndex >= questionModel.length) {
-                    currentIndex = 0;
-                  }
+                  setState(() {
+                    questionModel = questionData.questions;
+                    if (currentIndex >= questionModel.length) {
+                      currentIndex = 0;
+                    }
+                  });
                 }
                 if (state.questionState.errorMessage != null &&
                     state.questionState.errorMessage!.isNotEmpty) {
@@ -104,7 +107,9 @@ class _QuestionsState extends State<Questions> {
                     ),
                     SizedBox(height: 20),
                     Text(
-                      "Select the correctly punctuated sentence.",
+                      hasQuestions
+                          ? questionModel[currentIndex].question
+                          : "No questions available.",
                       style: TextStyles.bodyMedium18,
                     ),
                     SizedBox(height: 16),
@@ -113,7 +118,8 @@ class _QuestionsState extends State<Questions> {
                       child: PageView.builder(
                         itemCount: questionModel.length,
                         itemBuilder: (context, index) => ExamQuestionsCard(
-                            questionModel: questionModel[index]),
+                          questionModel: questionModel[index],
+                        ),
                         physics: NeverScrollableScrollPhysics(),
                         controller: _pageController,
                       ),

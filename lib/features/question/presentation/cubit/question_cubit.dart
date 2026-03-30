@@ -1,6 +1,6 @@
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/core/state/base_state.dart';
-import 'package:exam_app/features/question/domain/entities/questions/questions_model_entity.dart';
+import 'package:exam_app/features/question/domain/entities/responce/question_response_entity.dart';
 import 'package:exam_app/features/question/domain/usecases/get_questions_use_case.dart';
 import 'package:exam_app/features/question/presentation/cubit/question_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,13 +29,13 @@ class QuestionCubit extends Cubit<QuestionState> {
     final response = await _getQuestionsUseCase.callOnExam(token, examId);
 
     switch (response) {
-      case SuccessBaseResponse<QuestionModelEntity>():
+      case SuccessBaseResponse<QuestionResponseEntity>():
         final data = response.data;
         emit(state.copyWith(
             questionState: state.questionState
                 .copyWith(isLoadingParam: false, dataParam: data)));
         break;
-      case ErrorBaseResponse<QuestionModelEntity>():
+      case ErrorBaseResponse<QuestionResponseEntity>():
         emit(state.copyWith(
             questionState: state.questionState.copyWith(
                 isLoadingParam: false,

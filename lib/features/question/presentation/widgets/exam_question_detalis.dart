@@ -1,11 +1,11 @@
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
-import 'package:exam_app/features/question/data/models/question_model/question_model.dart';
+import 'package:exam_app/features/question/domain/entities/questions/questions_model_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ExamQuestionsCardDetalis extends StatelessWidget {
-  final QuestionModel questionModel;
+  final QuestionModelEntity questionModel;
 
   const ExamQuestionsCardDetalis({
     super.key,

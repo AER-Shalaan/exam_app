@@ -2,7 +2,7 @@ import 'package:exam_app/features/question/domain/entities/questions/questions_m
 
 class QuestionResponseEntity {
   final String? message;
-  QuestionModelEntity? questions;
+  final List<QuestionModelEntity> questions;
 
-  QuestionResponseEntity({required this.message, this.questions});
+  QuestionResponseEntity({required this.message, required this.questions});
 }

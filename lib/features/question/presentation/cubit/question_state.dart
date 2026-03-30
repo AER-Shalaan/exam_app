@@ -1,14 +1,14 @@
 part of 'question_cubit.dart';
 
 class QuestionState {
-  BaseState<QuestionModelEntity> questionState;
+  BaseState<QuestionResponseEntity> questionState;
 
-  QuestionState({BaseState<QuestionModelEntity>? questionstate})
-      : questionState = questionstate ?? BaseState<QuestionModelEntity>();
+  QuestionState({BaseState<QuestionResponseEntity>? questionstate})
+      : questionState = questionstate ?? BaseState<QuestionResponseEntity>();
 
-  QuestionState copyWith({BaseState<QuestionModelEntity>? questionState}) {
+  QuestionState copyWith({BaseState<QuestionResponseEntity>? questionState}) {
     return QuestionState(
-
+      questionstate: questionState ?? this.questionState,
     );
   }
 }

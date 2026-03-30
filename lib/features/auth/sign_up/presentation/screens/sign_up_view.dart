@@ -51,7 +51,6 @@ class SignUpView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-
                   Row(
                     children: [
                       Expanded(
@@ -79,7 +78,6 @@ class SignUpView extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 24),
                   TextFormField(
                     controller: emailController,
@@ -89,9 +87,7 @@ class SignUpView extends StatelessWidget {
                       label: Text(AppStrings.email),
                     ),
                   ),
-
                   const SizedBox(height: 24),
-
                   Row(
                     children: [
                       Expanded(
@@ -111,9 +107,9 @@ class SignUpView extends StatelessWidget {
                           controller: confirmPasswordController,
                           validator: (value) =>
                               AppValidation.validatePasswordConfirmation(
-                                passwordController.text,
-                                value,
-                              ),
+                            passwordController.text,
+                            value,
+                          ),
                           decoration: InputDecoration(
                             hintText: AppStrings.confirmPassword,
                             label: Text(AppStrings.confirmPassword),
@@ -122,9 +118,7 @@ class SignUpView extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 24),
-
                   TextFormField(
                     controller: phoneNumberController,
                     validator: (value) => AppValidation.validatePhone(value),
@@ -133,9 +127,7 @@ class SignUpView extends StatelessWidget {
                       label: Text(AppStrings.phone),
                     ),
                   ),
-
                   const SizedBox(height: 48),
-
                   BlocConsumer<SignUpCubit, SignUpStates>(
                     listener: (context, state) {
                       if (state.signUpState.errorMessage != null &&
@@ -180,19 +172,21 @@ class SignUpView extends StatelessWidget {
                             : () {
                                 if (formKey.currentState!.validate()) {
                                   context.read<SignUpCubit>().doEvent(
-                                    SignUpEventSetUsers(
-                                      request: SignUpRequest(
-                                        firstName: firstNameController.text,
-                                        lastName: lastNameController.text,
-                                        email: emailController.text,
-                                        password: passwordController.text,
-                                        rePassword:
-                                            confirmPasswordController.text,
-                                        phone: phoneNumberController.text,
-                                        username: userNameController.text,
-                                      ),
-                                    ),
-                                  );
+                                        SignUpEventSetUsers(
+                                          request: SignUpRequest(
+                                            firstName: firstNameController.text,
+                                            lastName: lastNameController.text,
+                                            email: emailController.text,
+                                            password: passwordController.text,
+                                            rePassword:
+                                                confirmPasswordController.text,
+                                            phone: phoneNumberController.text,
+                                            username: userNameController.text,
+                                          ),
+                                        ),
+                                      );
+                                  Navigator.pushNamed(
+                                      context, AppRoutes.loginViewRouteName);
                                 }
                               },
                         child: state.signUpState.isLoading
@@ -207,9 +201,7 @@ class SignUpView extends StatelessWidget {
                       );
                     },
                   ),
-
                   const SizedBox(height: 16),
-
                   Text.rich(
                     TextSpan(
                       text: AppStrings.alreadyhaveanaccount,
