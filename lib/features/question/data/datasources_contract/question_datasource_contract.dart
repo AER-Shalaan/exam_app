@@ -3,6 +3,6 @@ import 'package:exam_app/features/question/data/models/responce/question_respons
 
 abstract class QuestionDataSourceContract {
   Future<BaseResponse<QuestionResponse>> getQuestionsOnExam(
-      String token, String examId);
+   {required String token, required String examId});
 
 }

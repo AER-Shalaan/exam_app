@@ -11,9 +11,9 @@ class QuestionsDataSourceImpl implements QuestionDataSourceContract {
   QuestionsDataSourceImpl(this.apiClient);
   @override
   Future<BaseResponse<QuestionResponse>> getQuestionsOnExam(
-      String token, String examId) async {
+    {required String token, required String examId}) async {
     try {
-    
+
       final response = await apiClient.getAllQuestiononExam(token, examId);
       return SuccessBaseResponse<QuestionResponse>(data: response);
     } on Exception catch (e) {

@@ -13,9 +13,9 @@ class QuestionsRepoImpl implements QuestionRepoContract {
 
   @override
   Future<BaseResponse<QuestionResponseEntity>> getQuestionsOnExam(
-      String token, String examId) async {
+      {required String token, required String examId}) async {
     final response =
-        await questionDataSourceContract.getQuestionsOnExam(token, examId);
+        await questionDataSourceContract.getQuestionsOnExam(token: token, examId: examId);
 
     switch (response) {
       case SuccessBaseResponse<QuestionResponse>():

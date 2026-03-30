@@ -6,7 +6,6 @@ import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/features/question/domain/entities/questions/questions_model_entity.dart';
 import 'package:exam_app/features/question/presentation/cubit/question_cubit.dart';
-import 'package:exam_app/features/question/presentation/cubit/question_event.dart';
 import 'package:exam_app/features/question/presentation/widgets/exam_questions_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,18 +23,6 @@ class _QuestionsState extends State<Questions> {
   int currentIndex = 0;
   final PageController _pageController = PageController();
   List<QuestionModelEntity> questionModel = [];
-
-  @override
-  void initState() {
-    super.initState();
-    questionGetIt.doQuestionEvent(
-      QuestionsUseCase(
-        examId: "670070a830a3c3c1944a9c63",
-        token:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YzMxYTc4Y2ViMmM1OWY4NGEzZTgxNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc0MzkzOTc2fQ.MDrScrZMqTJRUaWkB99hiQJQ94PCmhetTstWeRKI6bo",
-      ),
-    );
-  }
 
   @override
   void dispose() {
@@ -78,7 +65,8 @@ class _QuestionsState extends State<Questions> {
                   setState(() {
                     questionModel = questionData.questions;
                     if (currentIndex >= questionModel.length) {
-                      currentIndex = 0;
+
+                    
                     }
                   });
                 }

@@ -1,3 +1,4 @@
+import 'package:exam_app/core/auth/token_manager.dart';
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/core/state/base_state.dart';
 import 'package:exam_app/features/question/domain/entities/responce/question_response_entity.dart';
@@ -25,9 +26,14 @@ class QuestionCubit extends Cubit<QuestionState> {
   Future<void> _getQuestionsOnExam(String token, String examId) async {
     emit(state.copyWith(
         questionState: state.questionState.copyWith(isLoadingParam: true)));
+//todo============================================
+    final response = await _getQuestionsUseCase.callOnExam(
+        TokenManager.token ?? "", examId
+        //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YzMxYTc4Y2ViMmM1OWY4NGEzZTgxNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc0MzkzOTc2fQ.MDrScrZMqTJRUaWkB99hiQJQ94PCmhetTstWeRKI6bo",
+        // "670070a830a3c3c1944a9c63"
+//todo============================================
 
-    final response = await _getQuestionsUseCase.callOnExam(token, examId);
-
+        );
     switch (response) {
       case SuccessBaseResponse<QuestionResponseEntity>():
         final data = response.data;

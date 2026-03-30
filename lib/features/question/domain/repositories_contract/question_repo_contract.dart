@@ -3,5 +3,5 @@ import 'package:exam_app/features/question/domain/entities/responce/question_res
 
 abstract class QuestionRepoContract {
   Future<BaseResponse<QuestionResponseEntity>> getQuestionsOnExam(
-      String token, String examId);
+{required String token, required String examId});
 }
