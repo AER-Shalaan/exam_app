@@ -17,6 +17,7 @@ class AppTheme {
       titleTextStyle: TextStyles.appBarTextStyle,
       titleSpacing: 0,
       backgroundColor: AppColors.whiteColor,
+      surfaceTintColor: AppColors.whiteColor,
       iconTheme: IconThemeData(color: AppColors.baseBlack, size: 24),
       leadingWidth: 40,
     ),

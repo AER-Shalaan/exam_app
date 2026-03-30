@@ -9,3 +9,5 @@ class ChangeNavBarIndex extends HomeEvents {
 }
 
 class SearchForSubject extends HomeEvents {}
+
+class GetSubjects extends HomeEvents {}
