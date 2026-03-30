@@ -11,7 +11,7 @@ class TextStyles {
 
   static const TextStyle labelTextFieldStyle = TextStyle(
     fontSize: 16,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
     color: AppColors.grey,
   );
 
@@ -90,5 +90,17 @@ class TextStyles {
     fontSize: 14,
     fontWeight: FontWeight.w400,
     color: AppColors.grey,
+  );
+
+  static TextStyle navBarTitleStyle = GoogleFonts.inter(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    color: AppColors.primary,
+  );
+
+  static TextStyle titleMedium20Primary = GoogleFonts.inter(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+    color: AppColors.primary,
   );
 }

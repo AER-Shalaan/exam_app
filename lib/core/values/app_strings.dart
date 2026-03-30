@@ -6,8 +6,7 @@ class AppStrings {
   // Titles
   static const loginTitle = "Login";
   static const signUpTitle = "Sign Up";
-  static const login = "Login";
-  static const signUp = "Sign Up";
+  static const homeTitle = "Survey";
   static const alreadyhaveanaccount = "Already have an account? ";
   static const dontAcont = "Don't have an account? ";
   static const rememberMe = "Remember me";
@@ -19,16 +18,15 @@ class AppStrings {
   static const firstnameHint = "Enter first name";
   static const lastName = "Last name";
   static const lastnameHint = "Enter last name";
-
   static const email = "Email";
   static const emailHint = "Enter your email";
   static const phone = "Phone number";
   static const phoneHint = "Enter phone number";
-
   static const password = "Password";
   static const passwordHint = "Enter your password";
   static const confirmPassword = "Confirm password";
   static const confirmPasswordHint = "Enter your confirm password";
+  static const search = "Search";
 
   // Validation
   static const fieldCannotBeEmpty = 'This field cannot be empty';
@@ -68,13 +66,15 @@ class AppStrings {
 
   // General
   static const continueString = "Continue";
+  static const explore = "Explore";
+  static const result = "Result";
+  static const profile = "Profile";
 
   // Errors
   static const noInternetConnection = "No internet connection";
   static const connectionTimeout = "Connection timeout, please try again";
   static const requestTimeout = "Request timeout";
-  static const serverTookTooLongToRespond =
-      "Server took too long to respond";
+  static const serverTookTooLongToRespond = "Server took too long to respond";
   static const badcertificate = "Bad certificate";
   static const cancel = "Request was cancelled";
   static const connectionerror = "No internet connection";

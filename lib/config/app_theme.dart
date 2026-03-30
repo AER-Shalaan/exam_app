@@ -22,7 +22,7 @@ class AppTheme {
     ),
     //===========================textFormFieldStyle
     inputDecorationTheme: InputDecorationTheme(
-      constraints: const BoxConstraints(minHeight: 56, maxHeight: 56),
+      prefixIconConstraints: const BoxConstraints(minHeight: 24, maxHeight: 24),
       floatingLabelBehavior: FloatingLabelBehavior.always,
       floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
         if (states.contains(WidgetState.error)) {
