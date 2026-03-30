@@ -59,6 +59,7 @@ import '../../features/auth/sign_up/domain/usecases/sign_up_usecase.dart'
     as _i662;
 import '../../features/auth/sign_up/presentation/cubit/sign_up_cubit.dart'
     as _i809;
+import '../../features/home/presentation/cubit/home_view_model.dart' as _i174;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -68,6 +69,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
+    gh.factory<_i174.HomeViewModel>(() => _i174.HomeViewModel());
     gh.singleton<_i361.Dio>(() => dioModule.dio);
     gh.lazySingleton<_i478.ForgetPasswordApiClient>(
       () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),

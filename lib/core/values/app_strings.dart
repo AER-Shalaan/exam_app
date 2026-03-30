@@ -6,8 +6,6 @@ abstract class AppStrings {
   static const loginTitle = "Login";
   static const signUpTitle = "Sign Up";
   static const homeTitle = "Survey";
-
-  // Auth
   static const alreadyhaveanaccount = "Already have an account? ";
   static const dontAcont = "Don't have an account? ";
   static const rememberMe = "Remember me";
@@ -77,7 +75,6 @@ abstract class AppStrings {
 
   // General
   static const continueString = "Continue";
-  static const resending = "Resending code...";
 
   // Errors
   static const noInternetConnection = "No internet connection";

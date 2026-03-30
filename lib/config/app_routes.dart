@@ -19,7 +19,7 @@ abstract class AppRouter {
       case AppRoutesName.forgotPassword:
         return MaterialPageRoute(builder: (_) => ForgetPasswordView());
       case AppRoutesName.home:
-        return MaterialPageRoute(builder: (_) => const HomeView());
+        return MaterialPageRoute(builder: (_) => HomeView());
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(
