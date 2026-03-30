@@ -3,12 +3,12 @@ import 'package:exam_app/features/question/domain/entities/exam/exam_model_entit
 
 extension ExamModelMapper on ExamModel {
   ExamModelEntity answerToEntity() => ExamModelEntity(
-      id: id.toString(),
-      title: title.toString(),
-      duration: duration,
-      subject: subject.name,
-      numberOfQuestions: numberOfQuestions,
-      active: active,
-      createdAt: createdAt,
-    );
+        id: id.toString(),
+        title: title.toString(),
+        duration: duration,
+        subject: subject.toString(),
+        numberOfQuestions: numberOfQuestions,
+        active: active,
+        createdAt: createdAt,
+      );
 }

@@ -1,3 +1,4 @@
+import 'package:exam_app/core/network/api_param.dart';
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/features/question/api/api_client/question_api_client.dart';
 import 'package:exam_app/features/question/data/datasources_contract/question_datasource_contract.dart';
@@ -11,10 +12,10 @@ class QuestionsDataSourceImpl implements QuestionDataSourceContract {
   QuestionsDataSourceImpl(this.apiClient);
   @override
   Future<BaseResponse<QuestionResponse>> getQuestionsOnExam(
-    {required String token, required String examId}) async {
+      {required String token, required String examId}) async {
     try {
-
-      final response = await apiClient.getAllQuestiononExam(token, examId);
+      final response =
+          await apiClient.getAllQuestiononExam(ApiParam.token, ApiParam.examId);
       return SuccessBaseResponse<QuestionResponse>(data: response);
     } on Exception catch (e) {
       return ErrorBaseResponse<QuestionResponse>(exception: e);

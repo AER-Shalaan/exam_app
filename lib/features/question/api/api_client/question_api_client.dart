@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:exam_app/core/network/api_param.dart';
 import 'package:exam_app/core/network/endpoints.dart';
 import 'package:exam_app/features/question/data/models/check_answer/post_check_answer_responce.dart';
 import 'package:exam_app/features/question/data/models/responce/question_response.dart';
@@ -15,7 +16,7 @@ abstract class QuestionApiClient {
 
   @GET(Endpoints.getAllQuestionInExamEndpoint)
   Future<QuestionResponse> getAllQuestiononExam(
-    @Header("Authorization") String token,
-    @Query("examId") String examId,
+    @Header(ApiParam.token) String token,
+    @Query(ApiParam.examId) String examId,
   );
 }

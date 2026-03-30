@@ -1,3 +1,4 @@
+import 'package:exam_app/core/network/api_param.dart';
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/features/question/data/datasources_contract/question_datasource_contract.dart';
 import 'package:exam_app/features/question/data/mappers/response/question_response_mapper.dart';
@@ -14,8 +15,8 @@ class QuestionsRepoImpl implements QuestionRepoContract {
   @override
   Future<BaseResponse<QuestionResponseEntity>> getQuestionsOnExam(
       {required String token, required String examId}) async {
-    final response =
-        await questionDataSourceContract.getQuestionsOnExam(token: token, examId: examId);
+    final response = await questionDataSourceContract.getQuestionsOnExam(
+        token: ApiParam.token, examId: ApiParam.examId);
 
     switch (response) {
       case SuccessBaseResponse<QuestionResponse>():
