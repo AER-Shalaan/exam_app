@@ -59,6 +59,7 @@ import '../../features/auth/sign_up/domain/usecases/sign_up_usecase.dart'
     as _i662;
 import '../../features/auth/sign_up/presentation/cubit/sign_up_cubit.dart'
     as _i809;
+import '../../features/home/api/api_client/home_api_client.dart' as _i592;
 import '../../features/home/presentation/cubit/home_view_model.dart' as _i174;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -80,6 +81,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i934.LoginApiClient>(
       () => _i934.LoginApiClient(gh<_i361.Dio>()),
     );
+    gh.factory<_i592.HomeApiClient>(() => _i592.HomeApiClient(gh<_i361.Dio>()));
     gh.factory<_i413.ForgetPasswordDataSourceContract>(
       () => _i47.ForgetPasswordRemoteDataSourceImpl(
         gh<_i478.ForgetPasswordApiClient>(),
