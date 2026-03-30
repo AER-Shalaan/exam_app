@@ -1,3 +1,25 @@
+/* هنا في naming convention بتاع ال class نفسه
+ بلس انت مش هتستخدم ده خالص 
+ الصح 
+{
+دي ال request اللي هتبعت في ال post check question endpoint
+    ال list of answers دي هتبعت فيها ال id بتاع السؤال و الاجابة اللي انت اخترتها و ال time بتاع الامتحان كله
+    "answers": [
+        {
+            "questionId": "6715e98c76fb2b224b2ffe2c",
+            "correct": "A4"
+        },
+        {
+            "questionId": "6715e98d76fb2b224b2ffe2f",
+            "correct": "A4"
+        }
+    ],
+    "time":10
+}
+ فأنت محتاج  تعمل class اسمه postCheckQuestionRequest و فيه list of answer و ال time
+و ال answer class دي هتحتوي علي questionId و correct
+ */
+
 class postAddQuestionRequest {
   String question;
   String A1;
@@ -30,6 +52,8 @@ class postAddQuestionRequest {
     "exam": exam,
   };
 }
+
+
     // "question":"How can you open a link in a new tab/browser window?",
     // "A1":" <a href='url' new>",
     // "A2":" <a href='url' target='new'>",

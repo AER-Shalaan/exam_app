@@ -19,7 +19,7 @@ class QuestionResponse {
   final String message;
   @JsonKey(name: "questions")
   final List<QuestionModel> questions;
-
+// toDomin in responce (QuestionResponse)=> in  todDomin(QuestionModel) 
   QuestionResponse({required this.message, required this.questions});
 
   factory QuestionResponse.fromJson(Map<String, dynamic> json) =>

@@ -3,6 +3,8 @@ import 'package:exam_app/features/question/data/models/exam_model/exam_model.dar
 import 'package:exam_app/features/question/domain/entities/responce/question_response_entity.dart';
 
 class QuestionModelEntity {
+  // do answer model entity ==>  toDomin in respone (AnswerModel)
+  // 
   final List<AnswerModel> answers;
   final Type type;
   final String id;

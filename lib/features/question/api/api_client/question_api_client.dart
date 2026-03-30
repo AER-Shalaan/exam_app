@@ -13,10 +13,14 @@ abstract class QuestionApiClient {
   factory QuestionApiClient(Dio dio) = _QuestionApiClient;
 
   @GET(Endpoints.getAllQuestionInExamEndpoint)
+  // هنا مش هيرجع لم list هنا هيرجع لك object فيه message و فيه list of question model
   Future<List<QuestionResponse>> getAllQuestiononExam(
     @Header("Authorization") String token,
     @Query("examId") String examId,
   );
+
+  // محتاج تعمل endpoint check question و تبعت فيه ال list of answers اللي هتبعت فيها ال id بتاع السؤال و الاجابة اللي انت اخترتها و ال time بتاع الامتحان كله و هو هيقولك صح ولا غلط
+
 //   @GET(Endpoints.getAllQuestionEndpoint)
 //   Future<List<String>> getAllQuestion(@Header("Authorization") String token);
 //   @GET(Endpoints.getSingleQuestionEndpoint)
