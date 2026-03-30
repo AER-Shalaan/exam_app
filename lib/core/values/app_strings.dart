@@ -10,6 +10,7 @@ class AppStrings {
   static const alreadyhaveanaccount = "Already have an account? ";
   static const dontAcont = "Don't have an account? ";
   static const rememberMe = "Remember me";
+  static const browseBySubject = "Browse by subject";
 
   // Fields
   static const userName = "User name";
@@ -64,11 +65,13 @@ class AppStrings {
       "Password changed successfully.\nPlease login again.";
   static const registersuccessfuly = "Register Successfully";
 
-  // General
-  static const continueString = "Continue";
+  // navBartitles
   static const explore = "Explore";
   static const result = "Result";
   static const profile = "Profile";
+
+  // General
+  static const continueString = "Continue";
 
   // Errors
   static const noInternetConnection = "No internet connection";

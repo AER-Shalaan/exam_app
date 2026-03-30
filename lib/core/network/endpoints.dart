@@ -15,4 +15,6 @@ class Endpoints {
   static const String putEditProfileEndpoint = '$baseUrl/auth/editProfile';
   static const String deleteMyAccountEndpoint = '$baseUrl/auth/deleteMe';
   static const String getLogoutEndpoint = '$baseUrl/auth/logout';
+
+  static const String getAllSubjectsEndpoint = '$baseUrl/subjects';
 }
