@@ -14,7 +14,7 @@ abstract class QuestionApiClient {
   @factoryMethod
   factory QuestionApiClient(Dio dio) = _QuestionApiClient;
 
-  @GET(Endpoints.getAllQuestionInExamEndpoint)
+  @GET(Endpoints.getAllQuestiononExamEndpoint)
   Future<QuestionResponse> getAllQuestiononExam(
     @Header(ApiParam.token) String token,
     @Query(ApiParam.examId) String examId,
