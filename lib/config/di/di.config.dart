@@ -141,7 +141,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i605.GetAllSubjectsUseCase>(
       () => _i605.GetAllSubjectsUseCase(gh<_i23.HomeRepositoriesContract>()),
     );
-    gh.factory<_i174.HomeViewModel>(
+    gh.lazySingleton<_i174.HomeViewModel>(
       () => _i174.HomeViewModel(gh<_i605.GetAllSubjectsUseCase>()),
     );
     gh.factory<_i465.LoginViewModel>(

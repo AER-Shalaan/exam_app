@@ -8,17 +8,18 @@ import 'package:exam_app/features/home/presentation/cubit/home_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@lazySingleton
 class HomeViewModel extends Cubit<HomeStates> {
   HomeViewModel(this._getAllSubjectsUseCase) : super(HomeStates());
 
   final GetAllSubjectsUseCase _getAllSubjectsUseCase;
   void doEvent(HomeEvents event) {
     switch (event) {
-      case ChangeNavBarIndex():
-        _changeIndex(event.tab);
+      case ChangeNavBarTab():
+        _changeTab(event.tab);
         break;
       case SearchForSubject():
+        _search(event.query);
         break;
       case GetSubjects():
         _getSubjects();
@@ -26,8 +27,12 @@ class HomeViewModel extends Cubit<HomeStates> {
     }
   }
 
-  void _changeIndex(HomeTab tab) {
+  void _changeTab(HomeTab tab) {
     emit(state.copyWith(currentTab: tab));
+  }
+
+  void _search(String query) {
+    emit(state.copyWith(searchQuery: query));
   }
 
   Future<void> _getSubjects() async {
