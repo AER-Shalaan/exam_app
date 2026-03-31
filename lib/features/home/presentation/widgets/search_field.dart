@@ -5,13 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchField extends StatelessWidget {
-  const SearchField({
-    super.key,
-  });
-
+  const SearchField({super.key, required this.controller, this.onChanged});
+  final TextEditingController controller;
+  final Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
+      keyboardType: TextInputType.text,
       decoration: InputDecoration(
         prefixIcon: Padding(
           padding: const EdgeInsets.only(left: 16.0),
@@ -33,6 +34,7 @@ class SearchField extends StatelessWidget {
                     as OutlineInputBorder)
                 .copyWith(borderRadius: BorderRadius.circular(20)),
       ),
+      onChanged: onChanged,
     );
   }
 }

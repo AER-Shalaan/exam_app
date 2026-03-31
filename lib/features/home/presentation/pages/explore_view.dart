@@ -1,3 +1,4 @@
+import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/features/home/presentation/cubit/home_events.dart';
@@ -16,14 +17,28 @@ class ExploreView extends StatefulWidget {
 }
 
 class _ExploreViewState extends State<ExploreView> {
+  final TextEditingController _controller = TextEditingController();
+
   @override
   void initState() {
     super.initState();
 
     Future.microtask(() {
       if (!mounted) return;
-      context.read<HomeViewModel>().doEvent(GetSubjects());
+      final viewModel = context.read<HomeViewModel>();
+
+      viewModel.doEvent(SearchForSubject(''));
+
+      if (viewModel.state.subjectState.data == null) {
+        viewModel.doEvent(GetSubjects());
+      }
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -33,7 +48,12 @@ class _ExploreViewState extends State<ExploreView> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SearchField(),
+            SearchField(
+              controller: _controller,
+              onChanged: (value) {
+                context.read<HomeViewModel>().doEvent(SearchForSubject(value));
+              },
+            ),
             const SizedBox(height: 40),
             Text(AppStrings.browseBySubject, style: TextStyles.bodyMedium18),
             const SizedBox(height: 24),
@@ -42,9 +62,18 @@ class _ExploreViewState extends State<ExploreView> {
 
         Expanded(
           child: BlocBuilder<HomeViewModel, HomeStates>(
+            buildWhen: (previous, current) {
+              return previous.subjectState != current.subjectState ||
+                  previous.searchQuery != current.searchQuery;
+            },
             builder: (context, state) {
               final subjectState = state.subjectState;
               final subjects = subjectState.data?.subjects ?? [];
+              final query = state.searchQuery;
+
+              final filteredSubjects = subjects.where((subject) {
+                return subject.name.toLowerCase().contains(query.toLowerCase());
+              }).toList();
 
               if (subjectState.isLoading) {
                 return const Center(child: CircularProgressIndicator());
@@ -60,17 +89,26 @@ class _ExploreViewState extends State<ExploreView> {
                 );
               }
 
-              if (subjects.isEmpty) {
+              if (filteredSubjects.isEmpty) {
                 return const Center(child: Text("No subjects found"));
               }
 
               return ListView.separated(
                 separatorBuilder: (context, index) =>
                     const SizedBox(height: 16),
-                itemCount: subjects.length,
+                itemCount: filteredSubjects.length,
                 itemBuilder: (context, index) {
-                  final subject = subjects[index];
-                  return SubjectCard(icon: subject.icon, name: subject.name);
+                  final subject = filteredSubjects[index];
+                  return SubjectCard(
+                    icon: subject.icon,
+                    name: subject.name,
+                    onTap: () {
+                      // TODO: navigate to subject details
+                      //Navigator.of(context).pushNamed(AppRoutes.examOnSubjectView, arguments: subject.id);
+                      // replace with fixed subject id for testing
+                      //Navigator.of(context).pushNamed(AppRoutes.examOnSubjectView, arguments: "670037f6728c92b7fdf434fc");
+                    },
+                  );
                 },
               );
             },

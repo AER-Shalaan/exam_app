@@ -4,10 +4,13 @@ import 'package:exam_app/features/home/domain/entities/get_all_subjects_entity.d
 
 class HomeStates {
   final HomeTab currentTab;
+  final String searchQuery;
+
   BaseState<GetAllSubjectsEntity> subjectState =
       BaseState<GetAllSubjectsEntity>();
   HomeStates({
     this.currentTab = HomeTab.explore,
+    this.searchQuery = '',
     BaseState<GetAllSubjectsEntity>? subjectState,
   }) {
     this.subjectState = subjectState ?? BaseState<GetAllSubjectsEntity>();
@@ -15,10 +18,12 @@ class HomeStates {
 
   HomeStates copyWith({
     HomeTab? currentTab,
+    String? searchQuery,
     BaseState<GetAllSubjectsEntity>? subjectState,
   }) {
     return HomeStates(
       currentTab: currentTab ?? this.currentTab,
+      searchQuery: searchQuery ?? this.searchQuery,
       subjectState: subjectState ?? this.subjectState,
     );
   }
