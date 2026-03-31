@@ -5,6 +5,7 @@ import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/features/question/domain/entities/questions/questions_entity/questions_model_entity.dart';
+import 'package:exam_app/features/question/domain/entities/questions/responce_entity/question_response_entity.dart';
 import 'package:exam_app/features/question/presentation/cubit/question_cubit.dart';
 import 'package:exam_app/features/question/presentation/cubit/question_event.dart';
 import 'package:exam_app/features/question/presentation/widgets/exam_questions_card.dart';

@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       themeMode: ThemeMode.light,
-      initialRoute: AppRoutes.splashRouteName,
+      initialRoute: AppRoutes.questionsRouteName,
       routes: AppRoutes.getRoutes(),
     );
   }
