@@ -61,9 +61,8 @@ class _SplashViewState extends State<SplashView>
 
     if (!mounted) return;
 
-    final route = hasToken
-        ? AppRoutes.homeViewRouteName
-        : AppRoutes.loginViewRouteName;
+    final route =
+        hasToken ? AppRoutes.homeViewRouteName : AppRoutes.loginViewRouteName;
 
     Navigator.pushReplacementNamed(context, route);
   }
@@ -84,7 +83,6 @@ class _SplashViewState extends State<SplashView>
         child: Column(
           children: [
             SizedBox(height: height * 0.3),
-
             SlideTransition(
               position: _slideLogo,
               child: FadeTransition(
@@ -92,9 +90,7 @@ class _SplashViewState extends State<SplashView>
                 child: Image.asset(Assets.assetsImagesExamSplash, height: 100),
               ),
             ),
-
             SizedBox(height: height * 0.25),
-
             FadeTransition(
               opacity: _fadeText,
               child: const Text(

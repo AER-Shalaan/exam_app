@@ -30,9 +30,7 @@ class QuestionCubit extends Cubit<QuestionState> {
 //todo============================================
     final response = await _getQuestionsUseCase.callOnExam(
         TokenManager.token ?? "", ApiParam.examId
-        //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YzMxYTc4Y2ViMmM1OWY4NGEzZTgxNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc0MzkzOTc2fQ.MDrScrZMqTJRUaWkB99hiQJQ94PCmhetTstWeRKI6bo",
-        // "670070a830a3c3c1944a9c63"
-//todo============================================
+     
 
         );
     switch (response) {
