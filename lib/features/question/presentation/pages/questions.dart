@@ -1,6 +1,5 @@
 import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/config/di/di.dart';
-import 'package:exam_app/core/auth/token_manager.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
@@ -60,8 +59,7 @@ class _QuestionsState extends State<Questions> {
         create: (context) => questionGetIt
           ..doQuestionEvent(
             QuestionsUseCase(
-              token: TokenManager.token ?? '',
-              examId: examId,
+              examId: "670070a830a3c3c1944a9c63",
             ),
           ),
         child: Padding(
@@ -73,10 +71,7 @@ class _QuestionsState extends State<Questions> {
                 if (questionData != null) {
                   setState(() {
                     questionModel = questionData.questions;
-                    if (currentIndex >= questionModel.length) {
-
-
-                    }
+                    if (currentIndex >= questionModel.length) {}
                   });
                 }
                 if (state.questionState.errorMessage != null &&
