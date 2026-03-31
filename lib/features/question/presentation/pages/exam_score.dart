@@ -2,7 +2,7 @@ import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
-import 'package:exam_app/features/question/data/models/exam_score/exam_score_model.dart';
+import 'package:exam_app/features/question/data/models/check_questions/exam_score/exam_score_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -13,7 +13,7 @@ class ExamScore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double percent = examScoreModel.correct / examScoreModel.total;
-    
+
     return Scaffold(
       appBar: AppBar(
         leading: SvgPicture.asset(Assets.assetsIconsArrowBack),

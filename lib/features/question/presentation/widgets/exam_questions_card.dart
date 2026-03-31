@@ -1,4 +1,4 @@
-import 'package:exam_app/features/question/domain/entities/questions/questions_model_entity.dart';
+import 'package:exam_app/features/question/domain/entities/questions/questions_entity/questions_model_entity.dart';
 import 'package:exam_app/features/question/presentation/widgets/exam_question_detalis.dart';
 import 'package:flutter/material.dart';
 

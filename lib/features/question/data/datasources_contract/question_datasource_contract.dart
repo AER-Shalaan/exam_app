@@ -1,8 +1,12 @@
 import 'package:exam_app/core/network/base_response.dart';
-import 'package:exam_app/features/question/data/models/responce/question_response.dart';
+import 'package:exam_app/features/question/data/models/check_questions/response/check_questions_response.dart';
+import 'package:exam_app/features/question/data/models/check_questions/request/question_request.dart';
+import 'package:exam_app/features/question/data/models/questions/responce/question_response.dart';
 
 abstract class QuestionDataSourceContract {
   Future<BaseResponse<QuestionResponse>> getQuestionsOnExam(
-   {required String token, required String examId});
-
+      {required String token, required String examId});
+  Future<BaseResponse<CheckQuestionsResponse>> chechQuestions(
+      {required String token,
+      required QuestionRequest checkQuestionRequest});
 }

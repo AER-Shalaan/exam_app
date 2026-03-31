@@ -1,4 +1,4 @@
-import 'package:exam_app/features/question/data/models/exam_model/exam_model.dart';
+import 'package:exam_app/features/question/data/models/questions/exam_model/exam_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'answer_model.g.dart';
 @JsonSerializable()

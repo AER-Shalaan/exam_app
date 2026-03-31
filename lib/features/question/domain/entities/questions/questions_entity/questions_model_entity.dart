@@ -1,6 +1,6 @@
-import 'package:exam_app/features/question/data/models/answer_model/answer_model.dart';
-import 'package:exam_app/features/question/data/models/exam_model/exam_model.dart';
-import 'package:exam_app/features/question/domain/entities/answer/answer_model_entity.dart';
+import 'package:exam_app/features/question/data/models/questions/answer_model/answer_model.dart';
+import 'package:exam_app/features/question/data/models/questions/exam_model/exam_model.dart';
+import 'package:exam_app/features/question/domain/entities/questions/answer/answer_model_entity.dart';
 
 class QuestionModelEntity {
   // do answer model entity ==>  toDomin in respone (AnswerModel)

@@ -1,5 +1,5 @@
-import 'package:exam_app/features/question/data/models/answer_model/answer_model.dart';
-import 'package:exam_app/features/question/domain/entities/exam/exam_model_entity.dart';
+import 'package:exam_app/features/question/data/models/questions/answer_model/answer_model.dart';
+import 'package:exam_app/features/question/domain/entities/questions/exam/exam_model_entity.dart';
 
 class AnswerModelEntity {
   final String answer;

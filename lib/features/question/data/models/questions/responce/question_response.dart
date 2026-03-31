@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 
-import 'package:exam_app/features/question/data/models/question_model/question_model.dart';
+import 'package:exam_app/features/question/data/models/questions/question_model/question_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'question_response.g.dart';
@@ -19,7 +19,7 @@ class QuestionResponse {
   final String message;
   @JsonKey(name: "questions")
   final List<QuestionModel> questions;
-// toDomin in responce (QuestionResponse)=> in  todDomin(QuestionModel) 
+// toDomin in responce (QuestionResponse)=> in  todDomin(QuestionModel)
   QuestionResponse({required this.message, required this.questions});
 
   factory QuestionResponse.fromJson(Map<String, dynamic> json) =>

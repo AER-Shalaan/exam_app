@@ -1,5 +1,5 @@
-import 'package:exam_app/features/question/data/models/answer_model/answer_model.dart';
-import 'package:exam_app/features/question/data/models/exam_model/exam_model.dart';
+import 'package:exam_app/features/question/data/models/questions/answer_model/answer_model.dart';
+import 'package:exam_app/features/question/data/models/questions/exam_model/exam_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'question_model.g.dart';

@@ -1,11 +1,13 @@
 import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/config/di/di.dart';
+import 'package:exam_app/core/auth/token_manager.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
-import 'package:exam_app/features/question/domain/entities/questions/questions_model_entity.dart';
+import 'package:exam_app/features/question/domain/entities/questions/questions_entity/questions_model_entity.dart';
 import 'package:exam_app/features/question/presentation/cubit/question_cubit.dart';
+import 'package:exam_app/features/question/presentation/cubit/question_event.dart';
 import 'package:exam_app/features/question/presentation/widgets/exam_questions_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +34,7 @@ class _QuestionsState extends State<Questions> {
 
   @override
   Widget build(BuildContext context) {
+    final examId = ModalRoute.of(context)?.settings.arguments as String? ?? '';
     final hasQuestions = questionModel.isNotEmpty;
     return Scaffold(
       appBar: AppBar(
@@ -54,7 +57,13 @@ class _QuestionsState extends State<Questions> {
         ],
       ),
       body: BlocProvider(
-        create: (context) => questionGetIt,
+        create: (context) => questionGetIt
+          ..doQuestionEvent(
+            QuestionsUseCase(
+              token: TokenManager.token ?? '',
+              examId: examId,
+            ),
+          ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
@@ -66,7 +75,7 @@ class _QuestionsState extends State<Questions> {
                     questionModel = questionData.questions;
                     if (currentIndex >= questionModel.length) {
 
-                    
+
                     }
                   });
                 }
