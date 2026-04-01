@@ -11,7 +11,7 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) =>
       answers: (json['answers'] as List<dynamic>)
           .map((e) => AnswerModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecode(_$TypeEnumMap, json['type']),
+      type: $enumDecode(_$QuestionTypeEnumMap, json['type']),
       id: json['_id'] as String,
       question: json['question'] as String,
       correct: $enumDecode(_$CorrectModelEnumMap, json['correct']),
@@ -23,7 +23,7 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$QuestionModelToJson(QuestionModel instance) =>
     <String, dynamic>{
       'answers': instance.answers,
-      'type': _$TypeEnumMap[instance.type]!,
+      'type': _$QuestionTypeEnumMap[instance.type]!,
       '_id': instance.id,
       'question': instance.question,
       'correct': _$CorrectModelEnumMap[instance.correct]!,
@@ -32,8 +32,9 @@ Map<String, dynamic> _$QuestionModelToJson(QuestionModel instance) =>
       'createdAt': instance.createdAt.toIso8601String(),
     };
 
-const _$TypeEnumMap = {
-  Type.SINGLE_CHOICE: 'single_choice',
+const _$QuestionTypeEnumMap = {
+  QuestionType.singleChoice: 'single_choice',
+  QuestionType.multipleChoice: 'multiple_choice',
 };
 
 const _$CorrectModelEnumMap = {

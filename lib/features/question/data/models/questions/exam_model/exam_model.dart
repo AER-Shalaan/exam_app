@@ -77,13 +77,16 @@ final titleValues = EnumValues({
     "JavaScript Quiz": Title.JAVA_SCRIPT_QUIZ
 });
 
-enum Type {
+enum QuestionType {
     @JsonValue("single_choice")
-    SINGLE_CHOICE
+    singleChoice,
+    @JsonValue("multiple_choice")
+    multipleChoice
 }
 
 final typeValues = EnumValues({
-    "single_choice": Type.SINGLE_CHOICE
+    "single_choice": QuestionType.singleChoice,
+    "multiple_choice": QuestionType.multipleChoice
 });
 
 class EnumValues<T> {

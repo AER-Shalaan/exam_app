@@ -9,7 +9,7 @@ class QuestionModel {
   @JsonKey(name: "answers")
   final List<AnswerModel> answers;
   @JsonKey(name: "type")
-  final Type type;
+  final QuestionType type;
   @JsonKey(name: "_id")
   final String id;
   @JsonKey(name: "question")

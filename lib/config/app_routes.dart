@@ -2,7 +2,7 @@ import 'package:exam_app/features/auth/forget_password/presentation/forget_passw
 import 'package:exam_app/features/auth/login/presentation/pages/login_view.dart';
 import 'package:exam_app/features/auth/sign_up/presentation/screens/sign_up_view.dart';
 import 'package:exam_app/features/home/presentation/home_view.dart';
-import 'package:exam_app/features/question/data/models/check_questions/exam_score/exam_score_model.dart';
+import 'package:exam_app/features/question/domain/entities/check_questions/check_questions_response/check_question_response_entity.dart';
 import 'package:exam_app/features/question/presentation/pages/exam_score.dart';
 import 'package:exam_app/features/question/presentation/pages/questions.dart';
 import 'package:exam_app/features/splash_screen/presentation/splash_screen.dart';
@@ -25,13 +25,10 @@ class AppRoutes {
       forgotPasswordRouteName: (context) => ForgetPasswordView(),
       homeViewRouteName: (_) => HomeView(),
       questionsRouteName: (_) => Questions(),
-      examScoreRouteName: (_) => ExamScore(
-        examScoreModel: ExamScoreModel(
-          correct: 18,
-          incorrect: 2,
-          total: 20,
-          percent: 90,
-        ),
+      examScoreRouteName: (context) => ExamScore(
+        examScoreModel: ModalRoute.of(context)?.settings.arguments
+                as CheckQuestionsResponseEntity? ??
+            CheckQuestionsResponseEntity(),
       ),
     };
   }

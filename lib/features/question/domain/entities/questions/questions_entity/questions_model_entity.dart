@@ -3,20 +3,17 @@ import 'package:exam_app/features/question/data/models/questions/exam_model/exam
 import 'package:exam_app/features/question/domain/entities/questions/answer/answer_model_entity.dart';
 
 class QuestionModelEntity {
-  // do answer model entity ==>  toDomin in respone (AnswerModel)
-  //
-
-  final Type type;
+  final QuestionType type;
   final String id;
   final String question;
   final CorrectModel correct;
   final dynamic subject;
   final ExamModel exam;
   final DateTime createdAt;
-  final AnswerModelEntity? answermodelentity;
+  final List<AnswerModelEntity> answers;
+  final Set<CorrectModel> selectedAnswerKeys;
 
   QuestionModelEntity({
-    this.answermodelentity,
     required this.type,
     required this.id,
     required this.question,
@@ -24,5 +21,7 @@ class QuestionModelEntity {
     required this.subject,
     required this.exam,
     required this.createdAt,
-  });
+    required this.answers,
+    Set<CorrectModel>? selectedAnswerKeys,
+  }) : selectedAnswerKeys = selectedAnswerKeys ?? <CorrectModel>{};
 }

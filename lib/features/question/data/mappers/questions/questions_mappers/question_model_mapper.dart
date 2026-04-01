@@ -4,8 +4,7 @@ import 'package:exam_app/features/question/domain/entities/questions/questions_e
 
 extension QuestionModelMapper on QuestionModel {
   QuestionModelEntity modelToEntity() => QuestionModelEntity(
-        answermodelentity:
-            answers.isNotEmpty ? answers.first.answerToEntity() : null,
+        answers: answers.map((answer) => answer.answerToEntity()).toList(),
         id: id,
         question: question,
         type: type,

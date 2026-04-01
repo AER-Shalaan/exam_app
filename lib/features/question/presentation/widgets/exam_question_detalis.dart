@@ -1,56 +1,58 @@
+import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
-import 'package:exam_app/features/question/domain/entities/questions/questions_entity/questions_model_entity.dart';
+import 'package:exam_app/features/question/domain/entities/questions/answer/answer_model_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ExamQuestionsCardDetalis extends StatelessWidget {
-  final QuestionModelEntity questionModel;
+  final AnswerModelEntity answerModel;
+  final bool isSelected;
+  final VoidCallback onTap;
 
   const ExamQuestionsCardDetalis({
     super.key,
-    required this.questionModel,
+    required this.answerModel,
+    required this.isSelected,
+    required this.onTap,
   });
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 8, right: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
-        // color: questionModel.isSelected
-        //     ? AppColors.primary10
-        //     : AppColors.lightBlue,
+        color: isSelected ? AppColors.primary10 : AppColors.lightBlue,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: () {
-              // questionModel.isSelected = !questionModel.isSelected;
-            },
+            onTap: onTap,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // questionModel.isSelected
-                // ? SvgPicture.asset(
-                //     Assets.assetsIconsSelected,
-                //     width: 40,
-                //     height: 40,
-                //   )
-                // :
-                SvgPicture.asset(
-                  Assets.assetsIconsUnSelected,
-                  width: 40,
-                  height: 40,
-                ),
-                Text(
-                  questionModel.question,
-                  style: TextStyles.bodyMedium16,
+                isSelected
+                    ? SvgPicture.asset(
+                        Assets.assetsIconsSelected,
+                        width: 40,
+                        height: 40,
+                      )
+                    : SvgPicture.asset(
+                        Assets.assetsIconsUnSelected,
+                        width: 40,
+                        height: 40,
+                      ),
+                Expanded(
+                  child: Text(
+                    answerModel.answer,
+                    style: TextStyles.bodyMedium16,
+                  ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
         ],
       ),
     );
