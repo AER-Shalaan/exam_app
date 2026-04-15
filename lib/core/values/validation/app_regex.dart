@@ -3,7 +3,7 @@ class AppRegex {
 
   static bool isValidEmail(String email) {
     return RegExp(
-      r"^[a-zA-Z0-9._%+-]+@(gmail\.com|outlook\.com|hotmail\.com|yahoo\.com|icloud\.com|gov|edu|org|net|com)$",
+        r'^[a-zA-Z0-9._%+-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$',
     ).hasMatch(email);
   }
 

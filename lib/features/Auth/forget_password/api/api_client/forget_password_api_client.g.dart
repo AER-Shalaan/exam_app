@@ -21,13 +21,13 @@ class _ForgetPasswordApiClient implements ForgetPasswordApiClient {
 
   @override
   Future<ForgetPasswordModel> sendEmail({
-    required Map<String, dynamic> body,
+    required ForgetPasswordRequestModel body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body);
+    _data.addAll(body.toJson());
     final _options = _setStreamType<ForgetPasswordModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -50,15 +50,15 @@ class _ForgetPasswordApiClient implements ForgetPasswordApiClient {
   }
 
   @override
-  Future<VerifyResetModel> verifyReset({
-    required Map<String, dynamic> body,
+  Future<VerifyResetCodeModel> verifyReset({
+    required VerifyResetCodeRequestModel body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body);
-    final _options = _setStreamType<VerifyResetModel>(
+    _data.addAll(body.toJson());
+    final _options = _setStreamType<VerifyResetCodeModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -69,9 +69,9 @@ class _ForgetPasswordApiClient implements ForgetPasswordApiClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late VerifyResetModel _value;
+    late VerifyResetCodeModel _value;
     try {
-      _value = VerifyResetModel.fromJson(_result.data!);
+      _value = VerifyResetCodeModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -81,13 +81,13 @@ class _ForgetPasswordApiClient implements ForgetPasswordApiClient {
 
   @override
   Future<AuthResponseModel> resetPassword({
-    required Map<String, dynamic> body,
+    required ResetPasswordRequestModel body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body);
+    _data.addAll(body.toJson());
     final _options = _setStreamType<AuthResponseModel>(
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(

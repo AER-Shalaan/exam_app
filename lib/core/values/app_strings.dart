@@ -8,12 +8,12 @@ class AppStrings {
   static const forgotPasswordDescription =
       "Please enter your email associated to\nyour account";
   static const email = 'Email';
-  static const emailHint = "Enter you email";
+  static const emailHint = "Enter your email";
   static const password = 'Password';
   static const newPassword = 'New password';
   static const confirmPassword = 'Confirm password';
-  static const passwordHint = "Enter you password";
-  static const confirmPasswordHint = "Enter you confirm password";
+  static const passwordHint = "Enter your password";
+  static const confirmPasswordHint = "Enter your confirm password";
   static const login = "Login";
   static const signUp = "Sign Up";
   static const verifyCodeTitle = "Email verification";
@@ -38,4 +38,6 @@ class AppStrings {
       'Confirm password cannot be empty';
   static const passwordsDoNotMatch = 'Passwords do not match.';
   static const continueString = "Continue";
+  static const resendCodeSuccess =
+      "The OTP has been sent back to your email address.";
 }

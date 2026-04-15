@@ -8,8 +8,8 @@ class SuccessBaseResponse<T> extends BaseResponse<T> {
 }
 
 class ErrorBaseResponse<T> extends BaseResponse<T> {
-  Exception exception;
-  late String errorMessage;
+  final Exception exception;
+  late final String errorMessage;
 
   ErrorBaseResponse({required this.exception}) {
     errorMessage = BaseError.handleException(exception);

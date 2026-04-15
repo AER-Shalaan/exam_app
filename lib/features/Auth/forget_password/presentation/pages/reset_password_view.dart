@@ -9,14 +9,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-class ResetPasswordView extends StatelessWidget {
-  ResetPasswordView({super.key});
+class ResetPasswordView extends StatefulWidget {
+  const ResetPasswordView({super.key});
 
+  @override
+  State<ResetPasswordView> createState() => _ResetPasswordViewState();
+}
+
+class _ResetPasswordViewState extends State<ResetPasswordView> {
   final _formKey = GlobalKey<FormState>();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
-  final ValueNotifier<bool> isPasswordHidden = ValueNotifier(true);
-  final ValueNotifier<bool> isConfirmPasswordHidden = ValueNotifier(true);
+
+  late final TextEditingController passwordController;
+  late final TextEditingController confirmPasswordController;
+
+  late final ValueNotifier<bool> isPasswordHidden;
+  late final ValueNotifier<bool> isConfirmPasswordHidden;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
+    isPasswordHidden = ValueNotifier(true);
+    isConfirmPasswordHidden = ValueNotifier(true);
+  }
+
+  @override
+  void dispose() {
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    isPasswordHidden.dispose();
+    isConfirmPasswordHidden.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +51,17 @@ class ResetPasswordView extends StatelessWidget {
       listenWhen: (previous, current) =>
           previous.resetPasswordState != current.resetPasswordState,
       listener: (context, state) {
-        if (state.resetPasswordState.errorMessage != null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.resetPasswordState.errorMessage!)),
-          );
+        final error = state.resetPasswordState.errorMessage;
+        final success = state.resetPasswordState.data;
+
+        if (error != null && error.isNotEmpty) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(error)));
         }
-        if (state.resetPasswordState.data != null) {
+
+        if (success != null) {
+          if (!mounted) return;
           showDialog(
             context: context,
             barrierDismissible: false,
@@ -41,11 +71,7 @@ class ResetPasswordView extends StatelessWidget {
               actions: [
                 TextButton(
                   onPressed: () {
-                    // Navigator.pushNamedAndRemoveUntil(
-                    //   context,
-                    //   AppRoutes.loginViewRouteName,
-                    //   (route) => false,
-                    // );
+                    
                   },
                   child: const Text(AppStrings.login),
                 ),
@@ -60,68 +86,65 @@ class ResetPasswordView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Form(
               key: _formKey,
-              autovalidateMode: AutovalidateMode.disabled,
               child: Column(
                 children: [
                   const SizedBox(height: 40),
+
                   Text(
                     AppStrings.resetPassword,
                     style: TextStyles.bodyMedium18,
                   ),
+
                   const SizedBox(height: 16),
+
                   Text(
                     AppStrings.resetPasswordDescription,
                     style: TextStyles.bodyMRegular14grey,
                     textAlign: TextAlign.center,
                   ),
+
                   const SizedBox(height: 32),
-                  ValueListenableBuilder(
+
+                  ValueListenableBuilder<bool>(
                     valueListenable: isPasswordHidden,
-                    builder: (BuildContext context, hidden, _) {
+                    builder: (_, hidden, _) {
                       return TextFormField(
                         controller: passwordController,
                         obscureText: hidden,
                         decoration: InputDecoration(
                           labelText: AppStrings.newPassword,
-                          hintText: AppStrings.passwordHint,
                           suffixIcon: IconButton(
                             icon: SvgPicture.asset(
                               hidden
                                   ? Assets.assetsIconsVisibilityOff
                                   : Assets.assetsIconsVisibility,
-                              height: 22,
                             ),
-                            onPressed: () {
-                              isPasswordHidden.value = !hidden;
-                            },
+                            onPressed: () => isPasswordHidden.value = !hidden,
                           ),
                         ),
-                        validator: (value) {
-                          return AppValidation.validatePassword(value);
-                        },
+                        validator: AppValidation.validatePassword,
                       );
                     },
                   ),
+
                   const SizedBox(height: 24),
-                  ValueListenableBuilder(
+
+                  ValueListenableBuilder<bool>(
                     valueListenable: isConfirmPasswordHidden,
-                    builder: (BuildContext context, hidden, _) {
+                    builder: (_, hidden, _) {
                       return TextFormField(
                         controller: confirmPasswordController,
                         obscureText: hidden,
                         decoration: InputDecoration(
                           labelText: AppStrings.confirmPassword,
-                          hintText: AppStrings.confirmPassword,
                           suffixIcon: IconButton(
                             icon: SvgPicture.asset(
                               hidden
                                   ? Assets.assetsIconsVisibilityOff
                                   : Assets.assetsIconsVisibility,
-                              height: 22,
                             ),
-                            onPressed: () {
-                              isConfirmPasswordHidden.value = !hidden;
-                            },
+                            onPressed: () =>
+                                isConfirmPasswordHidden.value = !hidden,
                           ),
                         ),
                         validator: (value) {
@@ -133,7 +156,9 @@ class ResetPasswordView extends StatelessWidget {
                       );
                     },
                   ),
+
                   const SizedBox(height: 48),
+
                   FilledButton(
                     onPressed: state.resetPasswordState.isLoading
                         ? null
@@ -150,10 +175,7 @@ class ResetPasswordView extends StatelessWidget {
                         ? const SizedBox(
                             height: 20,
                             width: 20,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              color: Colors.white,
-                            ),
+                            child: CircularProgressIndicator(strokeWidth: 2),
                           )
                         : const Text(AppStrings.continueString),
                   ),

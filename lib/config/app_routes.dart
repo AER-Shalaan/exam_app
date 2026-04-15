@@ -1,7 +1,7 @@
 import 'package:exam_app/features/auth/forget_password/presentation/forget_password_view.dart';
 import 'package:flutter/material.dart';
 
-class AppRoutes {
+abstract class AppRoutes {
   static const String splashRouteName = "splash";
   static const String signUpViewRouteName = "SignUpView";
   static const String loginViewRouteName = "LoginView";
