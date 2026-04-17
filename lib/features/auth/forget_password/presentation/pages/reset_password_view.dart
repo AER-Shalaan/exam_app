@@ -47,7 +47,7 @@ class ResetPasswordView extends StatelessWidget {
                       (route) => false,
                     );
                   },
-                  child: const Text(AppStrings.login),
+                  child: const Text(AppStrings.loginTitle),
                 ),
               ],
             ),

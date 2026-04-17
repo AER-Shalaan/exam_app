@@ -6,11 +6,11 @@ class AppStrings {
   // Titles
   static const loginTitle = "Login";
   static const signUpTitle = "Sign Up";
-  static const login = "Login";
-  static const signUp = "Sign Up";
+  static const homeTitle = "Survey";
   static const alreadyhaveanaccount = "Already have an account? ";
   static const dontAcont = "Don't have an account? ";
   static const rememberMe = "Remember me";
+  static const browseBySubject = "Browse by subject";
 
   // Fields
   static const userName = "User name";
@@ -19,16 +19,15 @@ class AppStrings {
   static const firstnameHint = "Enter first name";
   static const lastName = "Last name";
   static const lastnameHint = "Enter last name";
-
   static const email = "Email";
   static const emailHint = "Enter your email";
   static const phone = "Phone number";
   static const phoneHint = "Enter phone number";
-
   static const password = "Password";
   static const passwordHint = "Enter your password";
   static const confirmPassword = "Confirm password";
   static const confirmPasswordHint = "Enter your confirm password";
+  static const search = "Search";
 
   // Validation
   static const fieldCannotBeEmpty = 'This field cannot be empty';
@@ -66,6 +65,11 @@ class AppStrings {
       "Password changed successfully.\nPlease login again.";
   static const registersuccessfuly = "Register Successfully";
 
+  // navBartitles
+  static const explore = "Explore";
+  static const result = "Result";
+  static const profile = "Profile";
+
   // General
   static const continueString = "Continue";
 
@@ -73,8 +77,7 @@ class AppStrings {
   static const noInternetConnection = "No internet connection";
   static const connectionTimeout = "Connection timeout, please try again";
   static const requestTimeout = "Request timeout";
-  static const serverTookTooLongToRespond =
-      "Server took too long to respond";
+  static const serverTookTooLongToRespond = "Server took too long to respond";
   static const badcertificate = "Bad certificate";
   static const cancel = "Request was cancelled";
   static const connectionerror = "No internet connection";
@@ -82,4 +85,5 @@ class AppStrings {
   static const servererroroccurred = "Server error occurred";
   static const somethingwentwrong = "Something went wrong";
   static const message = "message";
+  static const noSubjectsFound = "No subjects found";
 }
