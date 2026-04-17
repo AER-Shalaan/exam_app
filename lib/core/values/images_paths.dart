@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   static const String assetsIconsAdd = "assets/icons/add.svg";
 
   static const String assetsIconsAddress = "assets/icons/address.svg";
@@ -18,11 +18,11 @@ class Assets {
 
   static const String assetsIconsDelete = "assets/icons/delete.svg";
 
-  static const String assetsIconsDiamond = "assets/icons/diamond.svg";
+  static const String assetsIconsDiamond = "assets/icons/Diamond.svg";
 
   static const String assetsIconsGift = "assets/icons/gift.svg";
 
-  static const String assetsIconsGiftOpen = "assets/icons/gift_open.svg";
+  static const String assetsIconsGiftOpen = "assets/icons/Gift_open.svg";
 
   static const String assetsIconsHeartEyes = "assets/icons/heart_eyes.svg";
 
@@ -48,7 +48,7 @@ class Assets {
 
   static const String assetsIconsTranslate = "assets/icons/translate.svg";
 
-  static const String assetsIconsTulip = "assets/icons/tulip.svg";
+  static const String assetsIconsTulip = "assets/icons/Tulip.svg";
 
   static const String assetsIconsTune = "assets/icons/tune.svg";
 
@@ -56,7 +56,7 @@ class Assets {
 
   static const String assetsIconsVisibilityOff = "assets/icons/visibility_off.svg";
 
-  static const String assetsIconsWarning = "assets/icons/warning.svg";
+  static const String assetsIconsWarning = "assets/icons/Warning.svg";
 
   static const String assetsImagesClock = "assets/images/clock.svg";
 
@@ -64,14 +64,15 @@ class Assets {
 
   static const String assetsImagesDraftingTools = "assets/images/drafting_tools.svg";
 
+  static const String assetsImagesExamSplash = "assets/images/exam_splash.png";
+
   static const String assetsImagesLanguageTranslator = "assets/images/language_translator.svg";
 
   static const String assetsImagesMath = "assets/images/math.svg";
 
-  static const String assetsImagesMicroscope = "assets/images/microscope.svg";
+  static const String assetsImagesMicroscope = "assets/images/Microscope.svg";
 
-  static const String assetsImagesProfit = "assets/images/profit.svg";
+  static const String assetsImagesProfit = "assets/images/Profit.svg";
 
   static const String assetsImagesSandClock = "assets/images/sand_clock.svg";
 }
-
