@@ -9,7 +9,7 @@ part 'home_api_client.g.dart';
 
 @injectable
 @RestApi()
-abstract class HomeApiClient {
+abstract interface  class HomeApiClient {
   @factoryMethod
   factory HomeApiClient(Dio dio) = _HomeApiClient;
 
