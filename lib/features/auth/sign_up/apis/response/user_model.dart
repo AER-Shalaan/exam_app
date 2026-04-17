@@ -34,12 +34,7 @@ class UserModel {
     this.id,
     this.createdAt,
   });
-  // SignUpEntitiies toEntity() => SignUpEntitiies(
 
-  //   lastName: lastN,
-  //   phone: phone,
-
-  // );
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 

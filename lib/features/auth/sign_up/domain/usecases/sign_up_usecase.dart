@@ -11,5 +11,5 @@ class SetUserusecase {
   SetUserusecase(this._repository);
   
   Future<BaseResponse<SignUpEntity>> call(SignUpRequest request) =>
-      _repository.setUsers(request: request); // SignUpEntity
+      _repository.setUsers(request: request);
 }
