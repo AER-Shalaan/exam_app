@@ -40,4 +40,5 @@ class AppStrings {
   static const continueString = "Continue";
   static const resendCodeSuccess =
       "The OTP has been sent back to your email address.";
+  static const emailNotFound = "Email not found. Please restart flow.";
 }

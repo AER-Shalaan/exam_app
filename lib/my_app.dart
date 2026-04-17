@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       themeMode: ThemeMode.light,
-      initialRoute: AppRoutes.forgotPasswordRouteName,
+      initialRoute: AppRoutes.splashRouteName,
       routes: AppRoutes.getRoutes(),
     );
   }

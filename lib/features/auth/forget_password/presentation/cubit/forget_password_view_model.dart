@@ -10,6 +10,7 @@ import 'package:exam_app/features/auth/forget_password/domain/use_cases/send_ema
 import 'package:exam_app/features/auth/forget_password/domain/use_cases/verify_otp_use_case.dart';
 import 'package:exam_app/features/auth/forget_password/presentation/cubit/forget_password_events.dart';
 import 'package:exam_app/features/auth/forget_password/presentation/cubit/forget_password_states.dart';
+import 'package:exam_app/features/auth/forget_password/presentation/cubit/forget_password_step.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -33,17 +34,14 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
       case VerifyResetCodeEvent():
         _verifyResetCode(event.code);
         break;
-      case FormValidationChangedEvent():
-        emit(state.copyWith(isFormValid: event.isValid));
-        break;
       case ResendCodeEvent():
-        _resendCode(state.email!);
+        _handleResend();
         break;
       case ResetPasswordEvent():
-        _resetPassword(state.email!, event.password);
+        _resetPassword(event.password);
         break;
       case NextPageEvent():
-        _nextPage();
+        _nextStep();
         break;
       case ClearVerifyCodeErrorEvent():
         emit(
@@ -57,8 +55,19 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
     }
   }
 
-  void _nextPage() {
-    emit(state.copyWith(currentPage: state.currentPage + 1));
+  void _nextStep() {
+    switch (state.step) {
+      case ForgetPasswordStep.email:
+        emit(state.copyWith(step: ForgetPasswordStep.verifyCode));
+        break;
+
+      case ForgetPasswordStep.verifyCode:
+        emit(state.copyWith(step: ForgetPasswordStep.resetPassword));
+        break;
+
+      case ForgetPasswordStep.resetPassword:
+        break;
+    }
   }
 
   Future<void> _sendEmail(String email) async {
@@ -143,13 +152,29 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
     }
   }
 
+  Future<void> _handleResend() async {
+    final email = state.email;
+
+    if (email == null || email.isEmpty) {
+      emit(
+        state.copyWith(
+          verifyResetState: state.verifyResetState.copyWith(
+            errorMessageParam: "Email not found. Restart flow.",
+          ),
+        ),
+      );
+      return;
+    }
+    await _resendCode(email);
+  }
+
   Future<void> _resendCode(String email) async {
     await _sendEmailUseCase.call(
       body: ForgetPasswordRequestModel(email: email),
     );
   }
 
-  Future<void> _resetPassword(String email, String password) async {
+  Future<void> _resetPassword(String password) async {
     emit(
       state.copyWith(
         resetPasswordState: state.resetPasswordState.copyWith(
@@ -161,7 +186,10 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
     );
 
     final response = await _resetPasswordUseCase.call(
-      body: ResetPasswordRequestModel(email: email, newPassword: password),
+      body: ResetPasswordRequestModel(
+        email: state.email!,
+        newPassword: password,
+      ),
     );
 
     switch (response) {
