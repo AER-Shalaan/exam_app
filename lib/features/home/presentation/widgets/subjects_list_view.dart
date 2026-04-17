@@ -1,4 +1,3 @@
-import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/features/home/presentation/cubit/home_states.dart';
@@ -57,7 +56,8 @@ class SubjectsListView extends StatelessWidget {
                 icon: subject.icon,
                 name: subject.name,
                 onTap: () {
-                  Navigator.of(context).pushNamed(AppRoutes.examOnSubjectViewRouteName, arguments: subject.id);
+                  //TODO: navigate to exams on subject view
+                  //Navigator.of(context).pushNamed(AppRoutes.examOnSubjectViewRouteName, arguments: subject.id);
                   // replace with fixed subject id for testing
                   //Navigator.of(context).pushNamed(AppRoutes.examOnSubjectViewRouteName, arguments: "670037f6728c92b7fdf434fc");
                 },

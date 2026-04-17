@@ -11,7 +11,6 @@ class AppRoutes {
   static const String loginViewRouteName = "LoginView";
   static const String forgotPasswordRouteName = "ForgotPasswordView";
   static const String homeViewRouteName = "HomeView";
-  static const String examOnSubjectViewRouteName = "ExamOnSubjectView";
 
 
   static Map<String, Widget Function(BuildContext)> getRoutes() {
@@ -21,7 +20,6 @@ class AppRoutes {
       signUpViewRouteName: (_) => SignUpView(),
       forgotPasswordRouteName: (context) => ForgetPasswordView(),
       homeViewRouteName: (_) => HomeView(),
-      //examOnSubjectViewRouteName: (_) => ExamOnSubjectView(),
 
     };
   }
