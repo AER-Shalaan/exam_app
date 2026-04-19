@@ -164,7 +164,7 @@ class SignUpView extends StatelessWidget {
                           if (!context.mounted) return;
                           Navigator.of(
                             context,
-                          ).popAndPushNamed(AppRoutes.homeViewRouteName);
+                          ).popAndPushNamed(AppRoutes.languagesScreenRouteName);
                         });
                       }
                     },

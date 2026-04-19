@@ -62,7 +62,7 @@ class LoginView extends StatelessWidget {
             } else if (loginState.data != null) {
               Navigator.pushReplacementNamed(
                 context,
-                AppRoutes.homeViewRouteName,
+                AppRoutes.languagesScreenRouteName,
               );
             }
           },

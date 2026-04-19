@@ -90,7 +90,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     if (!mounted) return;
 
     final route = hasToken
-        ? AppRoutes.homeViewRouteName
+        ? AppRoutes.languagesScreenRouteName
         : AppRoutes.loginViewRouteName;
 
     Navigator.pushReplacementNamed(context, route);

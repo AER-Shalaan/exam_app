@@ -17,8 +17,16 @@ class LanguagesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)?.settings.arguments;
+    String? subjectId;
+    if (args is String) {
+      subjectId = args;
+    } else if (args is Map) {
+      subjectId = args['id']?.toString() ?? args['subjectId']?.toString();
+    }
+
     return BlocProvider(
-      create: (context) => getIt<ExamsViewModel>()..add(GetExamsEvent()),
+      create: (context) => getIt<ExamsViewModel>()..add(GetExamsEvent(subjectId: subjectId)),
       child: Scaffold(
         backgroundColor: AppColors.whiteColor,
         appBar: AppBar(
@@ -84,7 +92,11 @@ class LanguagesScreen extends StatelessWidget {
   Widget _buildExamCard(BuildContext context, ExamEntity exam) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.startExamScreenRouteName);
+        Navigator.pushNamed(
+          context,
+          AppRoutes.startExamScreenRouteName,
+          arguments: exam.id,
+        );
       },
       child: Container(
         padding: const EdgeInsets.all(12),
@@ -94,6 +106,7 @@ class LanguagesScreen extends StatelessWidget {
           border: Border.all(color: Colors.grey.shade300),
           boxShadow: [
             BoxShadow(
+              // ignore: deprecated_member_use
               color: Colors.black.withOpacity(0.02),
               blurRadius: 10,
               offset: const Offset(0, 4),
@@ -146,10 +159,7 @@ class LanguagesScreen extends StatelessWidget {
                   const Gap(4),
                   Text(
                     '${exam.numberOfQuestions ?? 0} Questions',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey.shade600,
-                    ),
+                    style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
                   ),
                   const Gap(12),
                   Row(
