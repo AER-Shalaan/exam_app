@@ -17,4 +17,5 @@ class Endpoints {
   static const String getLogoutEndpoint = '$baseUrl/auth/logout';
 
   static const String getAllSubjectsEndpoint = '$baseUrl/subjects';
+  static const String getAllExamsEndpoint = '$baseUrl/exams';
 }

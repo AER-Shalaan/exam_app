@@ -1,6 +1,6 @@
 import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/auth/token_manager.dart';
-import 'package:exam_app/core/values/images_paths.dart';
+import 'package:exam_app/core/values/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {
@@ -10,12 +10,19 @@ class SplashView extends StatefulWidget {
   State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends State<SplashView>
-    with SingleTickerProviderStateMixin {
+class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   late final AnimationController _controller;
-  late final Animation<double> _fadeLogo;
+
+  // Icon Animations
+  late final Animation<double> _iconScale;
+  late final Animation<Offset> _iconSlide;
+
+  // Checkmark Animations
+  late final Animation<double> _checkScale;
+
+  // Text Animations
   late final Animation<double> _fadeText;
-  late final Animation<Offset> _slideLogo;
+  late final Animation<Offset> _slideText;
 
   @override
   void initState() {
@@ -27,37 +34,58 @@ class _SplashViewState extends State<SplashView>
   void _setupAnimations() {
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(milliseconds: 2500),
     );
 
-    _fadeLogo = Tween<double>(
-      begin: 0,
-      end: 1,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+    // 1. Exam Icon Slides up and Scales
+    _iconScale = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 0.4, curve: Curves.easeOutBack),
+      ),
+    );
 
-    _slideLogo = Tween<Offset>(
-      begin: const Offset(0, 0.3),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+    _iconSlide = Tween<Offset>(begin: const Offset(0, 0.5), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
+            parent: _controller,
+            curve: const Interval(0.0, 0.4, curve: Curves.easeOutCubic),
+          ),
+        );
 
+    // 2. Checkmark pops up after the icon
+    _checkScale = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.4, 0.7, curve: Curves.elasticOut),
+      ),
+    );
+
+    // 3. Text fades and slides in
     _fadeText = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0.5, 1, curve: Curves.easeOut),
+        curve: const Interval(0.6, 1.0, curve: Curves.easeIn),
       ),
     );
+
+    _slideText = Tween<Offset>(begin: const Offset(0, 0.5), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
+            parent: _controller,
+            curve: const Interval(0.6, 1.0, curve: Curves.easeOutCubic),
+          ),
+        );
 
     _controller.forward();
   }
 
   Future<void> _navigate() async {
     await TokenManager.init();
-
     final hasToken = TokenManager.isLoggedIn;
 
-    await Future.delayed(
-      hasToken ? const Duration(milliseconds: 500) : const Duration(seconds: 2),
-    );
+    // Wait for animation to finish
+    await Future.delayed(const Duration(milliseconds: 3000));
 
     if (!mounted) return;
 
@@ -76,33 +104,110 @@ class _SplashViewState extends State<SplashView>
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
+      body: Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.primary,
+              AppColors.primary80,
+              AppColors.primary100,
+            ],
+          ),
+        ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: height * 0.3),
-
-            SlideTransition(
-              position: _slideLogo,
-              child: FadeTransition(
-                opacity: _fadeLogo,
-                child: Image.asset(Assets.assetsImagesExamSplash, height: 100),
+            // Animated Exam Icon Area
+            SizedBox(
+              height: 160,
+              width: 160,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  SlideTransition(
+                    position: _iconSlide,
+                    child: ScaleTransition(
+                      scale: _iconScale,
+                      child: Container(
+                        padding: const EdgeInsets.all(24),
+                        decoration: BoxDecoration(
+                          color: AppColors.whiteColor.withOpacity(0.15),
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              blurRadius: 30,
+                              offset: const Offset(0, 10),
+                            ),
+                          ],
+                        ),
+                        child: const Icon(
+                          Icons.assignment_rounded,
+                          size: 80,
+                          color: AppColors.whiteColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 10,
+                    right: 10,
+                    child: ScaleTransition(
+                      scale: _checkScale,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.green, // Assuming successColor
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: AppColors.primary80,
+                            width: 4,
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.check_rounded,
+                          color: AppColors.whiteColor,
+                          size: 40,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
 
-            SizedBox(height: height * 0.25),
+            const SizedBox(height: 50),
 
-            FadeTransition(
-              opacity: _fadeText,
-              child: const Text(
-                'Study…Test…Succeed',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
+            // Animated Text
+            SlideTransition(
+              position: _slideText,
+              child: FadeTransition(
+                opacity: _fadeText,
+                child: const Column(
+                  children: [
+                    Text(
+                      'Exams',
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2.0,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Master Your Exams',
+                      style: TextStyle(
+                        color: AppColors.primary20,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 1.5,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
