@@ -26,7 +26,8 @@ class LanguagesScreen extends StatelessWidget {
     }
 
     return BlocProvider(
-      create: (context) => getIt<ExamsViewModel>()..add(GetExamsEvent(subjectId: subjectId)),
+      create: (context) =>
+          getIt<ExamsViewModel>()..add(GetExamsEvent(subjectId: subjectId)),
       child: Scaffold(
         backgroundColor: AppColors.whiteColor,
         appBar: AppBar(
