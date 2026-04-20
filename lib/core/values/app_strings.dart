@@ -6,10 +6,11 @@ abstract class AppStrings {
   static const loginTitle = "Login";
   static const signUpTitle = "Sign Up";
   static const homeTitle = "Survey";
+
+  // Auth
   static const alreadyhaveanaccount = "Already have an account? ";
   static const dontAcont = "Don't have an account? ";
   static const rememberMe = "Remember me";
-  static const browseBySubject = "Browse by subject";
 
   // Fields
   static const userName = "User name";
@@ -27,6 +28,9 @@ abstract class AppStrings {
   static const confirmPassword = "Confirm password";
   static const confirmPasswordHint = "Enter your confirm password";
   static const search = "Search";
+
+  // Browse
+  static const browseBySubject = "Browse by subject";
 
   // Validation
   static const fieldCannotBeEmpty = 'This field cannot be empty';
@@ -66,13 +70,14 @@ abstract class AppStrings {
   static const resendCodeSuccess =
       "The OTP has been sent back to your email address.";
 
-  // navBartitles
+  // Nav bar
   static const explore = "Explore";
   static const result = "Result";
   static const profile = "Profile";
 
   // General
   static const continueString = "Continue";
+  static const resending = "Resending code...";
 
   // Errors
   static const noInternetConnection = "No internet connection";

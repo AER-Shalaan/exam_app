@@ -91,13 +91,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i934.LoginApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i592.HomeApiClient>(() => _i592.HomeApiClient(gh<_i361.Dio>()));
-    gh.factory<_i478.HomeDataSourcesContract>(
-      () => _i9.HomeDataSourcesImpl(gh<_i592.HomeApiClient>()),
-    );
     gh.factory<_i413.ForgetPasswordDataSourceContract>(
       () => _i47.ForgetPasswordRemoteDataSourceImpl(
         gh<_i478.ForgetPasswordApiClient>(),
       ),
+    );
+    gh.factory<_i478.HomeDataSourcesContract>(
+      () => _i9.HomeDataSourcesImpl(gh<_i592.HomeApiClient>()),
     );
     gh.factory<_i791.SignUpRemoteDatasourceContract>(
       () => _i455.SignUpRemoteDatasorceImpl(gh<_i844.SignUpApiClient>()),
