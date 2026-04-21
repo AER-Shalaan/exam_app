@@ -27,16 +27,7 @@ class _EnterOtpViewState extends State<EnterOtpView> {
   }
 
   void _onResendTap() {
-    final viewModel = context.read<ForgetPasswordViewModel>();
-
-    viewModel.doEvent(ResendCodeEvent());
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(AppStrings.resendCodeSuccess),
-        duration: const Duration(seconds: 3),
-      ),
-    );
+    context.read<ForgetPasswordViewModel>().doEvent(ResendCodeEvent());
   }
 
   @override
@@ -52,17 +43,31 @@ class _EnterOtpViewState extends State<EnterOtpView> {
     return BlocConsumer<ForgetPasswordViewModel, ForgetPasswordStates>(
       listenWhen: (previous, current) =>
           previous.verifyResetState.isLoading &&
-          !current.verifyResetState.isLoading,
+              !current.verifyResetState.isLoading ||
+          (previous.resendCodeState.isLoading &&
+              !current.resendCodeState.isLoading),
 
       listener: (context, state) {
         if (state.verifyResetState.data != null) {
           viewModel.doEvent(NextPageEvent());
         }
+
+        if (!state.resendCodeState.isLoading) {
+          if (state.resendCodeState.errorMessage != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.resendCodeState.errorMessage!)),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(AppStrings.resendCodeSuccess)),
+            );
+          }
+        }
       },
       buildWhen: (previous, current) =>
           previous.verifyResetState != current.verifyResetState,
       builder: (context, state) {
-        return enterOtpBody(
+        return EnterOtpBody(
           otpController: otpController,
           viewModel: viewModel,
           resendRecognizer: _resendRecognizer,

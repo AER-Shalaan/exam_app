@@ -10,8 +10,8 @@ import 'package:exam_app/features/auth/forget_password/data/models/verify_reset_
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: ForgetPasswordDataSourceContract)
-class ForgetPasswordDataSourceImpl implements ForgetPasswordDataSourceContract {
-  ForgetPasswordDataSourceImpl(this.forgetPasswordApiClient);
+class ForgetPasswordRemoteDataSourceImpl implements ForgetPasswordDataSourceContract {
+  ForgetPasswordRemoteDataSourceImpl(this.forgetPasswordApiClient);
 
   final ForgetPasswordApiClient forgetPasswordApiClient;
   @override

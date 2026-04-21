@@ -1,4 +1,4 @@
-import 'package:exam_app/core/entities/auth_response_entity.dart';
+import 'package:exam_app/features/auth/forget_password/domain/entities/auth_response_entity.dart';
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/features/auth/forget_password/api/request_models/forget_password_request_model.dart';
 import 'package:exam_app/features/auth/forget_password/api/request_models/reset_password_request_model.dart';
@@ -35,7 +35,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
         _verifyResetCode(event.code);
         break;
       case ResendCodeEvent():
-        _handleResend();
+        _resendCode("abdelrahmanshalaan7@gmail.com");
         break;
       case ResetPasswordEvent():
         _resetPassword(event.password);
@@ -152,26 +152,52 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
     }
   }
 
-  Future<void> _handleResend() async {
-    final email = state.email;
-
-    if (email == null || email.isEmpty) {
-      emit(
-        state.copyWith(
-          verifyResetState: state.verifyResetState.copyWith(
-            errorMessageParam: "Email not found. Restart flow.",
-          ),
-        ),
-      );
-      return;
-    }
-    await _resendCode(email);
-  }
-
   Future<void> _resendCode(String email) async {
-    await _sendEmailUseCase.call(
+    emit(
+      state.copyWith(
+        resendCodeState: state.resendCodeState.copyWith(
+          isLoadingParam: true,
+          errorMessageParam: null,
+        ),
+      ),
+    );
+
+    final response = await _sendEmailUseCase.call(
       body: ForgetPasswordRequestModel(email: email),
     );
+
+    switch (response) {
+      case SuccessBaseResponse<ForgetPasswordEntity>():
+        emit(
+          state.copyWith(
+            resendCodeState: state.resendCodeState.copyWith(
+              isLoadingParam: false,
+            ),
+            resendSecondsLeft: 30,
+          ),
+        );
+
+        _startCountdown();
+        break;
+
+      case ErrorBaseResponse<ForgetPasswordEntity>():
+        emit(
+          state.copyWith(
+            resendCodeState: state.resendCodeState.copyWith(
+              isLoadingParam: false,
+              errorMessageParam: response.errorMessage,
+            ),
+          ),
+        );
+        break;
+    }
+  }
+
+  void _startCountdown() async {
+    while (state.resendSecondsLeft > 0) {
+      await Future.delayed(const Duration(seconds: 1));
+      emit(state.copyWith(resendSecondsLeft: state.resendSecondsLeft - 1));
+    }
   }
 
   Future<void> _resetPassword(String password) async {

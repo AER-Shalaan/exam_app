@@ -1,5 +1,4 @@
-class AppStrings {
-  AppStrings._();
+abstract class AppStrings {
   static const appName = "Exam App";
   static const splashScreenTitle = "Welcome to Exam App";
   static const signUpTitle = "Sign Up";
@@ -41,4 +40,8 @@ class AppStrings {
   static const resendCodeSuccess =
       "The OTP has been sent back to your email address.";
   static const emailNotFound = "Email not found. Please restart flow.";
+  static const routeNotFound = "Route Not Found";
+  static const resending = "Resending code...";
+  static String resendIn(int seconds) =>
+      "Resend in $seconds ${seconds == 1 ? 'second' : 'seconds'}";
 }

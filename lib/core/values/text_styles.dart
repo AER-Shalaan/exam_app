@@ -2,7 +2,7 @@ import 'package:exam_app/core/values/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TextStyles {
+abstract class TextStyles {
   static TextStyle appBarTextStyle = GoogleFonts.inter(
     fontSize: 20,
     fontWeight: FontWeight.w500,

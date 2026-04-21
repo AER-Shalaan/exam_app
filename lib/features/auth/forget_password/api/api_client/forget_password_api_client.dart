@@ -11,7 +11,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'forget_password_api_client.g.dart';
 
-@injectable
+@lazySingleton
 @RestApi()
 abstract interface class ForgetPasswordApiClient {
   @factoryMethod
