@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_single_quotes
-class Assets {
-  Assets._();
-  
+abstract class Assets {
   static const String assetsIconsAdd = "assets/icons/add.svg";
 
   static const String assetsIconsAddress = "assets/icons/address.svg";

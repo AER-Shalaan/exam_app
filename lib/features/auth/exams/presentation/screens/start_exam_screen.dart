@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:gap/gap.dart';
 
+import 'package:exam_app/core/values/app_strings.dart';
+
 class StartExamScreen extends StatelessWidget {
-  const StartExamScreen({super.key});
+  final String? examId;
+
+  const StartExamScreen({super.key, this.examId});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,7 @@ class StartExamScreen extends StatelessWidget {
                 const Gap(12),
                 const Expanded(
                   child: Text(
-                    'Languages',
+                    AppStrings.languages,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -86,7 +90,7 @@ class StartExamScreen extends StatelessWidget {
             Divider(color: Colors.grey.shade300, thickness: 1),
             const Gap(24),
             const Text(
-              'Instructions',
+              AppStrings.instructions,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -94,11 +98,15 @@ class StartExamScreen extends StatelessWidget {
               ),
             ),
             const Gap(16),
-            _buildInstructionItem('Lorem ipsum dolor sit amet consectetur.'),
-            _buildInstructionItem('Lorem ipsum dolor sit amet consectetur.'),
-            _buildInstructionItem('Lorem ipsum dolor sit amet consectetur.'),
-            _buildInstructionItem('Lorem ipsum dolor sit amet consectetur.'),
-            const Spacer(),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return _buildInstructionItem(
+                      'Lorem ipsum dolor sit amet consectetur.');
+                },
+              ),
+            ),
             SizedBox(
               width: double.infinity,
               height: 54,
@@ -113,7 +121,7 @@ class StartExamScreen extends StatelessWidget {
                   ),
                 ),
                 child: const Text(
-                  'Start',
+                  AppStrings.start,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

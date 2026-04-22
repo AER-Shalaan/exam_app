@@ -1,6 +1,7 @@
 import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/auth/token_manager.dart';
 import 'package:exam_app/core/values/app_colors.dart';
+import 'package:exam_app/core/values/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {
@@ -10,7 +11,7 @@ class SplashView extends StatefulWidget {
   State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
+class _SplashViewState extends State<SplashView> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
   // Icon Animations
@@ -90,7 +91,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     if (!mounted) return;
 
     final route = hasToken
-        ? AppRoutes.languagesScreenRouteName
+        ? AppRoutes.subjectExamsScreenRouteName
         : AppRoutes.loginViewRouteName;
 
     Navigator.pushReplacementNamed(context, route);
@@ -160,7 +161,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
                       scale: _checkScale,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.green, // Assuming successColor
+                          color: AppColors.successColor,
                           shape: BoxShape.circle,
                           border: Border.all(
                             color: AppColors.primary80,
@@ -189,7 +190,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
                 child: const Column(
                   children: [
                     Text(
-                      'Exams',
+                      AppStrings.exams,
                       style: TextStyle(
                         color: AppColors.whiteColor,
                         fontSize: 40,
@@ -199,7 +200,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Master Your Exams',
+                      AppStrings.masterYourExams,
                       style: TextStyle(
                         color: AppColors.primary20,
                         fontSize: 16,

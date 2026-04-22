@@ -3,6 +3,7 @@ class AppStrings {
 
   static const appName = "Exam App";
   static const splashScreenTitle = "Welcome to Exam App";
+  static const masterYourExams = "Master Your Exams";
   // Titles
   static const loginTitle = "Login";
   static const signUpTitle = "Sign Up";
@@ -11,6 +12,11 @@ class AppStrings {
   static const dontAcont = "Don't have an account? ";
   static const rememberMe = "Remember me";
   static const browseBySubject = "Browse by subject";
+  static const exams = "Exams";
+  static const noExamsAvailable = "No exams available";
+  static const languages = "Languages";
+  static const instructions = "Instructions";
+  static const start = "Start";
 
   // Fields
   static const userName = "User name";

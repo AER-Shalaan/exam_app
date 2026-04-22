@@ -1,20 +1,28 @@
-class ExamResponseEntity {
+import 'package:equatable/equatable.dart';
+
+class ExamResponseEntity extends Equatable {
   final String? message;
   final ExamMetadataEntity? metadata;
   final List<ExamEntity>? exams;
 
-  ExamResponseEntity({this.message, this.metadata, this.exams});
+  const ExamResponseEntity({this.message, this.metadata, this.exams});
+
+  @override
+  List<Object?> get props => [message, metadata, exams];
 }
 
-class ExamMetadataEntity {
+class ExamMetadataEntity extends Equatable {
   final int? currentPage;
   final int? numberOfPages;
   final int? limit;
 
-  ExamMetadataEntity({this.currentPage, this.numberOfPages, this.limit});
+  const ExamMetadataEntity({this.currentPage, this.numberOfPages, this.limit});
+
+  @override
+  List<Object?> get props => [currentPage, numberOfPages, limit];
 }
 
-class ExamEntity {
+class ExamEntity extends Equatable {
   final String? id;
   final String? title;
   final int? duration;
@@ -23,7 +31,7 @@ class ExamEntity {
   final bool? active;
   final String? createdAt;
 
-  ExamEntity({
+  const ExamEntity({
     this.id,
     this.title,
     this.duration,
@@ -32,4 +40,15 @@ class ExamEntity {
     this.active,
     this.createdAt,
   });
+
+  @override
+  List<Object?> get props => [
+        id,
+        title,
+        duration,
+        subject,
+        numberOfQuestions,
+        active,
+        createdAt,
+      ];
 }

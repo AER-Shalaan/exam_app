@@ -10,18 +10,20 @@ class ExamsViewModel extends Bloc<ExamsEvents, ExamsStates> {
   final GetExamsUseCase _getExamsUseCase;
 
   ExamsViewModel(this._getExamsUseCase) : super(ExamsInitialState()) {
-    on<GetExamsEvent>((event, emit) async {
-      emit(ExamsLoadingState());
-      final result = await _getExamsUseCase.call(subjectId: event.subjectId);
-      
-      switch (result) {
-        case SuccessBaseResponse():
-          emit(ExamsSuccessState(response: result.data));
-          break;
-        case ErrorBaseResponse():
-          emit(ExamsErrorState(errorMessage: result.errorMessage));
-          break;
-      }
-    });
+    on<GetExamsEvent>(_onGetExamsEvent);
+  }
+
+  Future<void> _onGetExamsEvent(GetExamsEvent event, Emitter<ExamsStates> emit) async {
+    emit(ExamsLoadingState());
+    final result = await _getExamsUseCase.call(subjectId: event.subjectId);
+    
+    switch (result) {
+      case SuccessBaseResponse():
+        emit(ExamsSuccessState(response: result.data));
+        break;
+      case ErrorBaseResponse():
+        emit(ExamsErrorState(errorMessage: result.errorMessage));
+        break;
+    }
   }
 }

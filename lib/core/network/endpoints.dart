@@ -1,6 +1,4 @@
-class Endpoints {
-  Endpoints._();
-
+abstract class Endpoints {
   static const String baseUrl = 'https://exam.elevateegy.com/api/v1';
   static const String postSignInEndpoint = '$baseUrl/auth/signin';
   static const String postSignUpEndpoint = '$baseUrl/auth/signup';
@@ -18,4 +16,6 @@ class Endpoints {
 
   static const String getAllSubjectsEndpoint = '$baseUrl/subjects';
   static const String getAllExamsEndpoint = '$baseUrl/exams';
+
+  static const String subjectQuery = 'subject';
 }
