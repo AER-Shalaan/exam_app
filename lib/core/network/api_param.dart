@@ -10,4 +10,5 @@ class ApiParam {
   static const String resetCode = "resetCode";
   static const String newPassword ="newPassword";
   static const String token = "token";
+  static const String subjectQueryken = "subject";
 }

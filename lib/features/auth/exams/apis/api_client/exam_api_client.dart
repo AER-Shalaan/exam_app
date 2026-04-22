@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:exam_app/core/network/api_param.dart';
 import 'package:exam_app/core/network/endpoints.dart';
 import 'package:exam_app/features/auth/exams/apis/response/exam_response.dart';
 import 'package:injectable/injectable.dart';
@@ -14,6 +15,6 @@ abstract class ExamApiClient {
 
   @GET(Endpoints.getAllExamsEndpoint)
   Future<ExamResponse> getExams({
-    @Query(Endpoints.subjectQuery) String? subjectId,
+    @Query(ApiParam.subjectQueryken) String? subjectId,
   });
 }

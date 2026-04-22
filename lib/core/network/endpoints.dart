@@ -17,5 +17,4 @@ abstract class Endpoints {
   static const String getAllSubjectsEndpoint = '$baseUrl/subjects';
   static const String getAllExamsEndpoint = '$baseUrl/exams';
 
-  static const String subjectQuery = 'subject';
 }
