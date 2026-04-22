@@ -2,8 +2,8 @@ import 'package:exam_app/features/auth/sign_up/presentation/screens/sign_up_view
 import 'package:exam_app/features/auth/forget_password/presentation/forget_password_view.dart';
 import 'package:exam_app/features/auth/login/presentation/pages/login_view.dart';
 import 'package:exam_app/features/splash_screen/presentation/splash_screen.dart';
-import 'package:exam_app/features/exams/presentation/screens/languages_screen.dart';
-import 'package:exam_app/features/exams/presentation/screens/start_exam_screen.dart';
+import 'package:exam_app/features/auth/exams/presentation/screens/languages_screen.dart';
+import 'package:exam_app/features/auth/exams/presentation/screens/start_exam_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {

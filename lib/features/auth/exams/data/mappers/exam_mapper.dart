@@ -1,5 +1,5 @@
-import 'package:exam_app/features/exams/apis/response/exam_response.dart';
-import 'package:exam_app/features/exams/domain/entities/exam_entity.dart';
+import 'package:exam_app/features/auth/exams/apis/response/exam_response.dart';
+import 'package:exam_app/features/auth/exams/domain/entities/exam_entity.dart';
 
 extension ExamResponseMapper on ExamResponse {
   ExamResponseEntity toEntity() {

@@ -1,4 +1,4 @@
-import 'package:exam_app/features/exams/domain/entities/exam_entity.dart';
+import 'package:exam_app/features/auth/exams/domain/entities/exam_entity.dart';
 
 abstract class ExamsStates {}
 
