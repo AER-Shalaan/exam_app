@@ -1,11 +1,14 @@
-import 'package:exam_app/core/entities/auth_response_entity.dart';
 import 'package:exam_app/features/auth/forget_password/data/models/auth_response_model.dart';
+import 'package:exam_app/features/auth/forget_password/domain/entities/auth_response_entity.dart';
 import 'package:exam_app/core/network/base_response.dart';
+import 'package:exam_app/features/auth/forget_password/api/request_models/forget_password_request_model.dart';
+import 'package:exam_app/features/auth/forget_password/api/request_models/reset_password_request_model.dart';
+import 'package:exam_app/features/auth/forget_password/api/request_models/verify_reset_code_request_model.dart';
 import 'package:exam_app/features/auth/forget_password/data/data_sources_contract/forget_password_data_source_contract.dart';
 import 'package:exam_app/features/auth/forget_password/data/models/forget_password_model.dart';
-import 'package:exam_app/features/auth/forget_password/data/models/verify_reset_model.dart';
+import 'package:exam_app/features/auth/forget_password/data/models/verify_reset_code_model.dart';
 import 'package:exam_app/features/auth/forget_password/domain/entities/forget_password_entity.dart';
-import 'package:exam_app/features/auth/forget_password/domain/entities/verify_reset_entity.dart';
+import 'package:exam_app/features/auth/forget_password/domain/entities/verify_reset_code_entity.dart';
 import 'package:exam_app/features/auth/forget_password/domain/repositories_contract/forget_password_repo_contract.dart';
 import 'package:injectable/injectable.dart';
 
@@ -17,7 +20,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepositoryContract {
 
   @override
   Future<BaseResponse<ForgetPasswordEntity>> sendEmail({
-    required Map<String, dynamic> body,
+    required ForgetPasswordRequestModel body,
   }) async {
     final response = await forgetPasswordDataSourceContract.sendEmail(
       body: body,
@@ -34,18 +37,18 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepositoryContract {
   }
 
   @override
-  Future<BaseResponse<VerifyResetEntity>> verifyReset({
-    required Map<String, dynamic> body,
+  Future<BaseResponse<VerifyResetCodeEntity>> verifyReset({
+    required VerifyResetCodeRequestModel body,
   }) async {
     final response = await forgetPasswordDataSourceContract.verifyReset(
       body: body,
     );
     switch (response) {
-      case SuccessBaseResponse<VerifyResetModel>():
+      case SuccessBaseResponse<VerifyResetCodeModel>():
         final data = response.data.toDomain();
-        return SuccessBaseResponse<VerifyResetEntity>(data: data);
-      case ErrorBaseResponse<VerifyResetModel>():
-        return ErrorBaseResponse<VerifyResetEntity>(
+        return SuccessBaseResponse<VerifyResetCodeEntity>(data: data);
+      case ErrorBaseResponse<VerifyResetCodeModel>():
+        return ErrorBaseResponse<VerifyResetCodeEntity>(
           exception: response.exception,
         );
     }
@@ -53,7 +56,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepositoryContract {
 
   @override
   Future<BaseResponse<AuthResponseEntity>> resetPassword({
-    required Map<String, dynamic> body,
+    required ResetPasswordRequestModel body,
   }) async {
     final response = await forgetPasswordDataSourceContract.resetPassword(
       body: body,

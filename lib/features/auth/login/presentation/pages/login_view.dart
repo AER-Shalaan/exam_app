@@ -1,6 +1,6 @@
-import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/config/di/di.dart';
 import 'package:exam_app/core/values/app_colors.dart';
+import 'package:exam_app/core/values/app_routes_name.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
@@ -58,12 +58,8 @@ class LoginView extends StatelessWidget {
                   backgroundColor: AppColors.errorColor,
                 ),
               );
-              state.loginState.errorMessage = null;
             } else if (loginState.data != null) {
-              Navigator.pushReplacementNamed(
-                context,
-                AppRoutes.homeViewRouteName,
-              );
+              Navigator.pushReplacementNamed(context, AppRoutesName.home);
             }
           },
           builder: (context, state) {
@@ -145,7 +141,7 @@ class LoginView extends StatelessWidget {
                           onPressed: () {
                             Navigator.pushNamed(
                               context,
-                              AppRoutes.forgotPasswordRouteName,
+                              AppRoutesName.forgotPassword,
                             );
                           },
                           child: Text(
@@ -197,9 +193,9 @@ class LoginView extends StatelessWidget {
                             style: TextStyles.bodyMedium16PrimaryUnderline,
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                Navigator.of(context).pushReplacementNamed(
-                                  AppRoutes.signUpViewRouteName,
-                                );
+                                Navigator.of(
+                                  context,
+                                ).pushReplacementNamed(AppRoutesName.signUp);
                               },
                           ),
                         ],

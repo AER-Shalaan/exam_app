@@ -1,4 +1,4 @@
-import 'package:exam_app/core/entities/auth_response_entity.dart';
+import 'package:exam_app/features/auth/forget_password/domain/entities/auth_response_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'auth_response_model.g.dart';

@@ -1,14 +1,16 @@
-import 'package:exam_app/core/entities/auth_response_entity.dart';
-import 'package:exam_app/core/network/api_param.dart';
+import 'package:exam_app/features/auth/forget_password/domain/entities/auth_response_entity.dart';
 import 'package:exam_app/core/network/base_response.dart';
+import 'package:exam_app/features/auth/forget_password/api/request_models/forget_password_request_model.dart';
+import 'package:exam_app/features/auth/forget_password/api/request_models/reset_password_request_model.dart';
+import 'package:exam_app/features/auth/forget_password/api/request_models/verify_reset_code_request_model.dart';
 import 'package:exam_app/features/auth/forget_password/domain/entities/forget_password_entity.dart';
-import 'package:exam_app/features/auth/forget_password/domain/entities/verify_reset_entity.dart';
+import 'package:exam_app/features/auth/forget_password/domain/entities/verify_reset_code_entity.dart';
 import 'package:exam_app/features/auth/forget_password/domain/use_cases/reset_password_use_case.dart';
 import 'package:exam_app/features/auth/forget_password/domain/use_cases/send_email_use_case.dart';
 import 'package:exam_app/features/auth/forget_password/domain/use_cases/verify_otp_use_case.dart';
 import 'package:exam_app/features/auth/forget_password/presentation/cubit/forget_password_events.dart';
 import 'package:exam_app/features/auth/forget_password/presentation/cubit/forget_password_states.dart';
-import 'package:flutter/material.dart';
+import 'package:exam_app/features/auth/forget_password/presentation/cubit/forget_password_step.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -23,21 +25,6 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
   final SendEmailUseCase _sendEmailUseCase;
   final VerifyOtpUseCase _verifyResetUseCase;
   final ResetPasswordUseCase _resetPasswordUseCase;
-  late String _email;
-  final PageController pageController = PageController();
-
-  int _currentPage = 0;
-
-  void _nextPage() {
-    if (pageController.hasClients) {
-      _currentPage++;
-      pageController.animateToPage(
-        _currentPage,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOutCubic,
-      );
-    }
-  }
 
   void doEvent(ForgetPasswordEvents event) {
     switch (event) {
@@ -47,15 +34,16 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
       case VerifyResetCodeEvent():
         _verifyResetCode(event.code);
         break;
-      case FormValidationChangedEvent():
-        emit(state.copyWith(isFormValid: event.isValid));
-        break;
       case ResendCodeEvent():
-        _resendCode(_email);
+        _resendCode("abdelrahmanshalaan7@gmail.com");
         break;
       case ResetPasswordEvent():
-        resetPassword(_email, event.password);
-      case ClearVerifyErrorEvent():
+        _resetPassword(event.password);
+        break;
+      case NextPageEvent():
+        _nextStep();
+        break;
+      case ClearVerifyCodeErrorEvent():
         emit(
           state.copyWith(
             verifyResetState: state.verifyResetState.copyWith(
@@ -63,6 +51,21 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
             ),
           ),
         );
+        break;
+    }
+  }
+
+  void _nextStep() {
+    switch (state.step) {
+      case ForgetPasswordStep.email:
+        emit(state.copyWith(step: ForgetPasswordStep.verifyCode));
+        break;
+
+      case ForgetPasswordStep.verifyCode:
+        emit(state.copyWith(step: ForgetPasswordStep.resetPassword));
+        break;
+
+      case ForgetPasswordStep.resetPassword:
         break;
     }
   }
@@ -79,21 +82,21 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
     );
 
     final response = await _sendEmailUseCase.call(
-      body: {ApiParam.email: email},
+      body: ForgetPasswordRequestModel(email: email),
     );
 
     switch (response) {
       case SuccessBaseResponse<ForgetPasswordEntity>():
-        _email = email;
         emit(
           state.copyWith(
             sendEmailState: state.sendEmailState.copyWith(
               isLoadingParam: false,
               dataParam: response.data,
             ),
+            email: email,
           ),
         );
-        _nextPage();
+
         break;
 
       case ErrorBaseResponse<ForgetPasswordEntity>():
@@ -121,11 +124,11 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
     );
 
     final response = await _verifyResetUseCase.call(
-      body: {ApiParam.resetCode: code},
+      body: VerifyResetCodeRequestModel(resetCode: code),
     );
 
     switch (response) {
-      case SuccessBaseResponse<VerifyResetEntity>():
+      case SuccessBaseResponse<VerifyResetCodeEntity>():
         emit(
           state.copyWith(
             verifyResetState: state.verifyResetState.copyWith(
@@ -134,10 +137,9 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
             ),
           ),
         );
-        _nextPage();
         break;
 
-      case ErrorBaseResponse<VerifyResetEntity>():
+      case ErrorBaseResponse<VerifyResetCodeEntity>():
         emit(
           state.copyWith(
             verifyResetState: state.verifyResetState.copyWith(
@@ -151,10 +153,54 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
   }
 
   Future<void> _resendCode(String email) async {
-    await _sendEmailUseCase.call(body: {ApiParam.email: email});
+    emit(
+      state.copyWith(
+        resendCodeState: state.resendCodeState.copyWith(
+          isLoadingParam: true,
+          errorMessageParam: null,
+        ),
+      ),
+    );
+
+    final response = await _sendEmailUseCase.call(
+      body: ForgetPasswordRequestModel(email: email),
+    );
+
+    switch (response) {
+      case SuccessBaseResponse<ForgetPasswordEntity>():
+        emit(
+          state.copyWith(
+            resendCodeState: state.resendCodeState.copyWith(
+              isLoadingParam: false,
+            ),
+            resendSecondsLeft: 30,
+          ),
+        );
+
+        _startCountdown();
+        break;
+
+      case ErrorBaseResponse<ForgetPasswordEntity>():
+        emit(
+          state.copyWith(
+            resendCodeState: state.resendCodeState.copyWith(
+              isLoadingParam: false,
+              errorMessageParam: response.errorMessage,
+            ),
+          ),
+        );
+        break;
+    }
   }
 
-  Future<void> resetPassword(String email, String password) async {
+  void _startCountdown() async {
+    while (state.resendSecondsLeft > 0) {
+      await Future.delayed(const Duration(seconds: 1));
+      emit(state.copyWith(resendSecondsLeft: state.resendSecondsLeft - 1));
+    }
+  }
+
+  Future<void> _resetPassword(String password) async {
     emit(
       state.copyWith(
         resetPasswordState: state.resetPasswordState.copyWith(
@@ -166,7 +212,10 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
     );
 
     final response = await _resetPasswordUseCase.call(
-      body: {ApiParam.email: email, ApiParam.newPassword: password},
+      body: ResetPasswordRequestModel(
+        email: state.email!,
+        newPassword: password,
+      ),
     );
 
     switch (response) {
@@ -192,11 +241,5 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
         );
         break;
     }
-  }
-
-  @override
-  Future<void> close() {
-    pageController.dispose();
-    return super.close();
   }
 }

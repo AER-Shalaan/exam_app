@@ -1,6 +1,6 @@
-import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/config/di/di.dart';
 import 'package:exam_app/core/values/app_colors.dart';
+import 'package:exam_app/core/values/app_routes_name.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/text_styles.dart';
 import 'package:exam_app/core/values/validation/app_validation.dart';
@@ -149,7 +149,7 @@ class SignUpView extends StatelessWidget {
                             ),
                           ),
                         );
-                        state.signUpState.errorMessage = null;
+                        
                       } else if (state.signUpState.data != null) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
@@ -164,7 +164,7 @@ class SignUpView extends StatelessWidget {
                           if (!context.mounted) return;
                           Navigator.of(
                             context,
-                          ).popAndPushNamed(AppRoutes.homeViewRouteName);
+                          ).popAndPushNamed(AppRoutesName.home);
                         });
                       }
                     },
@@ -221,7 +221,7 @@ class SignUpView extends StatelessWidget {
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               Navigator.of(context).pushReplacementNamed(
-                                AppRoutes.loginViewRouteName,
+                                AppRoutesName.login,
                               );
                             },
                         ),

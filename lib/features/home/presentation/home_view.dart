@@ -1,5 +1,5 @@
-import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/auth/token_manager.dart';
+import 'package:exam_app/core/values/app_routes_name.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -21,7 +21,7 @@ class HomeView extends StatelessWidget {
                 TokenManager.clearToken();
                 Navigator.pushNamedAndRemoveUntil(
                   context,
-                  AppRoutes.loginViewRouteName,
+                  AppRoutesName.login,
                   (route) => false,
                 );
               },

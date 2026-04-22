@@ -16,8 +16,8 @@ import 'package:injectable/injectable.dart' as _i526;
 import '../../core/network/dio_module.dart' as _i673;
 import '../../features/auth/forget_password/api/api_client/forget_password_api_client.dart'
     as _i478;
-import '../../features/auth/forget_password/api/data_sources_impl/forget_password_data_source_impl.dart'
-    as _i500;
+import '../../features/auth/forget_password/api/data_sources_impl/forget_password_remote_data_source_impl.dart'
+    as _i47;
 import '../../features/auth/forget_password/data/data_sources_contract/forget_password_data_source_contract.dart'
     as _i413;
 import '../../features/auth/forget_password/data/repositories_impl/forget_password_repo_impl.dart'
@@ -69,17 +69,17 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
     gh.singleton<_i361.Dio>(() => dioModule.dio);
+    gh.lazySingleton<_i478.ForgetPasswordApiClient>(
+      () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i844.SignUpApiClient>(
       () => _i844.SignUpApiClient(gh<_i361.Dio>()),
-    );
-    gh.factory<_i478.ForgetPasswordApiClient>(
-      () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i934.LoginApiClient>(
       () => _i934.LoginApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i413.ForgetPasswordDataSourceContract>(
-      () => _i500.ForgetPasswordDataSourceImpl(
+      () => _i47.ForgetPasswordRemoteDataSourceImpl(
         gh<_i478.ForgetPasswordApiClient>(),
       ),
     );

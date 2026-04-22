@@ -1,5 +1,5 @@
-import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/auth/token_manager.dart';
+import 'package:exam_app/core/values/app_routes_name.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:flutter/material.dart';
 
@@ -62,8 +62,8 @@ class _SplashViewState extends State<SplashView>
     if (!mounted) return;
 
     final route = hasToken
-        ? AppRoutes.homeViewRouteName
-        : AppRoutes.loginViewRouteName;
+        ? AppRoutesName.home
+        : AppRoutesName.login;
 
     Navigator.pushReplacementNamed(context, route);
   }

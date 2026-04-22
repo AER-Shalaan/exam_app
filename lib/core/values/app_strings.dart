@@ -1,16 +1,16 @@
-class AppStrings {
-  AppStrings._();
-
+abstract class AppStrings {
   static const appName = "Exam App";
   static const splashScreenTitle = "Welcome to Exam App";
+
   // Titles
   static const loginTitle = "Login";
   static const signUpTitle = "Sign Up";
   static const homeTitle = "Survey";
+
+  // Auth
   static const alreadyhaveanaccount = "Already have an account? ";
   static const dontAcont = "Don't have an account? ";
   static const rememberMe = "Remember me";
-  static const browseBySubject = "Browse by subject";
 
   // Fields
   static const userName = "User name";
@@ -29,6 +29,9 @@ class AppStrings {
   static const confirmPasswordHint = "Enter your confirm password";
   static const search = "Search";
 
+  // Browse
+  static const browseBySubject = "Browse by subject";
+
   // Validation
   static const fieldCannotBeEmpty = 'This field cannot be empty';
   static const emailCannotBeEmpty = 'Email address cannot be empty';
@@ -41,12 +44,12 @@ class AppStrings {
       'Confirm password cannot be empty';
   static const passwordsDoNotMatch = 'Passwords do not match.';
 
-  // Forgot password
+  // Forgot Password
   static const forgotPasswordTitle = "Forgot Password";
   static const forgotPasswordDescription =
       "Please enter your email associated to\nyour account";
 
-  // Reset password
+  // Reset Password
   static const newPassword = 'New password';
   static const resetPassword = "Reset password";
   static const resetPasswordDescription =
@@ -64,14 +67,17 @@ class AppStrings {
   static const passwordChangedDescription =
       "Password changed successfully.\nPlease login again.";
   static const registersuccessfuly = "Register Successfully";
+  static const resendCodeSuccess =
+      "The OTP has been sent back to your email address.";
 
-  // navBartitles
+  // Nav bar
   static const explore = "Explore";
   static const result = "Result";
   static const profile = "Profile";
 
   // General
   static const continueString = "Continue";
+  static const resending = "Resending code...";
 
   // Errors
   static const noInternetConnection = "No internet connection";
@@ -86,4 +92,9 @@ class AppStrings {
   static const somethingwentwrong = "Something went wrong";
   static const message = "message";
   static const noSubjectsFound = "No subjects found";
+  static const emailNotFound = "Email not found. Please restart flow.";
+  static const routeNotFound = "Route Not Found";
+
+  static String resendIn(int seconds) =>
+      "Resend in $seconds ${seconds == 1 ? 'second' : 'seconds'}";
 }

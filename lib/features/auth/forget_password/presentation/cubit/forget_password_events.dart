@@ -1,13 +1,7 @@
 sealed class ForgetPasswordEvents {}
 
-class FormValidationChangedEvent extends ForgetPasswordEvents {
-  final bool isValid;
-  FormValidationChangedEvent({required this.isValid});
-}
-
 class SendEmailEvent extends ForgetPasswordEvents {
   final String email;
-
   SendEmailEvent({required this.email});
 }
 
@@ -16,7 +10,9 @@ class VerifyResetCodeEvent extends ForgetPasswordEvents {
   VerifyResetCodeEvent({required this.code});
 }
 
-class ClearVerifyErrorEvent extends ForgetPasswordEvents {}
+class NextPageEvent extends ForgetPasswordEvents {}
+
+class ClearVerifyCodeErrorEvent extends ForgetPasswordEvents {}
 
 class ResendCodeEvent extends ForgetPasswordEvents {}
 
