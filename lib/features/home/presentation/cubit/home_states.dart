@@ -1,20 +1,18 @@
+import 'package:equatable/equatable.dart';
 import 'package:exam_app/core/enums/home_tab.dart';
 import 'package:exam_app/core/state/base_state.dart';
 import 'package:exam_app/features/home/domain/entities/get_all_subjects_entity.dart';
 
-class HomeStates {
+class HomeStates extends Equatable {
   final HomeTab currentTab;
   final String searchQuery;
+  final BaseState<GetAllSubjectsEntity> subjectState;
 
-  BaseState<GetAllSubjectsEntity> subjectState =
-      BaseState<GetAllSubjectsEntity>();
-  HomeStates({
+  const HomeStates({
     this.currentTab = HomeTab.explore,
     this.searchQuery = '',
-    BaseState<GetAllSubjectsEntity>? subjectState,
-  }) {
-    this.subjectState = subjectState ?? BaseState<GetAllSubjectsEntity>();
-  }
+    this.subjectState = const BaseState<GetAllSubjectsEntity>(),
+  });
 
   HomeStates copyWith({
     HomeTab? currentTab,
@@ -27,4 +25,11 @@ class HomeStates {
       subjectState: subjectState ?? this.subjectState,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        currentTab,
+        searchQuery,
+        subjectState,
+      ];
 }

@@ -7,6 +7,6 @@ import 'package:injectable/injectable.dart';
 class GetAllSubjectsUseCase {
   final HomeRepositoriesContract homeRepositoriesContract;
   GetAllSubjectsUseCase(this.homeRepositoriesContract);
-  Future<BaseResponse<GetAllSubjectsEntity>> execute({required String token}) =>
-      homeRepositoriesContract.getAllSubjects(token: token);
+  Future<BaseResponse<GetAllSubjectsEntity>> execute() =>
+      homeRepositoriesContract.getAllSubjects();
 }

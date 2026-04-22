@@ -1,4 +1,3 @@
-import 'package:exam_app/features/home/domain/entities/subject_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'subject.g.dart';
 
@@ -14,13 +13,7 @@ class Subject {
   DateTime? createdAt;
 
   Subject({this.id, this.name, this.icon, this.createdAt});
-  SubjectEntity toDomain() {
-    return SubjectEntity(
-      id: id ?? '',
-      name: name ?? '',
-      icon: icon ?? '',
-    );
-  }
+
   factory Subject.fromJson(Map<String, dynamic> json) =>
       _$SubjectFromJson(json);
 

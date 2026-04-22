@@ -13,8 +13,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({super.key});
-  final HomeViewModel homeViewModel = getIt.get<HomeViewModel>();
-
   final pages = {
     HomeTab.explore: const ExploreView(),
     HomeTab.result: const ResultView(),
@@ -24,8 +22,10 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => homeViewModel,
+      create: (context) => getIt.get<HomeViewModel>(),
       child: BlocBuilder<HomeViewModel, HomeStates>(
+        buildWhen: (previous, current) =>
+            previous.currentTab != current.currentTab,
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(

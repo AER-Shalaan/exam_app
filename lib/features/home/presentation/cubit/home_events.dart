@@ -2,16 +2,16 @@ import 'package:exam_app/core/enums/home_tab.dart';
 
 sealed class HomeEvents {}
 
-class ChangeNavBarTab extends HomeEvents {
+class ChangeNavBarTabHomeEvent extends HomeEvents {
   final HomeTab tab;
 
-  ChangeNavBarTab(this.tab);
+  ChangeNavBarTabHomeEvent(this.tab);
 }
 
-class SearchForSubject extends HomeEvents {
+class SearchForSubjectHomeEvent extends HomeEvents {
   final String query;
 
-  SearchForSubject(this.query);
+  SearchForSubjectHomeEvent(this.query);
 }
 
-class GetSubjects extends HomeEvents {}
+class GetSubjectsHomeEvent extends HomeEvents {}

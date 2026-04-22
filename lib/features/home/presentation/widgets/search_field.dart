@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class SearchField extends StatelessWidget {
   const SearchField({super.key, required this.controller, this.onChanged});
   final TextEditingController controller;
-  final Function(String)? onChanged;
+  final ValueChanged<String>? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextField(

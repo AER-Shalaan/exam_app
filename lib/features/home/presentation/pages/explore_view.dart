@@ -25,10 +25,10 @@ class _ExploreViewState extends State<ExploreView> {
       if (!mounted) return;
       final viewModel = context.read<HomeViewModel>();
 
-      viewModel.doEvent(SearchForSubject(''));
+      viewModel.doEvent(SearchForSubjectHomeEvent(''));
 
       if (viewModel.state.subjectState.data == null) {
-        viewModel.doEvent(GetSubjects());
+        viewModel.doEvent(GetSubjectsHomeEvent());
       }
     });
   }
@@ -49,7 +49,7 @@ class _ExploreViewState extends State<ExploreView> {
             SearchField(
               controller: _controller,
               onChanged: (value) {
-                context.read<HomeViewModel>().doEvent(SearchForSubject(value));
+                context.read<HomeViewModel>().doEvent(SearchForSubjectHomeEvent(value));
               },
             ),
             const SizedBox(height: 40),

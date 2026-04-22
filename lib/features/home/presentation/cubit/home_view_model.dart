@@ -1,4 +1,3 @@
-import 'package:exam_app/core/auth/token_manager.dart';
 import 'package:exam_app/core/enums/home_tab.dart';
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/features/home/domain/entities/get_all_subjects_entity.dart';
@@ -8,20 +7,20 @@ import 'package:exam_app/features/home/presentation/cubit/home_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@lazySingleton
+@injectable
 class HomeViewModel extends Cubit<HomeStates> {
   HomeViewModel(this._getAllSubjectsUseCase) : super(HomeStates());
 
   final GetAllSubjectsUseCase _getAllSubjectsUseCase;
   void doEvent(HomeEvents event) {
     switch (event) {
-      case ChangeNavBarTab():
+      case ChangeNavBarTabHomeEvent():
         _changeTab(event.tab);
         break;
-      case SearchForSubject():
+      case SearchForSubjectHomeEvent():
         _search(event.query);
         break;
-      case GetSubjects():
+      case GetSubjectsHomeEvent():
         _getSubjects();
         break;
     }
@@ -45,9 +44,7 @@ class HomeViewModel extends Cubit<HomeStates> {
         ),
       ),
     );
-    final response = await _getAllSubjectsUseCase.execute(
-      token: TokenManager.token!,
-    );
+    final response = await _getAllSubjectsUseCase.execute();
     switch (response) {
       case SuccessBaseResponse<GetAllSubjectsEntity>():
         emit(
