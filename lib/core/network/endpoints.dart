@@ -13,8 +13,8 @@ abstract class Endpoints {
   static const String putEditProfileEndpoint = '$baseUrl/auth/editProfile';
   static const String deleteMyAccountEndpoint = '$baseUrl/auth/deleteMe';
   static const String getLogoutEndpoint = '$baseUrl/auth/logout';
-
   static const String getAllSubjectsEndpoint = '$baseUrl/subjects';
   static const String getAllExamsEndpoint = '$baseUrl/exams';
-
+  static const String getAllQuestiononExamEndpoint = '$baseUrl/questions';
+  static const String postCheckQuestionEndpoint = '$baseUrl/questions/check';
 }

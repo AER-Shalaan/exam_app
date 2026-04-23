@@ -42,6 +42,8 @@ class Assets {
 
   static const String assetsIconsSearch = "assets/icons/search.svg";
 
+  static const String assetsIconsSelectedIcon = "assets/icons/selected_icon.svg";
+
   static const String assetsIconsShoppingCart = "assets/icons/shopping_cart.svg";
 
   static const String assetsIconsSort = "assets/icons/sort.svg";
@@ -51,6 +53,8 @@ class Assets {
   static const String assetsIconsTulip = "assets/icons/Tulip.svg";
 
   static const String assetsIconsTune = "assets/icons/tune.svg";
+
+  static const String assetsIconsUnselectedIcon = "assets/icons/unselected_icon.svg";
 
   static const String assetsIconsVisibility = "assets/icons/visibility.svg";
 

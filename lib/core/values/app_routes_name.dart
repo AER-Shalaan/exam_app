@@ -6,4 +6,6 @@ abstract class AppRoutesName {
   static const home = "HomeView";
   static const examsOnsubject = "SubjectExamsScreen";
   static const startExam = "StartExamScreen";
+  static const String questions = "Questions";
+  static const String examScore = "ExamScore";
 }

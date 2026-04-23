@@ -1,3 +1,4 @@
+import 'package:exam_app/features/question/data/models/questions/responce/question_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'exam_response.g.dart';
@@ -28,28 +29,28 @@ class ExamMetadataModel {
   Map<String, dynamic> toJson() => _$ExamMetadataModelToJson(this);
 }
 
-@JsonSerializable()
-class ExamModel {
-  @JsonKey(name: '_id')
-  final String? id;
-  final String? title;
-  final int? duration;
-  final String? subject;
-  final int? numberOfQuestions;
-  final bool? active;
-  final String? createdAt;
+// @JsonSerializable()
+// class ExamModel {
+//   @JsonKey(name: '_id')
+//   final String? id;
+//   final String? title;
+//   final int? duration;
+//   final String? subject;
+//   final int? numberOfQuestions;
+//   final bool? active;
+//   final String? createdAt;
 
-  ExamModel({
-    this.id,
-    this.title,
-    this.duration,
-    this.subject,
-    this.numberOfQuestions,
-    this.active,
-    this.createdAt,
-  });
+//   ExamModel({
+//     this.id,
+//     this.title,
+//     this.duration,
+//     this.subject,
+//     this.numberOfQuestions,
+//     this.active,
+//     this.createdAt,
+//   });
 
-  factory ExamModel.fromJson(Map<String, dynamic> json) =>
-      _$ExamModelFromJson(json);
-  Map<String, dynamic> toJson() => _$ExamModelToJson(this);
-}
+//   factory ExamModel.fromJson(Map<String, dynamic> json) =>
+//       _$ExamModelFromJson(json);
+//   Map<String, dynamic> toJson() => _$ExamModelToJson(this);
+// }

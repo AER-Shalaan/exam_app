@@ -3,6 +3,7 @@ abstract class AppStrings {
   static const splashScreenTitle = "Welcome to Exam App";
   static const masterYourExams = "Master Your Exams";
   // Titles
+  static const examTitle = "Exam";
   static const loginTitle = "Login";
   static const signUpTitle = "Sign Up";
   static const homeTitle = "Survey";
@@ -101,12 +102,8 @@ abstract class AppStrings {
   // Exams
   static const exams = "Exams";
   static const noExamsAvailable = "No exams available";
-  static const languages = "Languages";
-  static const instructions = "Instructions";
   static const start = "Start";
-  static const timeLimit = "30 Minutes";
   static const examLevel = "High level";
-  static const numberOfQuestions = "20 Question";
   static const dummyInstruction = "Lorem ipsum dolor sit amet consectetur.";
   static const minutes = "Minutes";
   static const questions = "Questions";

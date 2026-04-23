@@ -81,9 +81,7 @@ class LoginView extends StatelessWidget {
                       validator: (value) =>
                           AppValidation.validateEmail(value, required: true),
                     ),
-
                     const Gap(24),
-
                     ValueListenableBuilder(
                       valueListenable: isPasswordHidden,
                       builder: (BuildContext context, hidden, _) {
@@ -105,15 +103,12 @@ class LoginView extends StatelessWidget {
                               },
                             ),
                           ),
-
                           validator: (value) =>
                               AppValidation.validatePassword(value),
                         );
                       },
                     ),
-
                     const Gap(12),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -152,24 +147,22 @@ class LoginView extends StatelessWidget {
                       ],
                     ),
                     const Gap(48),
-
                     FilledButton(
                       onPressed: loginState.isLoading
                           ? null
                           : () {
                               if (formKey.currentState!.validate()) {
                                 context.read<LoginViewModel>().doEvent(
-                                  LoginUserEvent(
-                                    request: LoginRequest(
-                                      email: emailController.text.trim(),
-                                      password: passwordController.text,
-                                    ),
-                                    rememberMe: isRememberMe.value,
-                                  ),
-                                );
+                                      LoginUserEvent(
+                                        request: LoginRequest(
+                                          email: emailController.text.trim(),
+                                          password: passwordController.text,
+                                        ),
+                                        rememberMe: isRememberMe.value,
+                                      ),
+                                    );
                               }
                             },
-
                       child: loginState.isLoading
                           ? const SizedBox(
                               width: 24,
@@ -180,9 +173,7 @@ class LoginView extends StatelessWidget {
                             )
                           : const Text(AppStrings.loginTitle),
                     ),
-
                     const Gap(16),
-
                     Text.rich(
                       TextSpan(
                         text: AppStrings.dontAcont,

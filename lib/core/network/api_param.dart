@@ -12,4 +12,5 @@ abstract class ApiParam {
   static const String token = "token";
   static const String subject = "subject";
   static const String requiresAuth = "requiresAuth";
+  static const String exam = "exam";
 }

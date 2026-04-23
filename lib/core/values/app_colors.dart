@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class AppColors {
   // primary color palette
@@ -35,4 +35,5 @@ class AppColors {
   static const Color whiteColor = Color(0xffF9F9F9);
   static const Color placeHolder = Color(0xffA6A6A6);
   static const Color grey = Color(0xff535353);
+  static const Color transparentColor = Colors.transparent;
 }

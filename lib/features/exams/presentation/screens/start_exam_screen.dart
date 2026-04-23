@@ -1,3 +1,4 @@
+import 'package:exam_app/core/values/app_routes_name.dart';
 import 'package:exam_app/features/exams/domain/entities/exam_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:exam_app/core/values/app_colors.dart';
@@ -85,7 +86,10 @@ class StartExamScreen extends StatelessWidget {
               height: 54,
               child: ElevatedButton(
                 onPressed: () {
-                  // Action to start exam
+                  Navigator.of(context).pushNamed(
+                    AppRoutesName.questions,
+                    arguments: exam.id!,
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,

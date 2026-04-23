@@ -21,7 +21,7 @@ class ConfirmResetNewPasswordField extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
       valueListenable: isConfirmPasswordHidden,
-      builder: (_, hidden, _) {
+      builder: (_, hidden, __) {
         return TextFormField(
           controller: confirmPasswordController,
           obscureText: hidden,
