@@ -8,6 +8,6 @@ abstract class ApiParam {
   static const String lastName = "lastName";
   static const String rePassword = "rePassword";
   static const String resetCode = "resetCode";
-  static const String newPassword = "newPassword";
+  static const String newPassword ="newPassword";
   static const String token = "token";
 }

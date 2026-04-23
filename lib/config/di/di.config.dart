@@ -59,6 +59,18 @@ import '../../features/auth/sign_up/domain/usecases/sign_up_usecase.dart'
     as _i662;
 import '../../features/auth/sign_up/presentation/cubit/sign_up_cubit.dart'
     as _i809;
+import '../../features/home/api/api_client/home_api_client.dart' as _i592;
+import '../../features/home/api/data_sources_impl/home_data_sources_impl.dart'
+    as _i9;
+import '../../features/home/data/data_sources_contract/home_data_sources_contract.dart'
+    as _i478;
+import '../../features/home/data/repositories_impl/home_repositories_impl.dart'
+    as _i650;
+import '../../features/home/domain/repositories_contract/home_repositories_contract.dart'
+    as _i23;
+import '../../features/home/domain/use_cases/get_all_subjects_use_case.dart'
+    as _i605;
+import '../../features/home/presentation/cubit/home_view_model.dart' as _i174;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -78,10 +90,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i934.LoginApiClient>(
       () => _i934.LoginApiClient(gh<_i361.Dio>()),
     );
+    gh.factory<_i592.HomeApiClient>(() => _i592.HomeApiClient(gh<_i361.Dio>()));
     gh.factory<_i413.ForgetPasswordDataSourceContract>(
       () => _i47.ForgetPasswordRemoteDataSourceImpl(
         gh<_i478.ForgetPasswordApiClient>(),
       ),
+    );
+    gh.factory<_i478.HomeDataSourcesContract>(
+      () => _i9.HomeDataSourcesImpl(gh<_i592.HomeApiClient>()),
     );
     gh.factory<_i791.SignUpRemoteDatasourceContract>(
       () => _i455.SignUpRemoteDatasorceImpl(gh<_i844.SignUpApiClient>()),
@@ -103,6 +119,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i401.LoginUsecase>(
       () => _i401.LoginUsecase(gh<_i1046.LoginRepositoryContract>()),
     );
+    gh.factory<_i23.HomeRepositoriesContract>(
+      () => _i650.HomeRepositoriesImpl(gh<_i478.HomeDataSourcesContract>()),
+    );
     gh.factory<_i722.VerifyOtpUseCase>(
       () =>
           _i722.VerifyOtpUseCase(gh<_i193.ForgetPasswordRepositoryContract>()),
@@ -118,6 +137,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i779.SendEmailUseCase>(
       () =>
           _i779.SendEmailUseCase(gh<_i193.ForgetPasswordRepositoryContract>()),
+    );
+    gh.factory<_i605.GetAllSubjectsUseCase>(
+      () => _i605.GetAllSubjectsUseCase(gh<_i23.HomeRepositoriesContract>()),
+    );
+    gh.lazySingleton<_i174.HomeViewModel>(
+      () => _i174.HomeViewModel(gh<_i605.GetAllSubjectsUseCase>()),
     );
     gh.factory<_i465.LoginViewModel>(
       () => _i465.LoginViewModel(gh<_i401.LoginUsecase>()),
