@@ -53,7 +53,7 @@ class StartExamScreen extends StatelessWidget {
                   ),
                 ),
                 const Text(
-                  '30 Minutes',
+                  AppStrings.timeLimit,
                   style: TextStyle(fontSize: 14, color: AppColors.primary),
                 ),
               ],
@@ -62,7 +62,7 @@ class StartExamScreen extends StatelessWidget {
             Row(
               children: [
                 const Text(
-                  'High level',
+                  AppStrings.examLevel,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -76,7 +76,7 @@ class StartExamScreen extends StatelessWidget {
                 ),
                 const Gap(8),
                 Text(
-                  '20 Question',
+                  AppStrings.numberOfQuestions,
                   style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
                 ),
               ],
@@ -97,9 +97,7 @@ class StartExamScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 4,
                 itemBuilder: (context, index) {
-                  return _buildInstructionItem(
-                    'Lorem ipsum dolor sit amet consectetur.',
-                  );
+                  return _buildInstructionItem(AppStrings.dummyInstruction);
                 },
               ),
             ),
