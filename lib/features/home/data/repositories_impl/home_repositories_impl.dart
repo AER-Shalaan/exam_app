@@ -1,4 +1,3 @@
-import 'package:exam_app/core/auth/token_manager.dart';
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/features/home/data/data_sources_contract/home_data_sources_contract.dart';
 import 'package:exam_app/features/home/data/models/get_all_subjects_response.dart';
@@ -14,9 +13,7 @@ class HomeRepositoriesImpl implements HomeRepositoriesContract {
   final HomeDataSourcesContract homeDataSourcesContract;
   @override
   Future<BaseResponse<GetAllSubjectsEntity>> getAllSubjects() async {
-    final response = await homeDataSourcesContract.getAllSubjects(
-      token: TokenManager.token!,
-    );
+    final response = await homeDataSourcesContract.getAllSubjects();
     switch (response) {
       case SuccessBaseResponse<GetAllSubjectsResponse>():
         final data = response.data.toDomain();

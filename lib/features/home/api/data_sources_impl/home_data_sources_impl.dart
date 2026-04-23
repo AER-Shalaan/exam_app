@@ -9,11 +9,9 @@ class HomeDataSourcesImpl implements HomeDataSourcesContract {
   HomeDataSourcesImpl(this.homeApiClient);
   final HomeApiClient homeApiClient;
   @override
-  Future<BaseResponse<GetAllSubjectsResponse>> getAllSubjects({
-    required String token,
-  }) async {
+  Future<BaseResponse<GetAllSubjectsResponse>> getAllSubjects() async {
     try {
-      final response = await homeApiClient.getAllSubjects(token);
+      final response = await homeApiClient.getAllSubjects();
       return SuccessBaseResponse<GetAllSubjectsResponse>(data: response);
     } on Exception catch (e) {
       return ErrorBaseResponse<GetAllSubjectsResponse>(exception: e);

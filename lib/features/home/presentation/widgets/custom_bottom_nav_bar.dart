@@ -8,6 +8,7 @@ import 'package:exam_app/features/home/presentation/cubit/home_states.dart';
 import 'package:exam_app/features/home/presentation/cubit/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({super.key});
@@ -94,7 +95,7 @@ class _NavItem extends StatelessWidget {
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(24),
                   ),
-                  child: Center(child: Image.asset(icon)),
+                  child: Center(child: SvgPicture.asset(icon)),
                 ),
                 const SizedBox(height: 4),
                 Text(

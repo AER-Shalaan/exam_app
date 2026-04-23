@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:exam_app/core/network/api_param.dart';
 import 'package:exam_app/core/network/endpoints.dart';
 import 'package:exam_app/features/auth/sign_up/apis/response/sign_up_response.dart';
 import 'package:injectable/injectable.dart';
@@ -13,6 +14,7 @@ abstract class SignUpApiClient {
   factory SignUpApiClient(Dio dio) = _SignUpApiClient;
 
   @POST(Endpoints.postSignUpEndpoint)
+  @Extra({ApiParam.requiresAuth: false})
   Future<SignUpResponse> setUsers({
     @Body() required Map<String, dynamic> request,
   });

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:exam_app/core/network/api_param.dart';
 import 'package:exam_app/features/auth/forget_password/data/models/auth_response_model.dart';
 import 'package:exam_app/core/network/endpoints.dart';
 import 'package:exam_app/features/auth/forget_password/api/request_models/forget_password_request_model.dart';
@@ -18,16 +19,19 @@ abstract interface class ForgetPasswordApiClient {
   factory ForgetPasswordApiClient(Dio dio) = _ForgetPasswordApiClient;
 
   @POST(Endpoints.postForgotPasswordEndpoint)
+  @Extra({ApiParam.requiresAuth: false})
   Future<ForgetPasswordModel> sendEmail({
     @Body() required ForgetPasswordRequestModel body,
   });
 
   @POST(Endpoints.postVerifyResetCodeEndpoint)
+  @Extra({ApiParam.requiresAuth: false})
   Future<VerifyResetCodeModel> verifyReset({
     @Body() required VerifyResetCodeRequestModel body,
   });
 
   @PUT(Endpoints.putResetPasswordEndpoint)
+  @Extra({ApiParam.requiresAuth: false})
   Future<AuthResponseModel> resetPassword({
     @Body() required ResetPasswordRequestModel body,
   });

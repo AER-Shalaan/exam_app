@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:exam_app/core/network/api_param.dart';
 import 'package:exam_app/core/network/endpoints.dart';
 import 'package:exam_app/features/home/data/models/get_all_subjects_response.dart';
 import 'package:injectable/injectable.dart';
@@ -14,7 +13,5 @@ abstract interface class HomeApiClient {
   factory HomeApiClient(Dio dio) = _HomeApiClient;
 
   @GET(Endpoints.getAllSubjectsEndpoint)
-  Future<GetAllSubjectsResponse> getAllSubjects(
-    @Header(ApiParam.token) String token,
-  );
+  Future<GetAllSubjectsResponse> getAllSubjects();
 }

@@ -64,7 +64,7 @@ class Assets {
 
   static const String assetsImagesExamSplash = "assets/images/exam_splash.png";
 
-  static const String assetsImagesProfit = "assets/images/Profit.svg";
+  static const String assetsImagesProfit = "assets/images/profit.png";
 
   static const String assetsImagesSandClock = "assets/images/sand_clock.svg";
 }
