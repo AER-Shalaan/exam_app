@@ -5,7 +5,10 @@ import 'package:exam_app/features/splash_screen/presentation/splash_screen.dart'
 import 'package:exam_app/features/auth/exams/presentation/screens/subject_exams_screen.dart';
 import 'package:exam_app/features/auth/exams/presentation/screens/start_exam_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:exam_app/config/di/di.dart';
+import 'package:exam_app/features/auth/exams/presentation/cubit/exams_events.dart';
+import 'package:exam_app/features/auth/exams/presentation/cubit/exams_view_model.dart';
 abstract class AppRoutes {
   static const String splashRouteName = "splash";
   static const String signUpViewRouteName = "SignUpView";
@@ -26,7 +29,12 @@ abstract class AppRoutes {
         return MaterialPageRoute(builder: (_) => ForgetPasswordView());
       case subjectExamsScreenRouteName:
         final subjectId = settings.arguments as String?;
-        return MaterialPageRoute(builder: (_) => SubjectExamsScreen(subjectId: subjectId));
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<ExamsViewModel>()..add(GetExamsEvent(subjectId: subjectId)),
+            child: SubjectExamsScreen(subjectId: subjectId),
+          ),
+        );
       case startExamScreenRouteName:
         final examId = settings.arguments as String?;
         return MaterialPageRoute(builder: (_) => StartExamScreen(examId: examId));

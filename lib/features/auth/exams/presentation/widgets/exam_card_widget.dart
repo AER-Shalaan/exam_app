@@ -1,5 +1,6 @@
 import 'package:exam_app/config/app_routes.dart';
 import 'package:exam_app/core/values/app_colors.dart';
+import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/features/auth/exams/domain/entities/exam_entity.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,7 @@ class ExamCardWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        exam.title ?? 'Exam Title',
+                        exam.title ?? AppStrings.defaultExamTitle,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -78,7 +79,7 @@ class ExamCardWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '${exam.duration ?? 0} Minutes',
+                        '${exam.duration ?? 0} ${AppStrings.minutes}',
                         style: const TextStyle(
                           fontSize: 12,
                           color: AppColors.primary,
@@ -88,21 +89,21 @@ class ExamCardWidget extends StatelessWidget {
                   ),
                   const Gap(4),
                   Text(
-                    '${exam.numberOfQuestions ?? 0} Questions',
+                    '${exam.numberOfQuestions ?? 0} ${AppStrings.questions}',
                     style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
                   ),
                   const Gap(12),
                   Row(
                     children: [
                       Text(
-                        'From: ',
+                        AppStrings.from,
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey.shade600,
                         ),
                       ),
                       const Text(
-                        '1.00',
+                        AppStrings.fromTime,
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
@@ -110,14 +111,14 @@ class ExamCardWidget extends StatelessWidget {
                       ),
                       const Gap(16),
                       Text(
-                        'To: ',
+                        AppStrings.to,
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey.shade600,
                         ),
                       ),
                       const Text(
-                        '6.00',
+                        AppStrings.toTime,
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,

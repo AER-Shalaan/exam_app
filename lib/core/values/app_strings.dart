@@ -17,6 +17,18 @@ class AppStrings {
   static const languages = "Languages";
   static const instructions = "Instructions";
   static const start = "Start";
+  static const timeLimit = "30 Minutes";
+  static const examLevel = "High level";
+  static const numberOfQuestions = "20 Question";
+  static const dummyInstruction = "Lorem ipsum dolor sit amet consectetur.";
+  static const minutes = "Minutes";
+  static const questions = "Questions";
+  static const from = "From: ";
+  static const to = "To: ";
+  static const fromTime = "1.00";
+  static const toTime = "6.00";
+  static const defaultExamTitle = "Exam Title";
+  static const placeholderExamTitle = "Placeholder Exam Title Here";
 
   // Fields
   static const userName = "User name";
