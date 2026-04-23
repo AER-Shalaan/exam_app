@@ -17,13 +17,13 @@ part 'question_state.dart';
 @injectable
 class QuestionCubit extends Cubit<QuestionState> {
   final tokenKey =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YzMxYTc4Y2ViMmM1OWY4NGEzZTgxNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc0MzkzOTc2fQ.MDrScrZMqTJRUaWkB99hiQJQ94PCmhetTstWeRKI6bo";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZWEwNDhhMDRkYTBkNGNmNTU2ZWZhYiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc2OTQ0MjY2fQ.AbUI5hr2bwewxGxHITd77To7ewnHy6wvahqFK0P1Xfk";
   void doQuestionEvent(QuestionEvent event) {
     switch (event) {
       case QuestionsUseCase():
         _getQuestionsOnExam(event.examId ?? '');
         break;
-        case CheckQuestionsUseCase():
+      case CheckQuestionsUseCase():
         _checkQuestion(event.questionRequest ?? QuestionRequest());
         break;
     }
@@ -37,7 +37,8 @@ class QuestionCubit extends Cubit<QuestionState> {
 
   void selectAnswer(int questionIndex, CorrectModel answerKey) {
     final questionData = state.questionState.data;
-    if (questionData == null || questionIndex >= questionData.questions.length) {
+    if (questionData == null ||
+        questionIndex >= questionData.questions.length) {
       return;
     }
 
@@ -152,6 +153,7 @@ class QuestionCubit extends Cubit<QuestionState> {
         break;
     }
   }
+
   Future<void> _getQuestionsOnExam(String examId) async {
     emit(state.copyWith(
         questionState: state.questionState.copyWith(isLoadingParam: true)));
