@@ -35,7 +35,11 @@ class StartExamScreen extends StatelessWidget {
                     color: Colors.grey.shade100,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Icon(Icons.assignment, size: 30, color: Colors.grey),
+                  child: const Icon(
+                    Icons.assignment,
+                    size: 30,
+                    color: Colors.grey,
+                  ),
                 ),
                 const Gap(12),
                 const Expanded(
@@ -50,10 +54,7 @@ class StartExamScreen extends StatelessWidget {
                 ),
                 const Text(
                   '30 Minutes',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: AppColors.primary,
-                  ),
+                  style: TextStyle(fontSize: 14, color: AppColors.primary),
                 ),
               ],
             ),
@@ -71,18 +72,12 @@ class StartExamScreen extends StatelessWidget {
                 const Gap(8),
                 Text(
                   '|',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey.shade400,
-                  ),
+                  style: TextStyle(fontSize: 16, color: Colors.grey.shade400),
                 ),
                 const Gap(8),
                 Text(
                   '20 Question',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey.shade600,
-                  ),
+                  style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
                 ),
               ],
             ),
@@ -103,7 +98,8 @@ class StartExamScreen extends StatelessWidget {
                 itemCount: 4,
                 itemBuilder: (context, index) {
                   return _buildInstructionItem(
-                      'Lorem ipsum dolor sit amet consectetur.');
+                    'Lorem ipsum dolor sit amet consectetur.',
+                  );
                 },
               ),
             ),
@@ -145,10 +141,7 @@ class StartExamScreen extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.only(top: 8.0),
-            child: CircleAvatar(
-              radius: 2.5,
-              backgroundColor: Colors.grey,
-            ),
+            child: CircleAvatar(radius: 2.5, backgroundColor: Colors.grey),
           ),
           const Gap(12),
           Expanded(

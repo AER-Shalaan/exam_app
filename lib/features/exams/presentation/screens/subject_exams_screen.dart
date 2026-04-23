@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/config/di/di.dart';
-import 'package:exam_app/features/auth/exams/presentation/cubit/exams_events.dart';
-import 'package:exam_app/features/auth/exams/presentation/cubit/exams_states.dart';
-import 'package:exam_app/features/auth/exams/presentation/cubit/exams_view_model.dart';
-import 'package:exam_app/features/auth/exams/domain/entities/exam_entity.dart';
-import 'package:exam_app/features/auth/exams/presentation/widgets/exam_card_widget.dart';
+import 'package:exam_app/features/exams/presentation/cubit/exams_events.dart';
+import 'package:exam_app/features/exams/presentation/cubit/exams_states.dart';
+import 'package:exam_app/features/exams/presentation/cubit/exams_view_model.dart';
+import 'package:exam_app/features/exams/domain/entities/exam_entity.dart';
+import 'package:exam_app/features/exams/presentation/widgets/exam_card_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

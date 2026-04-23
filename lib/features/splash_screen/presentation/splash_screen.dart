@@ -136,11 +136,11 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
                       child: Container(
                         padding: const EdgeInsets.all(24),
                         decoration: BoxDecoration(
-                          color: AppColors.whiteColor.withOpacity(0.15),
+                          color: AppColors.whiteColor.withValues(alpha: 0.15),
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
+                              color: Colors.black.withValues(alpha: 0.2),
                               blurRadius: 30,
                               offset: const Offset(0, 10),
                             ),

@@ -6,10 +6,15 @@ import 'package:injectable/injectable.dart';
 class AuthInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    final token = TokenManager.token;
-    if (token != null) {
-      options.headers['token'] = token;
+    final requiresAuth = options.extra['requiresAuth'] ?? true;
+
+    if (requiresAuth) {
+      final token = TokenManager.token;
+      if (token != null) {
+        options.headers['token'] = token;
+      }
     }
+
     return super.onRequest(options, handler);
   }
 }
