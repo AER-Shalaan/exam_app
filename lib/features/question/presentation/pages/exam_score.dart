@@ -18,7 +18,7 @@ class ExamScore extends StatelessWidget {
   Widget build(BuildContext context) {
     final examScoreModel = args.examScoreModel;
     final correctCount = examScoreModel.correct ?? 0;
-    final totalCount = int.tryParse(examScoreModel.total ?? '') ?? 0;
+    final totalCount = int.tryParse(examScoreModel.total ?? '') ?? 10;
     final wrongCount =
         examScoreModel.wrong ?? examScoreModel.wrongQuestions?.length ?? 0;
     final answeredCount = correctCount + wrongCount;
