@@ -12,8 +12,8 @@ class GetQuestionsUseCase {
   GetQuestionsUseCase(this.questionRepoContract);
   Future<BaseResponse<QuestionResponseEntity>> callOnExam(String examId) =>
       questionRepoContract.getQuestionsOnExam(examId: examId);
-  // Future<BaseResponse<CheckQuestionsResponseEntity>> checkQuestionCall(
-  //         QuestionRequest checkQuestionRequest) =>
-  //     questionRepoContract.checkQuestions(
-  //         checkQuestionRequest: checkQuestionRequest);
+  Future<BaseResponse<CheckQuestionsResponseEntity>> checkQuestionCall(
+          QuestionRequest checkQuestionRequest) =>
+      questionRepoContract.checkQuestions(
+          checkQuestionRequest: checkQuestionRequest);
 }

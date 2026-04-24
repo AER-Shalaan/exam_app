@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/core/state/base_state.dart';
+import 'package:exam_app/features/question/data/models/check_questions/answers/answers_model.dart';
 import 'package:exam_app/features/question/data/models/check_questions/request/question_request.dart';
 import 'package:exam_app/features/question/data/models/questions/answer_model/answer_model.dart';
 import 'package:exam_app/features/question/data/models/questions/exam_model/exam_model.dart';
@@ -15,6 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 part 'question_state.dart';
+
 @injectable
 class QuestionCubit extends Cubit<QuestionState> {
   QuestionCubit({required GetQuestionsUseCase getQuestionsUseCase})
@@ -31,6 +33,11 @@ class QuestionCubit extends Cubit<QuestionState> {
     switch (event) {
       case QuestionsUseCase():
         _getQuestionsOnExam(event.examId ?? '');
+        break;
+
+      case CheckQuestionsUseCase():
+
+        //  _checkQuestions(event.questionRequest);
         break;
     }
   }
@@ -87,8 +94,7 @@ class QuestionCubit extends Cubit<QuestionState> {
   }
 
   void nextQuestion() {
-    final questionCount =
-        state.questionState.data?.questions?.length ?? 0;
+    final questionCount = state.questionState.data?.questions?.length ?? 0;
 
     if (state.currentQuestionIndex >= questionCount - 1) return;
 
@@ -119,9 +125,8 @@ class QuestionCubit extends Cubit<QuestionState> {
 
         final questions = data.questions ?? [];
 
-        final examDurationInMinutes = questions.isNotEmpty
-            ? questions.first.exam?.duration ?? 0
-            : 0;
+        final examDurationInMinutes =
+            questions.isNotEmpty ? questions.first.exam?.duration ?? 0 : 0;
 
         emit(
           state.copyWith(
@@ -223,5 +228,12 @@ class QuestionCubit extends Cubit<QuestionState> {
   Future<void> close() {
     stopExamTimer();
     return super.close();
+  }
+
+  bool isAnswered(int index) {
+    final answers =
+        state.questionState.data?.questions?[index].selectedAnswerKeys;
+
+    return answers is Set && answers!.isNotEmpty;
   }
 }

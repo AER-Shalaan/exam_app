@@ -11,6 +11,7 @@ import 'package:exam_app/features/question/presentation/widgets/exam_questions_c
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class Questions extends StatelessWidget {
   final String examId;
@@ -60,6 +61,8 @@ class Questions extends StatelessWidget {
             final isTimerInWarningState = questionCubit.isTimerInWarningState();
             final formattedRemainingTime =
                 questionCubit.formattedRemainingTime();
+            final isAnswered = questionCubit.isAnswered(currentIndex);
+            final isLastQuestion = currentIndex == questions.length - 1;
 
             return Scaffold(
               appBar: AppBar(
@@ -99,100 +102,113 @@ class Questions extends StatelessWidget {
               ),
               body: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Text(examId),
-                      Text(
-                        hasQuestions
-                            ? "question ${currentIndex + 1} of ${questions.length}"
-                            : "question 0 of 0",
-                        style: TextStyles.bodyMedium16,
-                        textAlign: TextAlign.center,
-                      ),
-                      LinearProgressIndicator(
-                        value: hasQuestions
-                            ? (currentIndex + 1) / questions.length
-                            : 0,
-                        backgroundColor: AppColors.grey,
-                      ),
-                      const SizedBox(height: 20),
-                      Text(
-                        currentQuestion?.question ?? "No questions available.",
-                        style: TextStyles.bodyMedium18,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      if (currentQuestion != null)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: Text(
-                            currentQuestion.type == QuestionType.multipleChoice
-                                ? "Choose one or more answers"
-                                : "Choose one answer",
-                            style: TextStyles.bodyMedium16.copyWith(
-                              color: AppColors.grey,
+                child: Skeletonizer(
+                  enabled: state.questionState.isLoading,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Text(
+                          hasQuestions
+                              ? "question ${currentIndex + 1} of ${questions.length}"
+                              : "question 0 of 0",
+                          style: TextStyles.bodyMedium16,
+                          textAlign: TextAlign.center,
+                        ),
+                        LinearProgressIndicator(
+                          value: hasQuestions
+                              ? (currentIndex + 1) / questions.length
+                              : 0,
+                          backgroundColor: AppColors.grey,
+                        ),
+                        const SizedBox(height: 20),
+                        SizedBox(
+                          height: 80,
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              currentQuestion?.question ??
+                                  "No questions available.",
+                              style: TextStyles.bodyMedium18,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ),
-                      const SizedBox(height: 16),
-                      AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 250),
-                        child: SizedBox(
-                          key: ValueKey(currentIndex),
-                          height: 256,
-                          child: currentQuestion == null
-                              ? const SizedBox.shrink()
-                              : ExamQuestionsCard(
-                                  questionModel: currentQuestion,
-                                  onAnswerSelected: (selectedKey) {
-                                    questionCubit.selectAnswer(
-                                      currentIndex,
-                                      selectedKey,
-                                    );
-                                  },
-                                ),
-                        ),
-                      ),
-                      const SizedBox(height: 80),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: OutlinedButton(
-                              onPressed: () {
-                                if (!hasQuestions) return;
-                                questionCubit.previousQuestion();
-                              },
-                              child: const Text("back"),
+                        if (currentQuestion != null)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8),
+                            child: Text(
+                              currentQuestion.type ==
+                                      QuestionType.multipleChoice
+                                  ? "Choose one or more answers"
+                                  : "Choose one answer",
+                              style: TextStyles.bodyMedium16.copyWith(
+                                color: AppColors.grey,
+                              ),
                             ),
                           ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: FilledButton(
-                              onPressed: () {
-                                if (!hasQuestions) return;
-                                if (currentIndex < questions.length - 1) {
-                                  questionCubit.nextQuestion();
-                                } else {
-                                  questionCubit.stopExamTimer();
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    AppRoutesName.examScore,
-                                  );
-                                }
-                              },
-                              style: FilledButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                        const SizedBox(height: 16),
+                        AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 250),
+                          child: SizedBox(
+                            key: ValueKey(currentIndex),
+                            height: 270,
+                            child: currentQuestion == null
+                                ? const SizedBox.shrink()
+                                : ExamQuestionsCard(
+                                    questionModel: currentQuestion,
+                                    onAnswerSelected: (selectedKey) {
+                                      questionCubit.selectAnswer(
+                                        currentIndex,
+                                        selectedKey,
+                                      );
+                                    },
+                                  ),
+                          ),
+                        ),
+                        const SizedBox(height: 80),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: OutlinedButton(
+                                onPressed: (!hasQuestions || currentIndex == 0)
+                                    ? null
+                                    : () {
+                                        if (!hasQuestions) return;
+                                        questionCubit.previousQuestion();
+                                      },
+                                child: const Text("back"),
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: FilledButton(
+                                onPressed: (!hasQuestions || !isAnswered)
+                                    ? null
+                                    : () {
+                                        if (currentIndex <
+                                            questions.length - 1) {
+                                          questionCubit.nextQuestion();
+                                        } else {
+                                          questionCubit.stopExamTimer();
+                                          Navigator.pushReplacementNamed(
+                                            context,
+                                            AppRoutesName.examScore,
+                                          );
+                                        }
+                                      },
+                                child: Text(
+                                  currentIndex == questions.length - 1
+                                      ? "Submit"
+                                      : "Next",
                                 ),
                               ),
-                              child: const Text("next"),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                    ],
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -203,5 +219,5 @@ class Questions extends StatelessWidget {
     );
   }
 }
- 
- enum QuestionType { singleChoice, multipleChoice }
+
+enum QuestionType { singleChoice, multipleChoice }

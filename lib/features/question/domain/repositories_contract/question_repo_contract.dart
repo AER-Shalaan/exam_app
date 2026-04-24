@@ -6,6 +6,6 @@ import 'package:exam_app/features/question/domain/entities/questions/responce_en
 abstract class QuestionRepoContract {
   Future<BaseResponse<QuestionResponseEntity>> getQuestionsOnExam(
       {required String examId});
-  // Future<BaseResponse<CheckQuestionsResponseEntity>> checkQuestions(
-  //     {required QuestionRequest checkQuestionRequest});
+  Future<BaseResponse<CheckQuestionsResponseEntity>> checkQuestions(
+      {required QuestionRequest checkQuestionRequest});
 }

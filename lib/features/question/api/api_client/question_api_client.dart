@@ -18,9 +18,8 @@ abstract class QuestionApiClient {
   Future<QuestionsResponse> getAllQuestiononExam(
     @Query(ApiParam.exam) String examId,
   );
-  // @POST(Endpoints.postCheckQuestionEndpoint)
-  // Future<CheckQuestionsResponse>checkQuestions(
-  //   @Body()Map<String,dynamic>checkQuestionRequest,
-
-  // );
+  @POST(Endpoints.postCheckQuestionEndpoint)
+  Future<CheckQuestionsResponse> checkQuestions(
+    @Body() Map<String, dynamic> checkQuestionRequest,
+  );
 }

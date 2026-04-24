@@ -41,13 +41,19 @@ abstract class AppRouter {
       case AppRoutesName.questions:
         final examId = settings.arguments as String;
         return MaterialPageRoute(builder: (_) => Questions(examId: examId));
+      // case AppRoutesName.examScore:
+      //   final checkQuestionResponseEntity =
+      //       settings.arguments as CheckQuestionsResponseEntity;
+      //   return MaterialPageRoute(
+      //     builder: (_) =>
+      //         ExamScore(examScoreModel: checkQuestionResponseEntity),
+      //   );
       case AppRoutesName.examScore:
-        final checkQuestionResponseEntity =
-            settings.arguments as CheckQuestionsResponseEntity;
         return MaterialPageRoute(
           builder: (_) =>
-              ExamScore(examScoreModel: checkQuestionResponseEntity),
+              ExamScore(examScoreModel: CheckQuestionsResponseEntity()),
         );
+
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(

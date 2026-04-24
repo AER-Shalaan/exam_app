@@ -9,10 +9,10 @@ class QuestionsUseCase extends QuestionEvent {
   });
 }
 
-// class CheckQuestionsUseCase extends QuestionEvent {
-//   final QuestionRequest? questionRequest;
+class CheckQuestionsUseCase extends QuestionEvent {
+  final QuestionRequest? questionRequest;
 
-//   CheckQuestionsUseCase({
-//     this.questionRequest,
-//   });
-// }
+  CheckQuestionsUseCase({
+    this.questionRequest,
+  });
+}
