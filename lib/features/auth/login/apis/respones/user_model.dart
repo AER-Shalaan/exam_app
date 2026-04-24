@@ -23,6 +23,8 @@ class UserModel {
   bool? isVerified;
   @JsonKey(name: "createdAt")
   DateTime? createdAt;
+  @JsonKey(name: "profilePic")
+  String? profilePic;
 
   UserModel({
     this.id,
@@ -34,6 +36,7 @@ class UserModel {
     this.role,
     this.isVerified,
     this.createdAt,
+    this.profilePic,
   });
   UserEntity toEntity() {
     return UserEntity(
@@ -46,6 +49,7 @@ class UserModel {
       role: role ?? "",
       isVerified: isVerified ?? false,
       createdAt: createdAt ?? DateTime.now(),
+      profilePic: profilePic,
     );
   }
 
