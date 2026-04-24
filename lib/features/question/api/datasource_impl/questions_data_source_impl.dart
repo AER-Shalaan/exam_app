@@ -3,7 +3,7 @@ import 'package:exam_app/features/question/api/api_client/question_api_client.da
 import 'package:exam_app/features/question/data/datasources_contract/question_datasource_contract.dart';
 import 'package:exam_app/features/question/data/models/check_questions/request/question_request.dart';
 import 'package:exam_app/features/question/data/models/check_questions/response/check_questions_response.dart';
-import 'package:exam_app/features/question/data/models/questions/responce/question_response.dart';
+import 'package:exam_app/features/question/data/models/questions/question_response.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: QuestionDataSourceContract)

@@ -1,6 +1,6 @@
 import 'package:exam_app/features/exams/apis/response/exam_response.dart';
 import 'package:exam_app/features/exams/domain/entities/exam_entity.dart';
-import 'package:exam_app/features/question/data/models/questions/responce/question_response.dart';
+import 'package:exam_app/features/question/data/models/questions/question_response.dart';
 
 extension ExamResponseMapper on ExamResponse {
   ExamResponseEntity toEntity() {

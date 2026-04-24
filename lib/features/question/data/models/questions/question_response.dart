@@ -18,12 +18,6 @@ class QuestionsResponse {
     Map<String, dynamic> toJson() => _$QuestionsResponseToJson(this);
 }
 
- enum QuestionType {
-    @JsonValue("single_choice")
-    singleChoice,
-    @JsonValue("multiple_choice")
-    multipleChoice
-}
 @JsonSerializable()
 class QuestionModel {
     @JsonKey(name: "_id")

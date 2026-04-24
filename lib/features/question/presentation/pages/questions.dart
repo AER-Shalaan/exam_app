@@ -62,8 +62,6 @@ class Questions extends StatelessWidget {
             final formattedRemainingTime =
                 questionCubit.formattedRemainingTime();
             final isAnswered = questionCubit.isAnswered(currentIndex);
-            final isLastQuestion = currentIndex == questions.length - 1;
-
             return Scaffold(
               appBar: AppBar(
                 title: Padding(
@@ -138,8 +136,7 @@ class Questions extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
                             child: Text(
-                              currentQuestion.type ==
-                                      QuestionType.multipleChoice
+                              currentQuestion.type == "multiple_choice"
                                   ? "Choose one or more answers"
                                   : "Choose one answer",
                               style: TextStyles.bodyMedium16.copyWith(
@@ -219,5 +216,3 @@ class Questions extends StatelessWidget {
     );
   }
 }
-
-enum QuestionType { singleChoice, multipleChoice }

@@ -1,12 +1,7 @@
 import 'dart:async';
-
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/core/state/base_state.dart';
-import 'package:exam_app/features/question/data/models/check_questions/answers/answers_model.dart';
-import 'package:exam_app/features/question/data/models/check_questions/request/question_request.dart';
-import 'package:exam_app/features/question/data/models/questions/answer_model/answer_model.dart';
-import 'package:exam_app/features/question/data/models/questions/exam_model/exam_model.dart';
-import 'package:exam_app/features/question/data/models/questions/responce/question_response.dart';
+import 'package:exam_app/features/question/data/models/questions/question_response.dart';
 import 'package:exam_app/features/question/domain/entities/check_questions/check_questions_response/check_question_response_entity.dart';
 import 'package:exam_app/features/question/domain/entities/questions/questions_entity/questions_model_entity.dart';
 import 'package:exam_app/features/question/domain/entities/questions/responce_entity/question_response_entity.dart';
@@ -26,9 +21,6 @@ class QuestionCubit extends Cubit<QuestionState> {
   final GetQuestionsUseCase _getQuestionsUseCase;
   Timer? _examTimer;
 
-  // =========================
-  // EVENTS
-  // =========================
   void doQuestionEvent(QuestionEvent event) {
     switch (event) {
       case QuestionsUseCase():
@@ -37,14 +29,11 @@ class QuestionCubit extends Cubit<QuestionState> {
 
       case CheckQuestionsUseCase():
 
-        //  _checkQuestions(event.questionRequest);
         break;
     }
   }
 
-  // =========================
-  // SELECT ANSWER
-  // =========================
+
   void selectAnswer(int questionIndex, CorrectModel answerKey) {
     final questionData = state.questionState.data;
 
@@ -56,7 +45,7 @@ class QuestionCubit extends Cubit<QuestionState> {
 
     final question = questions[questionIndex];
 
-    if (question.type == QuestionType.singleChoice) {
+    if (question.type == 'single_choice') {
       question.selectedAnswerKeys
         ..clear()
         ..add(answerKey);
@@ -80,9 +69,6 @@ class QuestionCubit extends Cubit<QuestionState> {
     );
   }
 
-  // =========================
-  // NAVIGATION
-  // =========================
   void previousQuestion() {
     if (state.currentQuestionIndex <= 0) return;
 
@@ -105,9 +91,6 @@ class QuestionCubit extends Cubit<QuestionState> {
     );
   }
 
-  // =========================
-  // GET QUESTIONS
-  // =========================
   Future<void> _getQuestionsOnExam(String examId) async {
     emit(
       state.copyWith(
@@ -126,7 +109,7 @@ class QuestionCubit extends Cubit<QuestionState> {
         final questions = data.questions ?? [];
 
         final examDurationInMinutes =
-            questions.isNotEmpty ? questions.first.exam?.duration ?? 0 : 0;
+            questions.isNotEmpty ? questions.first.exam.duration ?? 0 : 0;
 
         emit(
           state.copyWith(
@@ -159,9 +142,6 @@ class QuestionCubit extends Cubit<QuestionState> {
     }
   }
 
-  // =========================
-  // TIMER
-  // =========================
   void startExamTimer(int durationInMinutes) {
     _examTimer?.cancel();
 
@@ -198,9 +178,6 @@ class QuestionCubit extends Cubit<QuestionState> {
     });
   }
 
-  // =========================
-  // FORMAT TIME
-  // =========================
   String formattedRemainingTime() {
     final minutes = state.remainingDurationInSeconds ~/ 60;
     final seconds = state.remainingDurationInSeconds % 60;
@@ -216,9 +193,6 @@ class QuestionCubit extends Cubit<QuestionState> {
     return state.remainingDurationInSeconds <= (total ~/ 2);
   }
 
-  // =========================
-  // TIMER CLEANUP
-  // =========================
   void stopExamTimer() {
     _examTimer?.cancel();
     _examTimer = null;
