@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:exam_app/core/network/endpoints.dart';
-import 'package:exam_app/features/profile/data/models/profile_response.dart';
+import 'package:exam_app/features/home/profile/data/models/profile_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 

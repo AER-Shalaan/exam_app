@@ -1,8 +1,8 @@
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/features/auth/login/domain/entities/user_entity.dart';
-import 'package:exam_app/features/profile/data/datasources/profile_api_client.dart';
-import 'package:exam_app/features/profile/data/models/change_password_request.dart';
-import 'package:exam_app/features/profile/data/models/update_profile_request.dart';
+import 'package:exam_app/features/home/profile/data/datasources/profile_api_client.dart';
+import 'package:exam_app/features/home/profile/data/models/change_password_request.dart';
+import 'package:exam_app/features/home/profile/data/models/update_profile_request.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class ProfileRemoteDataSource {

@@ -1,5 +1,5 @@
-import 'package:exam_app/features/profile/data/models/change_password_request.dart';
-import 'package:exam_app/features/profile/data/models/update_profile_request.dart';
+import 'package:exam_app/features/home/profile/data/models/change_password_request.dart';
+import 'package:exam_app/features/home/profile/data/models/update_profile_request.dart';
 
 sealed class ProfileEvents {}
 
