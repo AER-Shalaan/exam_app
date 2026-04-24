@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:exam_app/core/network/base_response.dart';
 import 'package:exam_app/core/state/base_state.dart';
+import 'package:exam_app/features/question/data/models/check_questions/request/question_request.dart';
 import 'package:exam_app/features/question/data/models/questions/question_response.dart';
 import 'package:exam_app/features/question/domain/entities/check_questions/check_questions_response/check_question_response_entity.dart';
 import 'package:exam_app/features/question/domain/entities/questions/questions_entity/questions_model_entity.dart';
@@ -28,7 +29,9 @@ class QuestionCubit extends Cubit<QuestionState> {
         break;
 
       case CheckQuestionsUseCase():
-
+        _checkQuestions(
+          event.questionRequest ?? _buildQuestionRequest(),
+        );
         break;
     }
   }
@@ -94,8 +97,14 @@ class QuestionCubit extends Cubit<QuestionState> {
   Future<void> _getQuestionsOnExam(String examId) async {
     emit(
       state.copyWith(
+        examId: examId,
         questionState: state.questionState.copyWith(
           isLoadingParam: true,
+          errorMessageParam: null,
+        ),
+        checkQuestionState: state.checkQuestionState.copyWith(
+          errorMessageParam: null,
+          dataParam: null,
         ),
       ),
     );
@@ -109,7 +118,7 @@ class QuestionCubit extends Cubit<QuestionState> {
         final questions = data.questions ?? [];
 
         final examDurationInMinutes =
-            questions.isNotEmpty ? questions.first.exam.duration ?? 0 : 0;
+            questions.isNotEmpty ? (questions.first.exam.duration ?? 0) : 0;
 
         emit(
           state.copyWith(
@@ -133,6 +142,46 @@ class QuestionCubit extends Cubit<QuestionState> {
         emit(
           state.copyWith(
             questionState: state.questionState.copyWith(
+              isLoadingParam: false,
+              errorMessageParam: response.errorMessage,
+            ),
+          ),
+        );
+        break;
+    }
+  }
+
+  Future<void> _checkQuestions(QuestionRequest questionRequest) async {
+    emit(
+      state.copyWith(
+        checkQuestionState: state.checkQuestionState.copyWith(
+          isLoadingParam: true,
+          errorMessageParam: null,
+          dataParam: null,
+        ),
+      ),
+    );
+
+    final response = await _getQuestionsUseCase.checkQuestionCall(
+      questionRequest,
+    );
+
+    switch (response) {
+      case SuccessBaseResponse<CheckQuestionsResponseEntity>():
+        emit(
+          state.copyWith(
+            checkQuestionState: state.checkQuestionState.copyWith(
+              isLoadingParam: false,
+              dataParam: response.data,
+            ),
+          ),
+        );
+        break;
+
+      case ErrorBaseResponse<CheckQuestionsResponseEntity>():
+        emit(
+          state.copyWith(
+            checkQuestionState: state.checkQuestionState.copyWith(
               isLoadingParam: false,
               errorMessageParam: response.errorMessage,
             ),
@@ -186,6 +235,17 @@ class QuestionCubit extends Cubit<QuestionState> {
         '${seconds.toString().padLeft(2, '0')}';
   }
 
+  String formattedElapsedTime() {
+    final elapsedSeconds =
+        state.totalDurationInSeconds - state.remainingDurationInSeconds;
+    final safeElapsedSeconds = elapsedSeconds < 0 ? 0 : elapsedSeconds;
+    final minutes = safeElapsedSeconds ~/ 60;
+    final seconds = safeElapsedSeconds % 60;
+
+    return '${minutes.toString().padLeft(2, '0')}:'
+        '${seconds.toString().padLeft(2, '0')}';
+  }
+
   bool isTimerInWarningState() {
     final total = state.totalDurationInSeconds;
     if (total == 0) return false;
@@ -209,5 +269,22 @@ class QuestionCubit extends Cubit<QuestionState> {
         state.questionState.data?.questions?[index].selectedAnswerKeys;
 
     return answers is Set && answers!.isNotEmpty;
+  }
+
+  QuestionRequest _buildQuestionRequest() {
+    final answers = (state.questionState.data?.questions ?? [])
+        .where((question) => question.selectedAnswerKeys.isNotEmpty)
+        .map(
+          (question) => Answer(
+            questionId: question.id,
+            correct: question.selectedAnswerKeys.first.name,
+          ),
+        )
+        .toList();
+
+    return QuestionRequest(
+      time: formattedElapsedTime(),
+      answers: answers,
+    );
   }
 }
