@@ -70,6 +70,7 @@ abstract class AppStrings {
   static const registersuccessfuly = "Register Successfully";
   static const resendCodeSuccess =
       "The OTP has been sent back to your email address.";
+  static const profileUpdatedSuccessfully = "Profile updated successfully";
 
   // Nav bar
   static const explore = "Explore";
@@ -79,6 +80,12 @@ abstract class AppStrings {
   // General
   static const continueString = "Continue";
   static const resending = "Resending code...";
+  static const update = "Update";
+  static const change = "Change";
+  static const changePassword = "Change Password";
+  static const oldPassword = "Old Password";
+  static const confirmNewPassword = "Confirm New Password";
+  static const cancelBtn = "Cancel";
 
   // Errors
   static const noInternetConnection = "No internet connection";
@@ -95,6 +102,7 @@ abstract class AppStrings {
   static const noSubjectsFound = "No subjects found";
   static const emailNotFound = "Email not found. Please restart flow.";
   static const routeNotFound = "Route Not Found";
+  static const noUserDataAvailable = "No user data available";
 
   static String resendIn(int seconds) =>
       "Resend in $seconds ${seconds == 1 ? 'second' : 'seconds'}";

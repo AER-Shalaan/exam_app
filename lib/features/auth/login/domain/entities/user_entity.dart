@@ -8,6 +8,7 @@ class UserEntity {
   final String role;
   final bool isVerified;
   final DateTime createdAt;
+  final String? profilePic;
 
   UserEntity({
     required this.id,
@@ -19,5 +20,6 @@ class UserEntity {
     required this.role,
     required this.isVerified,
     required this.createdAt,
+    this.profilePic,
   });
 }
