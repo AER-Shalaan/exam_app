@@ -1,7 +1,9 @@
 import 'package:exam_app/core/values/app_colors.dart';
-import 'package:exam_app/core/values/app_routes_name.dart';
 import 'package:exam_app/core/values/text_styles.dart';
+import 'package:exam_app/features/question/presentation/cubit/question_cubit.dart';
+import 'package:exam_app/features/question/presentation/cubit/question_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   const CustomAlertDialog({
@@ -34,10 +36,10 @@ class CustomAlertDialog extends StatelessWidget {
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {
-              Navigator.pushReplacementNamed(
-                context,
-                AppRoutesName.examScore,
-              );
+              Navigator.pop(context);
+              context.read<QuestionCubit>().doQuestionEvent(
+                    CheckQuestionsUseCase(),
+                  );
             },
             child: const Text('Show Result'),
           ),
