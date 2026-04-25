@@ -19,7 +19,7 @@ class ResetNewPasswordField extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
       valueListenable: isPasswordHidden,
-      builder: (_, hidden, __) {
+      builder: (_, hidden, _) {
         return TextFormField(
           controller: passwordController,
           obscureText: hidden,

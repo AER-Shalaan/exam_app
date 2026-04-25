@@ -5,10 +5,12 @@ class ExamScoreArgs {
   final QuestionCubit questionCubit;
   final CheckQuestionsResponseEntity examScoreModel;
   final String examId;
+  final String elapsedTime;
 
   const ExamScoreArgs({
     required this.questionCubit,
     required this.examScoreModel,
     required this.examId,
+    required this.elapsedTime,
   });
 }

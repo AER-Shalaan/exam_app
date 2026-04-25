@@ -86,6 +86,13 @@ abstract class AppStrings {
   static const oldPassword = "Old Password";
   static const confirmNewPassword = "Confirm New Password";
   static const cancelBtn = "Cancel";
+  static const other = "Other";
+  static const seconds = "seconds";
+
+  static String resendIn(int seconds) =>
+      "Resend in $seconds ${seconds == 1 ? 'second' : 'seconds'}";
+  static String correctedAnswersIn(int numOfQuestions, String time) =>
+      "$numOfQuestions corrected answers in $time";
 
   // Errors
   static const noInternetConnection = "No internet connection";
@@ -103,9 +110,7 @@ abstract class AppStrings {
   static const emailNotFound = "Email not found. Please restart flow.";
   static const routeNotFound = "Route Not Found";
   static const noUserDataAvailable = "No user data available";
-
-  static String resendIn(int seconds) =>
-      "Resend in $seconds ${seconds == 1 ? 'second' : 'seconds'}";
+  static const noResultsYet = "No results yet";
 
   // Exams
   static const exams = "Exams";
@@ -121,4 +126,5 @@ abstract class AppStrings {
   static const toTime = "6.00";
   static const defaultExamTitle = "Exam Title";
   static const placeholderExamTitle = "Placeholder Exam Title Here";
+  static const answers = "Answers";
 }

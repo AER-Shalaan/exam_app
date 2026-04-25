@@ -6,6 +6,7 @@ class SecureStorage {
   static const FlutterSecureStorage storage = FlutterSecureStorage();
   static const String tokenKey = 'user_token';
   static const String rememberKey = 'remember_me';
+  static const String userIdKey = 'user_id';
 
   static Future<void> saveToken(String token) async {
     await storage.write(key: tokenKey, value: token);
@@ -26,6 +27,14 @@ class SecureStorage {
   static Future<bool> getRememberMe() async {
     final value = await storage.read(key: rememberKey);
     return value == 'true';
+  }
+
+  static Future<void> saveUserId(String userId) async {
+    await storage.write(key: userIdKey, value: userId);
+  }
+
+  static Future<String?> getUserId() async {
+    return await storage.read(key: userIdKey);
   }
 
   static Future<void> clearAll() async {

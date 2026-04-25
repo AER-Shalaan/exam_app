@@ -1,13 +1,14 @@
-import 'package:exam_app/features/auth/sign_up/domain/entities/user_entity.dart';
+
+import 'package:exam_app/features/auth/login/domain/entities/user_entity.dart';
 
 class SignUpEntity {
   String? message;
 
   String? token;
 
-  UserEntity? user;
+  UserEntity user;
 
-  SignUpEntity({this.message, this.token, this.user});
+  SignUpEntity({this.message, this.token, required this.user});
 
   SignUpEntity copyWith({String? message, String? token, UserEntity? user}) {
     return SignUpEntity(

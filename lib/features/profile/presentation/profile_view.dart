@@ -3,11 +3,12 @@ import 'package:exam_app/config/di/di.dart';
 import 'package:exam_app/core/values/app_colors.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/text_styles.dart';
-import 'package:exam_app/features/home/profile/cubit_profile/profile_cubit.dart';
-import 'package:exam_app/features/home/profile/cubit_profile/profile_events.dart';
-import 'package:exam_app/features/home/profile/cubit_profile/profile_states.dart';
-import 'package:exam_app/features/home/profile/data/models/change_password_request.dart';
-import 'package:exam_app/features/home/profile/data/models/update_profile_request.dart';
+import 'package:exam_app/features/auth/login/domain/entities/user_entity.dart';
+import 'package:exam_app/features/profile/presentation/cubit_profile/profile_cubit.dart';
+import 'package:exam_app/features/profile/presentation/cubit_profile/profile_events.dart';
+import 'package:exam_app/features/profile/presentation/cubit_profile/profile_states.dart';
+import 'package:exam_app/features/profile/data/models/change_password_request.dart';
+import 'package:exam_app/features/profile/data/models/update_profile_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -51,7 +52,7 @@ class _ProfileViewState extends State<ProfileView> {
     super.dispose();
   }
 
-  void _initControllers(user) {
+  void _initControllers(UserEntity user) {
     if (!_isInitialized) {
       _usernameController.text = user.username;
       _firstNameController.text = user.firstName;
@@ -79,14 +80,16 @@ class _ProfileViewState extends State<ProfileView> {
                 Navigator.of(dialogContext).pop();
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                      content: Text(AppStrings.passwordChanged),
-                      backgroundColor: AppColors.successColor),
+                    content: Text(AppStrings.passwordChanged),
+                    backgroundColor: AppColors.successColor,
+                  ),
                 );
               } else if (state.changePasswordState.errorMessage != null) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                      content: Text(state.changePasswordState.errorMessage!),
-                      backgroundColor: AppColors.errorColor),
+                    content: Text(state.changePasswordState.errorMessage!),
+                    backgroundColor: AppColors.errorColor,
+                  ),
                 );
               }
             },
@@ -105,7 +108,8 @@ class _ProfileViewState extends State<ProfileView> {
                           controller: oldPasswordController,
                           obscureText: true,
                           decoration: const InputDecoration(
-                              labelText: AppStrings.oldPassword),
+                            labelText: AppStrings.oldPassword,
+                          ),
                           validator: (value) => value == null || value.isEmpty
                               ? AppStrings.fieldCannotBeEmpty
                               : null,
@@ -115,7 +119,8 @@ class _ProfileViewState extends State<ProfileView> {
                           controller: newPasswordController,
                           obscureText: true,
                           decoration: const InputDecoration(
-                              labelText: AppStrings.newPassword),
+                            labelText: AppStrings.newPassword,
+                          ),
                           validator: (value) => value == null || value.isEmpty
                               ? AppStrings.fieldCannotBeEmpty
                               : null,
@@ -125,12 +130,15 @@ class _ProfileViewState extends State<ProfileView> {
                           controller: confirmPasswordController,
                           obscureText: true,
                           decoration: const InputDecoration(
-                              labelText: AppStrings.confirmNewPassword),
+                            labelText: AppStrings.confirmNewPassword,
+                          ),
                           validator: (value) {
-                            if (value == null || value.isEmpty)
+                            if (value == null || value.isEmpty) {
                               return AppStrings.fieldCannotBeEmpty;
-                            if (value != newPasswordController.text)
+                            }
+                            if (value != newPasswordController.text) {
                               return AppStrings.passwordsDoNotMatch;
+                            }
                             return null;
                           },
                         ),
@@ -166,7 +174,9 @@ class _ProfileViewState extends State<ProfileView> {
                             width: 20,
                             height: 20,
                             child: CircularProgressIndicator(
-                                color: AppColors.whiteColor))
+                              color: AppColors.whiteColor,
+                            ),
+                          )
                         : const Text(AppStrings.update),
                   ),
                 ],
@@ -188,14 +198,16 @@ class _ProfileViewState extends State<ProfileView> {
           if (updateState.data != null) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                  content: Text(AppStrings.profileUpdatedSuccessfully),
-                  backgroundColor: AppColors.successColor),
+                content: Text(AppStrings.profileUpdatedSuccessfully),
+                backgroundColor: AppColors.successColor,
+              ),
             );
           } else if (updateState.errorMessage != null) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                  content: Text(updateState.errorMessage!),
-                  backgroundColor: AppColors.errorColor),
+                content: Text(updateState.errorMessage!),
+                backgroundColor: AppColors.errorColor,
+              ),
             );
           }
         },
@@ -243,10 +255,11 @@ class _ProfileViewState extends State<ProfileView> {
                           backgroundImage: _selectedImage != null
                               ? FileImage(_selectedImage!) as ImageProvider
                               : (user.profilePic != null &&
-                                      user.profilePic!.isNotEmpty
-                                  ? NetworkImage(user.profilePic!)
-                                  : null),
-                          child: (_selectedImage == null &&
+                                        user.profilePic!.isNotEmpty
+                                    ? NetworkImage(user.profilePic!)
+                                    : null),
+                          child:
+                              (_selectedImage == null &&
                                   (user.profilePic == null ||
                                       user.profilePic!.isEmpty))
                               ? const Icon(
@@ -299,7 +312,9 @@ class _ProfileViewState extends State<ProfileView> {
                   ),
                   const Gap(16),
                   _buildEditableField(
-                      label: AppStrings.email, controller: _emailController),
+                    label: AppStrings.email,
+                    controller: _emailController,
+                  ),
                   const Gap(16),
                   TextFormField(
                     initialValue: '********',
@@ -311,22 +326,26 @@ class _ProfileViewState extends State<ProfileView> {
                       suffixIcon: TextButton(
                         onPressed: () {
                           _showChangePasswordDialog(
-                              context, context.read<ProfileCubit>());
+                            context,
+                            context.read<ProfileCubit>(),
+                          );
                         },
                         child: Text(
                           AppStrings.change,
-                          style:
-                              TextStyles.bodyMedium16PrimaryUnderline.copyWith(
-                            decoration: TextDecoration.none,
-                            fontSize: 14,
-                          ),
+                          style: TextStyles.bodyMedium16PrimaryUnderline
+                              .copyWith(
+                                decoration: TextDecoration.none,
+                                fontSize: 14,
+                              ),
                         ),
                       ),
                     ),
                   ),
                   const Gap(16),
                   _buildEditableField(
-                      label: AppStrings.phone, controller: _phoneController),
+                    label: AppStrings.phone,
+                    controller: _phoneController,
+                  ),
                   const Gap(48),
                   FilledButton(
                     onPressed: updateState.isLoading
@@ -334,20 +353,17 @@ class _ProfileViewState extends State<ProfileView> {
                         : () {
                             if (_formKey.currentState!.validate()) {
                               context.read<ProfileCubit>().doEvent(
-                                    UpdateProfileEvent(
-                                      UpdateProfileRequest(
-                                        username:
-                                            _usernameController.text.trim(),
-                                        firstName:
-                                            _firstNameController.text.trim(),
-                                        lastName:
-                                            _lastNameController.text.trim(),
-                                        email: _emailController.text.trim(),
-                                        phone: _phoneController.text.trim(),
-                                        profilePic: _selectedImage,
-                                      ),
-                                    ),
-                                  );
+                                UpdateProfileEvent(
+                                  UpdateProfileRequest(
+                                    username: _usernameController.text.trim(),
+                                    firstName: _firstNameController.text.trim(),
+                                    lastName: _lastNameController.text.trim(),
+                                    email: _emailController.text.trim(),
+                                    phone: _phoneController.text.trim(),
+                                    profilePic: _selectedImage,
+                                  ),
+                                ),
+                              );
                             }
                           },
                     style: FilledButton.styleFrom(
@@ -360,7 +376,8 @@ class _ProfileViewState extends State<ProfileView> {
                             width: 24,
                             height: 24,
                             child: CircularProgressIndicator(
-                                color: AppColors.whiteColor),
+                              color: AppColors.whiteColor,
+                            ),
                           )
                         : const Text(AppStrings.update),
                   ),
@@ -374,8 +391,10 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 
-  Widget _buildEditableField(
-      {required String label, required TextEditingController controller}) {
+  Widget _buildEditableField({
+    required String label,
+    required TextEditingController controller,
+  }) {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(

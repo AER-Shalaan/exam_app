@@ -6,7 +6,7 @@ class QuestionModelEntity {
   final String id;
   final String question;
   final CorrectModel correct;
-  final dynamic subject;
+  final SubjectClass? subject;
   final ExamModel exam;
   final DateTime? createdAt;
   final List<AnswerModelEntity> answers;

@@ -7,6 +7,6 @@ extension SignUpMapper on SignUpResponse {
   SignUpEntity toEntity() => SignUpEntity(
     message: message,
     token: token,
-    user: user?.userToEntity(),
+    user: user!.userToEntity(),
   );
 }

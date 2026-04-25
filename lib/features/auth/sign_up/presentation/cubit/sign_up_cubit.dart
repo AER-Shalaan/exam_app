@@ -25,7 +25,11 @@ class SignUpCubit extends Cubit<SignUpStates> {
   Future<void> _setUsers(SignUpRequest request) async {
     emit(
       state.copyWith(
-        signUpState: state.signUpState.copyWith(isLoadingParam: true, dataParam: null, errorMessageParam: null),
+        signUpState: state.signUpState.copyWith(
+          isLoadingParam: true,
+          dataParam: null,
+          errorMessageParam: null,
+        ),
       ),
     );
 
@@ -34,7 +38,11 @@ class SignUpCubit extends Cubit<SignUpStates> {
       case SuccessBaseResponse<SignUpEntity>():
         final data = response.data;
         if (data.token!.isNotEmpty) {
-          await TokenManager.setToken(data.token!, rememberMe: false);
+          await TokenManager.setToken(
+            data.token!,
+            rememberMe: false,
+            userId: data.user.id,
+          );
         }
         emit(
           state.copyWith(
@@ -59,4 +67,3 @@ class SignUpCubit extends Cubit<SignUpStates> {
     }
   }
 }
-

@@ -95,15 +95,18 @@ class _NavItem extends StatelessWidget {
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(24),
                   ),
-                  child: Center(child: SvgPicture.asset(icon)),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  label,
-                  style: TextStyles.navBarTitleStyle.copyWith(
-                    color: isSelected ? AppColors.primary : AppColors.grey,
+                  child: Center(
+                    child: SvgPicture.asset(
+                      icon,
+                      colorFilter: ColorFilter.mode(
+                        AppColors.primary,
+                        BlendMode.srcIn,
+                      ),
+                    ),
                   ),
                 ),
+                const SizedBox(height: 4),
+                Text(label, style: TextStyles.navBarTitleStyle),
               ],
             ),
           ),

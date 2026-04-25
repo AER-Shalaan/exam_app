@@ -1,5 +1,5 @@
+import 'package:exam_app/features/auth/login/domain/entities/user_entity.dart';
 import 'package:exam_app/features/auth/sign_up/apis/response/user_model.dart';
-import 'package:exam_app/features/auth/sign_up/domain/entities/user_entity.dart';
 
 extension UserModelMapper on UserModel {
   UserEntity userToEntity() => UserEntity(

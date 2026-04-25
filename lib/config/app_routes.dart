@@ -1,3 +1,4 @@
+import 'package:exam_app/core/enums/home_tab.dart';
 import 'package:exam_app/features/auth/forget_password/presentation/forget_password_view.dart';
 import 'package:exam_app/features/auth/login/presentation/pages/login_view.dart';
 import 'package:exam_app/features/exams/domain/entities/exam_entity.dart';
@@ -6,9 +7,11 @@ import 'package:exam_app/features/exams/presentation/screens/start_exam_screen.d
 import 'package:exam_app/features/exams/presentation/screens/subject_exams_screen.dart';
 import 'package:exam_app/features/auth/sign_up/presentation/screens/sign_up_view.dart';
 import 'package:exam_app/features/home/presentation/home_view.dart';
-import 'package:exam_app/features/question/presentation/args/exam_score.dart';
+import 'package:exam_app/features/question/presentation/args/exam_score_args.dart';
 import 'package:exam_app/features/question/presentation/pages/exam_score.dart';
 import 'package:exam_app/features/question/presentation/pages/questions.dart';
+import 'package:exam_app/features/results/domain/entities/exam_attempt_entity.dart';
+import 'package:exam_app/features/results/presentation/pages/answers_view.dart';
 import 'package:exam_app/features/splash_screen/presentation/splash_screen.dart';
 import 'package:exam_app/core/values/app_routes_name.dart';
 import 'package:exam_app/core/values/app_strings.dart';
@@ -27,7 +30,8 @@ abstract class AppRouter {
       case AppRoutesName.forgotPassword:
         return MaterialPageRoute(builder: (_) => ForgetPasswordView());
       case AppRoutesName.home:
-        return MaterialPageRoute(builder: (_) => HomeView());
+        final tab = settings.arguments as HomeTab?;
+        return MaterialPageRoute(builder: (_) => HomeView(initialTab: tab));
       case AppRoutesName.examsOnsubject:
         final args = settings.arguments as ExamsArgs;
         return MaterialPageRoute(
@@ -50,6 +54,9 @@ abstract class AppRouter {
             child: ExamScore(args: args),
           ),
         );
+      case AppRoutesName.answers:
+        final attempt = settings.arguments as ExamAttemptEntity;
+        return MaterialPageRoute(builder: (_) => AnswersView(attempt: attempt));
 
       default:
         return MaterialPageRoute(

@@ -19,7 +19,7 @@ class AppTheme {
       backgroundColor: AppColors.whiteColor,
       surfaceTintColor: AppColors.whiteColor,
       iconTheme: IconThemeData(color: AppColors.baseBlack, size: 24),
-      leadingWidth: 20,
+      leadingWidth: 40,
     ),
     //===========================textFormFieldStyle
     inputDecorationTheme: InputDecorationTheme(

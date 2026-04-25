@@ -86,6 +86,12 @@ abstract class TextStyles {
     decorationColor: AppColors.primary,
   );
 
+  static TextStyle bodyMedium20 = GoogleFonts.inter(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+    color: AppColors.baseBlack,
+  );
+
   static TextStyle bodyMedium18 = GoogleFonts.inter(
     fontSize: 18,
     fontWeight: FontWeight.w500,

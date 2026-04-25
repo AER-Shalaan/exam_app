@@ -40,7 +40,11 @@ class LoginViewModel extends Cubit<LoginStates> {
         final data = response.data;
 
         if (rememberMe || data.token.isNotEmpty) {
-          await TokenManager.setToken(data.token, rememberMe: rememberMe);
+          await TokenManager.setToken(
+            data.token,
+            rememberMe: rememberMe,
+            userId: data.user.id
+          );
         }
 
         emit(

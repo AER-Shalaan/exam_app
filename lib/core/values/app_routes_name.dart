@@ -8,4 +8,5 @@ abstract class AppRoutesName {
   static const startExam = "StartExamScreen";
   static const String questions = "Questions";
   static const String examScore = "ExamScore";
+  static const String answers = "AnswersView";
 }

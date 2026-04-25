@@ -4,7 +4,7 @@ import 'package:exam_app/core/values/app_routes_name.dart';
 import 'package:exam_app/core/values/app_strings.dart';
 import 'package:exam_app/core/values/images_paths.dart';
 import 'package:exam_app/core/values/text_styles.dart';
-import 'package:exam_app/features/question/presentation/args/exam_score.dart';
+import 'package:exam_app/features/question/presentation/args/exam_score_args.dart';
 import 'package:exam_app/features/question/presentation/cubit/question_cubit.dart';
 import 'package:exam_app/features/question/presentation/cubit/question_event.dart';
 import 'package:exam_app/features/question/presentation/widgets/custom_alert_dialog.dart';
@@ -64,7 +64,7 @@ class Questions extends StatelessWidget {
           }
 
           if (state.checkQuestionState.data != null) {
-            context.read<QuestionCubit>().stopExamTimer();
+            context.read<QuestionCubit>().stopExamTimer();      
             Navigator.pushReplacementNamed(
               context,
               AppRoutesName.examScore,
@@ -72,6 +72,7 @@ class Questions extends StatelessWidget {
                 questionCubit: context.read<QuestionCubit>(),
                 examScoreModel: state.checkQuestionState.data!,
                 examId: state.examId,
+                elapsedTime: context.read<QuestionCubit>().formattedElapsedTime(),
               ),
             );
           }
